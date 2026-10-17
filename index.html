@@ -1,29 +1,64 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#a90f24">
+  <meta name="description" content="دليل المواطن المغربي لأرقام الخدمات المهمة">
   <title>دليل المواطن المغربي</title>
 
   <style>
     * { box-sizing: border-box; }
 
+    :root {
+      --red: #a90f24;
+      --dark-red: #760817;
+      --bg: #faf6f6;
+      --border: #eee0e2;
+      --text: #292124;
+      --muted: #806f73;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      color: #292124;
-      background: #faf6f6;
+      color: var(--text);
+      background: var(--bg);
     }
+
+    button, select { font: inherit; }
+
+    button { -webkit-tap-highlight-color: transparent; }
 
     header {
       background: linear-gradient(145deg, #760817, #b5122b, #df3448);
       color: white;
       text-align: center;
-      padding: 38px 18px 34px;
-      border-radius: 0 0 30px 30px;
-      box-shadow: 0 8px 25px #850b1c25;
+      padding: 28px 18px 32px;
+      border-radius: 0 0 28px 28px;
+      box-shadow: 0 8px 25px #850b1c20;
+    }
+
+    .language-bar {
+      display: flex;
+      justify-content: flex-end;
+      max-width: 600px;
+      margin: 0 auto 20px;
+    }
+
+    .language-select {
+      color: white;
+      background: #ffffff18;
+      border: 1px solid #ffffff70;
+      border-radius: 12px;
+      padding: 10px 12px;
+      max-width: 100%;
+      outline-offset: 3px;
+    }
+
+    .language-select option {
+      color: #292124;
+      background: white;
     }
 
     .emblem {
@@ -33,15 +68,15 @@
       border-radius: 50%;
       display: grid;
       place-items: center;
-      margin: 0 auto 16px;
+      margin: 0 auto 15px;
       font-size: 30px;
       background: #ffffff12;
     }
 
     header h1 {
       margin: 0 0 12px;
-      font-size: 27px;
-      letter-spacing: -.5px;
+      font-size: clamp(23px, 5vw, 28px);
+      line-height: 1.5;
     }
 
     header p {
@@ -58,40 +93,43 @@
 
     .intro {
       margin: 0 4px 17px;
-      color: #77666a;
+      color: var(--muted);
       font-size: 14px;
-      line-height: 1.8;
+      line-height: 1.9;
     }
 
     .service {
       background: white;
-      border: 1px solid #eee0e2;
+      border: 1px solid var(--border);
       border-radius: 18px;
-      padding: 17px;
+      padding: 16px;
       margin-bottom: 13px;
       box-shadow: 0 5px 18px #40101908;
-      transition: box-shadow .25s, transform .25s;
+      transition: box-shadow .2s, border-color .2s;
     }
 
     .service:hover {
       box-shadow: 0 8px 22px #40101912;
+      border-color: #e5c2c8;
     }
 
     .service-top {
-      display: flex;
+      display: grid;
+      grid-template-columns: max-content minmax(0, 1fr) 36px;
       align-items: center;
-      gap: 13px;
+      gap: 12px;
     }
 
     .number-box {
-      width: 83px;
       min-width: 83px;
       min-height: 61px;
+      max-width: 100%;
+      padding: 8px 10px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 4px;
+      gap: 5px;
       border-radius: 13px;
       color: white;
       background: linear-gradient(145deg, #c91d35, #930a20);
@@ -99,60 +137,77 @@
     }
 
     .number {
+      display: block;
+      max-width: 100%;
       font-weight: 800;
-      font-size: 19px;
+      font-size: clamp(12px, 3.6vw, 19px);
+      line-height: 1.35;
       direction: ltr;
+      unicode-bidi: isolate;
       white-space: nowrap;
+      font-variant-numeric: tabular-nums;
     }
 
     .number-label {
       font-size: 10px;
+      white-space: nowrap;
       color: #ffe0e4;
     }
 
     .service-info {
-      flex: 1;
       min-width: 0;
     }
 
     .service-info h2 {
       margin: 0 0 6px;
       font-size: 16px;
-      line-height: 1.6;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
       color: #33272a;
     }
 
     .service-info p {
       margin: 0;
       font-size: 12px;
-      line-height: 1.7;
+      line-height: 1.8;
+      overflow-wrap: anywhere;
       color: #89767a;
     }
 
     .arrow {
-      flex-shrink: 0;
       width: 36px;
       height: 36px;
-      border-radius: 50%;
+      border-radius: 12px;
       border: 1px solid #f0d5da;
       background: #fff5f6;
-      color: #ac1027;
+      color: var(--red);
       display: grid;
       place-items: center;
       cursor: pointer;
-      transition: transform .3s, background .3s, color .3s;
+      transition: transform .25s, background .25s, color .25s;
     }
 
     .arrow svg {
-      width: 17px;
-      height: 17px;
-      transition: transform .3s;
+      width: 19px;
+      height: 19px;
+      transition: transform .25s;
     }
 
     .arrow[aria-expanded="true"] {
       color: white;
-      background: #ad1027;
+      background: var(--red);
+      border-color: var(--red);
+    }
+
+    .arrow[aria-expanded="true"] svg {
       transform: rotate(180deg);
+    }
+
+    .arrow:focus-visible,
+    .action-button:focus-visible,
+    .call:focus-visible {
+      outline: 3px solid #e7a4ae;
+      outline-offset: 3px;
     }
 
     .details {
@@ -161,13 +216,9 @@
       transition: grid-template-rows .3s ease;
     }
 
-    .details-inner {
-      overflow: hidden;
-    }
+    .details-inner { overflow: hidden; }
 
-    .details.open {
-      grid-template-rows: 1fr;
-    }
+    .details.open { grid-template-rows: 1fr; }
 
     .details-inner p {
       border-top: 1px solid #f2e5e7;
@@ -176,61 +227,83 @@
       font-size: 13px;
       color: #68585c;
       line-height: 2;
+      overflow-wrap: anywhere;
     }
 
     .call-row {
       margin-top: 13px;
       display: flex;
-      justify-content: flex-start;
     }
 
     .call {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      padding: 9px 13px;
-      border-radius: 10px;
+      justify-content: center;
+      gap: 8px;
+      max-width: 100%;
+      padding: 10px 13px;
+      border-radius: 11px;
       background: #fff0f2;
       color: #a80e25;
       text-decoration: none;
       font-size: 13px;
       font-weight: bold;
+      overflow-wrap: anywhere;
+    }
+
+    .call svg,
+    .action-button svg {
+      width: 19px;
+      height: 19px;
+      flex-shrink: 0;
     }
 
     .actions {
-      display: flex;
-      gap: 10px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 11px;
       margin: 24px 0;
     }
 
-    .actions button {
-      flex: 1;
-      min-height: 47px;
-      border: 0;
-      border-radius: 12px;
-      font-size: 14px;
+    .action-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-width: 0;
+      min-height: 52px;
+      padding: 10px 8px;
+      border: 1px solid transparent;
+      border-radius: 14px;
+      font-size: 13px;
+      line-height: 1.6;
       font-weight: bold;
       cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
     }
+
+    .action-button:active { transform: scale(.97); }
 
     .share {
       color: white;
-      background: #ad1027;
+      background: linear-gradient(135deg, #b81730, #87091e);
+      box-shadow: 0 5px 13px #a90f2420;
     }
 
     .install {
       color: #a50e24;
       background: white;
-      border: 1px solid #e7c7cc !important;
+      border-color: #e7c7cc;
     }
 
     .notice {
-      padding: 13px 15px;
+      padding: 14px 15px;
       background: #fff0f1;
-      border-radius: 12px;
+      border: 1px solid #f3dfe2;
+      border-radius: 13px;
       color: #75545a;
       font-size: 12px;
-      line-height: 1.9;
+      line-height: 2;
     }
 
     footer {
@@ -238,30 +311,59 @@
       padding: 20px;
       color: #927f83;
       font-size: 12px;
+      line-height: 1.8;
     }
 
     @media (max-width: 360px) {
-      .service { padding: 12px; }
-      .service-top { gap: 9px; }
-      .number-box { width: 72px; min-width: 72px; }
+      main { width: calc(100% - 20px); }
+      .service { padding: 11px; }
+      .service-top { gap: 8px; }
+      .number-box { min-width: 75px; padding: 7px 6px; }
+      .number { font-size: 12px; }
       .service-info h2 { font-size: 14px; }
+      .service-info p { font-size: 11px; }
       .arrow { width: 32px; height: 32px; }
+      .actions { gap: 7px; }
+      .action-button { font-size: 12px; gap: 6px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
     }
   </style>
 </head>
 
 <body>
   <header>
-    <div class="emblem">🇲🇦</div>
-    <h1>دليل المواطن المغربي</h1>
-    <p>
+    <div class="language-bar">
+      <label>
+        <span id="language-label" hidden>Language</span>
+        <select
+          id="language"
+          class="language-select"
+          aria-label="اختيار اللغة">
+          <option value="ar">العربية</option>
+          <option value="fr">Français</option>
+          <option value="en">English</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="emblem" aria-hidden="true">🇲🇦</div>
+
+    <h1 id="title">دليل المواطن المغربي</h1>
+
+    <p id="subtitle">
       أرقام الخدمات المهمة في المغرب<br>
       معلومات واضحة، في متناول يدك
     </p>
   </header>
 
   <main>
-    <p class="intro">
+    <p class="intro" id="intro">
       اختر الخدمة التي تحتاج إليها، واضغط على السهم لعرض معلوماتها.
       كل عنوان مرتبط برقمه الخاص.
     </p>
@@ -269,196 +371,236 @@
     <div id="services"></div>
 
     <div class="actions">
-      <button class="share" onclick="shareCard()">
-        ↗ مشاركة البطاقة
+      <button class="action-button share" id="share-button" type="button">
+        <svg viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round"
+          aria-hidden="true">
+          <circle cx="18" cy="5" r="3"></circle>
+          <circle cx="6" cy="12" r="3"></circle>
+          <circle cx="18" cy="19" r="3"></circle>
+          <path d="m8.7 10.6 6.6-4.2M8.7 13.4l6.6 4.2"></path>
+        </svg>
+        <span id="share-label">مشاركة البطاقة</span>
       </button>
-      <button class="install" onclick="installCard()">
-        ⊕ إضافة للشاشة الرئيسية
+
+      <button class="action-button install" id="install-button" type="button">
+        <svg viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round"
+          aria-hidden="true">
+          <rect x="5" y="3" width="14" height="18" rx="3"></rect>
+          <path d="M12 7v7m-3-3 3 3 3-3M10 17h4"></path>
+        </svg>
+        <span id="install-label">إضافة للشاشة الرئيسية</span>
       </button>
     </div>
 
-    <div class="notice">
+    <div class="notice" id="notice">
       يرجى التحقق من صلاحية الأرقام وتوفر الخدمات قبل الاعتماد عليها.
       في الحالات الخطيرة، توجّه إلى الجهة المختصة دون تأخير.
     </div>
   </main>
 
-  <footer>
-    دليل المواطن المغربي · بطاقة توعوية
-  </footer>
+  <footer id="footer">دليل المواطن المغربي · بطاقة توعوية</footer>
 
   <script>
+    const ui = {
+      ar: {
+        title: "دليل المواطن المغربي",
+        subtitle: "أرقام الخدمات المهمة في المغرب",
+        subtitle2: "معلومات واضحة، في متناول يدك",
+        intro: "اختر الخدمة التي تحتاج إليها، واضغط على السهم لعرض معلوماتها. كل عنوان مرتبط برقمه الخاص.",
+        numberLabel: "رقم الخدمة",
+        details: "عرض معلومات",
+        service: "الخدمة",
+        associatedNumber: "الرقم المرتبط بها",
+        call: "اتصال بالرقم",
+        share: "مشاركة البطاقة",
+        install: "إضافة للشاشة الرئيسية",
+        notice: "يرجى التحقق من صلاحية الأرقام وتوفر الخدمات قبل الاعتماد عليها. في الحالات الخطيرة، توجّه إلى الجهة المختصة دون تأخير.",
+        footer: "دليل المواطن المغربي · بطاقة توعوية",
+        copied: "تم نسخ رابط البطاقة.",
+        copyError: "انسخ رابط البطاقة من شريط المتصفح لمشاركته.",
+        installHelp: "افتح قائمة المتصفح ⋮ ثم اختر «إضافة إلى الشاشة الرئيسية» أو «تثبيت التطبيق» إذا ظهر الخيار.",
+        shareError: "تعذرت المشاركة. يمكنك نسخ رابط الموقع من المتصفح.",
+        language: "اختيار اللغة"
+      },
+      fr: {
+        title: "Guide du citoyen marocain",
+        subtitle: "Numéros des services importants au Maroc",
+        subtitle2: "Des informations claires à portée de main",
+        intro: "Choisissez un service et appuyez sur la flèche pour afficher ses informations. Chaque intitulé correspond à son numéro.",
+        numberLabel: "Numéro du service",
+        details: "Afficher les informations de",
+        service: "Service",
+        associatedNumber: "Numéro associé",
+        call: "Appeler le",
+        share: "Partager la carte",
+        install: "Ajouter à l’écran d’accueil",
+        notice: "Vérifiez la validité des numéros et la disponibilité des services avant de les utiliser. En cas de danger grave, contactez sans délai le service compétent.",
+        footer: "Guide du citoyen marocain · Carte informative",
+        copied: "Lien de la carte copié.",
+        copyError: "Copiez le lien depuis la barre d’adresse du navigateur.",
+        installHelp: "Ouvrez le menu du navigateur ⋮ puis choisissez « Ajouter à l’écran d’accueil » ou « Installer l’application » si cette option apparaît.",
+        shareError: "Le partage a échoué. Vous pouvez copier le lien du site depuis le navigateur.",
+        language: "Choisir la langue"
+      },
+      en: {
+        title: "Moroccan Citizen's Guide",
+        subtitle: "Important service numbers in Morocco",
+        subtitle2: "Clear information, always at hand",
+        intro: "Choose a service and tap the arrow to view its information. Each heading is linked to its corresponding number.",
+        numberLabel: "Service number",
+        details: "Show information for",
+        service: "Service",
+        associatedNumber: "Associated number",
+        call: "Call",
+        share: "Share this card",
+        install: "Add to Home Screen",
+        notice: "Please verify that numbers are current and services are available before relying on them. In serious emergencies, contact the appropriate service without delay.",
+        footer: "Moroccan Citizen's Guide · Information card",
+        copied: "Card link copied.",
+        copyError: "Copy the card link from your browser's address bar.",
+        installHelp: "Open your browser menu ⋮ and choose 'Add to Home screen' or 'Install app' if available.",
+        shareError: "Sharing failed. You can copy the website link from your browser.",
+        language: "Choose language"
+      }
+    };
+
     const services = [
       {
         number: "19",
-        name: "الشرطة",
-        subtitle: "رقم الشرطة",
-        description: "الرقم 19 مرتبط بخدمة الشرطة. يُرجى مراعاة نطاق التغطية المحلية."
+        ar: ["الشرطة", "رقم الشرطة", "الرقم 19 مرتبط بخدمة الشرطة. يُرجى مراعاة نطاق التغطية المحلية."],
+        fr: ["Police", "Numéro de la police", "Le numéro 19 est associé au service de police. La couverture peut varier selon la zone."],
+        en: ["Police", "Police number", "Number 19 is associated with the police service. Coverage may vary by area."]
       },
       {
         number: "177",
-        name: "الدرك الملكي",
-        subtitle: "رقم الدرك الملكي",
-        description: "الرقم 177 مخصص للتواصل مع الدرك الملكي في نطاق اختصاصه."
+        ar: ["الدرك الملكي", "رقم الدرك الملكي", "الرقم 177 مخصص للتواصل مع الدرك الملكي في نطاق اختصاصه."],
+        fr: ["Gendarmerie royale", "Numéro de la Gendarmerie royale", "Le numéro 177 permet de contacter la Gendarmerie royale dans sa zone de compétence."],
+        en: ["Royal Gendarmerie", "Royal Gendarmerie number", "Number 177 is used to contact the Royal Gendarmerie within its area of responsibility."]
       },
       {
         number: "15",
-        name: "الوقاية المدنية",
-        subtitle: "رقم الوقاية المدنية",
-        description: "الرقم 15 يُستخدم لطلب تدخل الوقاية المدنية وفق الخدمة والتغطية المتاحة."
+        ar: ["الوقاية المدنية", "رقم الوقاية المدنية", "الرقم 15 يُستخدم لطلب تدخل الوقاية المدنية وفق الخدمة والتغطية المتاحة."],
+        fr: ["Protection civile", "Numéro de la Protection civile", "Le numéro 15 sert à solliciter la Protection civile, selon la disponibilité du service et la zone couverte."],
+        en: ["Civil Protection", "Civil Protection number", "Number 15 is used to request Civil Protection assistance, subject to service availability and coverage."]
       },
       {
         number: "141",
-        name: "المساعدة الطبية الاستعجالية",
-        subtitle: "رقم المساعدة الطبية",
-        description: "الرقم 141 مرتبط بالمساعدة الطبية الاستعجالية. تحقّق من توفر الخدمة في منطقتك."
+        ar: ["المساعدة الطبية الاستعجالية", "رقم المساعدة الطبية", "الرقم 141 مرتبط بالمساعدة الطبية الاستعجالية. تحقّق من توفر الخدمة في منطقتك."],
+        fr: ["Aide médicale urgente", "Numéro d’aide médicale", "Le numéro 141 est associé à l’aide médicale urgente. Vérifiez la disponibilité du service dans votre région."],
+        en: ["Emergency medical assistance", "Medical assistance number", "Number 141 is associated with emergency medical assistance. Check service availability in your area."]
       },
       {
         number: "3003",
-        name: "التبليغ عن الفساد",
-        subtitle: "رقم التبليغ عن الفساد",
-        description: "رقم أُدرج للتبليغ عن الفساد؛ تحقّق من استمرار اعتماده والجهة التي تستقبله."
+        ar: ["التبليغ عن الفساد", "رقم التبليغ عن الفساد", "رقم أُدرج للتبليغ عن الفساد؛ تحقّق من استمرار اعتماده والجهة التي تستقبله."],
+        fr: ["Signalement de la corruption", "Numéro de signalement de la corruption", "Ce numéro est indiqué pour signaler la corruption. Vérifiez qu’il est toujours en service et quelle autorité le reçoit."],
+        en: ["Reporting corruption", "Corruption reporting number", "This number is listed for reporting corruption. Verify that it is still active and identify the receiving authority."]
       },
       {
         number: "0801 000 180",
-        name: "مركز محاربة التسمم",
-        subtitle: "رقم مركز محاربة التسمم",
-        description: "عند الاشتباه في التسمم، اطلب المساعدة الطبية سريعاً وتحقق من صلاحية الرقم."
+        ar: ["مركز محاربة التسمم", "رقم مركز محاربة التسمم", "عند الاشتباه في التسمم، اطلب المساعدة الطبية سريعاً وتحقق من صلاحية الرقم."],
+        fr: ["Centre antipoison", "Numéro du centre antipoison", "En cas de suspicion d’intoxication, demandez rapidement une assistance médicale et vérifiez la validité du numéro."],
+        en: ["Poison Control Centre", "Poison Control Centre number", "If poisoning is suspected, seek medical help promptly and verify that this number is current."]
       },
       {
         number: "0801 005 353",
-        name: "شكايات الصحة",
-        subtitle: "رقم شكايات الصحة",
-        description: "رقم مخصص للشكايات الصحية بحسب المعلومات المتداولة؛ تحقّق من اعتماده حالياً."
+        ar: ["شكايات الصحة", "رقم شكايات الصحة", "رقم مخصص للشكايات الصحية بحسب المعلومات المتداولة؛ تحقّق من اعتماده حالياً."],
+        fr: ["Réclamations en matière de santé", "Numéro des réclamations sanitaires", "Ce numéro est indiqué pour les réclamations sanitaires. Vérifiez qu’il est actuellement reconnu."],
+        en: ["Health complaints", "Health complaints number", "This number is listed for health-related complaints. Verify that it is currently valid."]
       },
       {
         number: "8350",
-        name: "مواكبة النساء ضحايا العنف",
-        subtitle: "رقم مواكبة النساء",
-        description: "للاستفسار عن خدمات التوجيه والمواكبة المتاحة للنساء ضحايا العنف."
+        ar: ["مواكبة النساء ضحايا العنف", "رقم مواكبة النساء", "للاستفسار عن خدمات التوجيه والمواكبة المتاحة للنساء ضحايا العنف."],
+        fr: ["Accompagnement des femmes victimes de violence", "Numéro d’accompagnement des femmes", "Pour obtenir des renseignements sur les services d’orientation et d’accompagnement destinés aux femmes victimes de violence."],
+        en: ["Support for women experiencing violence", "Women's support number", "For information about guidance and support services available to women experiencing violence."]
       }
     ];
 
     const container = document.getElementById("services");
+    const languageSelect = document.getElementById("language");
+    let installPrompt = null;
 
-    services.forEach(service => {
-      const card = document.createElement("section");
-      card.className = "service";
+    function renderServices(lang) {
+      container.replaceChildren();
 
-      const top = document.createElement("div");
-      top.className = "service-top";
+      services.forEach((service, index) => {
+        const translated = service[lang];
+        const [name, subtitle, description] = translated;
 
-      const numberBox = document.createElement("div");
-      numberBox.className = "number-box";
+        const card = document.createElement("section");
+        card.className = "service";
 
-      const number = document.createElement("span");
-      number.className = "number";
-      number.textContent = service.number;
+        const top = document.createElement("div");
+        top.className = "service-top";
 
-      const numberLabel = document.createElement("span");
-      numberLabel.className = "number-label";
-      numberLabel.textContent = "رقم الخدمة";
+        const numberBox = document.createElement("div");
+        numberBox.className = "number-box";
 
-      numberBox.append(number, numberLabel);
+        const number = document.createElement("span");
+        number.className = "number";
+        number.textContent = service.number;
+        number.setAttribute("dir", "ltr");
 
-      const info = document.createElement("div");
-      info.className = "service-info";
+        const numberLabel = document.createElement("span");
+        numberLabel.className = "number-label";
+        numberLabel.textContent = ui[lang].numberLabel;
 
-      const heading = document.createElement("h2");
-      heading.textContent = service.name;
+        numberBox.append(number, numberLabel);
 
-      const subtitle = document.createElement("p");
-      subtitle.textContent = service.subtitle + " · " + service.number;
+        const info = document.createElement("div");
+        info.className = "service-info";
 
-      info.append(heading, subtitle);
+        const heading = document.createElement("h2");
+        heading.textContent = name;
 
-      const arrow = document.createElement("button");
-      arrow.className = "arrow";
-      arrow.type = "button";
-      arrow.setAttribute("aria-expanded", "false");
-      arrow.setAttribute("aria-label", "عرض معلومات " + service.name);
-      arrow.innerHTML = `
-        <svg viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2.2"
-          stroke-linecap="round" stroke-linejoin="round"
-          aria-hidden="true">
-          <path d="m6 9 6 6 6-6"></path>
-        </svg>`;
+        const sub = document.createElement("p");
+        sub.textContent = subtitle + " · " + service.number;
 
-      top.append(numberBox, info, arrow);
+        info.append(heading, sub);
 
-      const details = document.createElement("div");
-      details.className = "details";
+        const arrow = document.createElement("button");
+        arrow.className = "arrow";
+        arrow.type = "button";
+        arrow.setAttribute("aria-expanded", "false");
+        arrow.setAttribute("aria-label", ui[lang].details + " " + name);
+        arrow.setAttribute("aria-controls", "details-" + index);
 
-      const detailsInner = document.createElement("div");
-      detailsInner.className = "details-inner";
+        arrow.innerHTML = `
+          <svg viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round"
+            aria-hidden="true">
+            <path d="m6 9 6 6 6-6"></path>
+          </svg>`;
 
-      const description = document.createElement("p");
-      description.textContent =
-        "الخدمة: " + service.name +
-        " — الرقم المرتبط بها: " + service.number +
-        ". " + service.description;
+        top.append(numberBox, info, arrow);
 
-      const callRow = document.createElement("div");
-      callRow.className = "call-row";
+        const details = document.createElement("div");
+        details.className = "details";
+        details.id = "details-" + index;
 
-      const call = document.createElement("a");
-      call.className = "call";
-      call.href = "tel:" + service.number.replace(/\s/g, "");
-      call.textContent = "☎ اتصال بالرقم " + service.number;
+        const inner = document.createElement("div");
+        inner.className = "details-inner";
 
-      callRow.appendChild(call);
-      detailsInner.append(description, callRow);
-      details.appendChild(detailsInner);
-      card.append(top, details);
-      container.appendChild(card);
+        const paragraph = document.createElement("p");
+        paragraph.textContent =
+          ui[lang].service + ": " + name +
+          " — " + ui[lang].associatedNumber + ": " +
+          service.number + ". " + description;
 
-      arrow.addEventListener("click", () => {
-        const isOpen = details.classList.toggle("open");
-        arrow.setAttribute("aria-expanded", String(isOpen));
-      });
-    });
+        const callRow = document.createElement("div");
+        callRow.className = "call-row";
 
-    async function shareCard() {
-      const data = {
-        title: "دليل المواطن المغربي",
-        text: "أرقام الخدمات المهمة في المغرب",
-        url: location.href
-      };
+        const call = document.createElement("a");
+        call.className = "call";
+        call.href = "tel:" + service.number.replace(/\s/g, "");
+        call.setAttribute("dir", "auto");
 
-      if (navigator.share) {
-        try {
-          await navigator.share(data);
-        } catch (error) {}
-      } else {
-        try {
-          await navigator.clipboard.writeText(location.href);
-          alert("تم نسخ رابط البطاقة.");
-        } catch (error) {
-          alert("انسخ رابط البطاقة من شريط المتصفح لمشاركته.");
-        }
-      }
-    }
-
-    let installPrompt;
-
-    window.addEventListener("beforeinstallprompt", event => {
-      event.preventDefault();
-      installPrompt = event;
-    });
-
-    async function installCard() {
-      if (installPrompt) {
-        installPrompt.prompt();
-        await installPrompt.userChoice;
-        installPrompt = null;
-      } else {
-        alert(
-          "افتح قائمة المتصفح ⋮ ثم اختر «إضافة إلى الشاشة الرئيسية» " +
-          "أو «تثبيت التطبيق» إذا ظهر الخيار."
-        );
-      }
-    }
-  </script>
-</body>
-</html>
+        call.innerHTML = `
+          <svg viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round"
+            
