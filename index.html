@@ -461,57 +461,56 @@
         language: "Choose language"
       }
     };
-
-    const services = [
-      {
-        number: "19",
-        ar: ["الشرطة", "رقم الشرطة", "الرقم 19 مرتبط بخدمة الشرطة. يُرجى مراعاة نطاق التغطية المحلية."],
-        fr: ["Police", "Numéro de la police", "Le numéro 19 est associé au service de police. La couverture peut varier selon la zone."],
-        en: ["Police", "Police number", "Number 19 is associated with the police service. Coverage may vary by area."]
-      },
-      {
-        number: "177",
-        ar: ["الدرك الملكي", "رقم الدرك الملكي", "الرقم 177 مخصص للتواصل مع الدرك الملكي في نطاق اختصاصه."],
-        fr: ["Gendarmerie royale", "Numéro de la Gendarmerie royale", "Le numéro 177 permet de contacter la Gendarmerie royale dans sa zone de compétence."],
-        en: ["Royal Gendarmerie", "Royal Gendarmerie number", "Number 177 is used to contact the Royal Gendarmerie within its area of responsibility."]
-      },
-      {
-        number: "15",
-        ar: ["الوقاية المدنية", "رقم الوقاية المدنية", "الرقم 15 يُستخدم لطلب تدخل الوقاية المدنية وفق الخدمة والتغطية المتاحة."],
-        fr: ["Protection civile", "Numéro de la Protection civile", "Le numéro 15 sert à solliciter la Protection civile, selon la disponibilité du service et la zone couverte."],
-        en: ["Civil Protection", "Civil Protection number", "Number 15 is used to request Civil Protection assistance, subject to service availability and coverage."]
-      },
-      {
-        number: "141",
-        ar: ["المساعدة الطبية الاستعجالية", "رقم المساعدة الطبية", "الرقم 141 مرتبط بالمساعدة الطبية الاستعجالية. تحقّق من توفر الخدمة في منطقتك."],
-        fr: ["Aide médicale urgente", "Numéro d’aide médicale", "Le numéro 141 est associé à l’aide médicale urgente. Vérifiez la disponibilité du service dans votre région."],
-        en: ["Emergency medical assistance", "Medical assistance number", "Number 141 is associated with emergency medical assistance. Check service availability in your area."]
-      },
-      {
-        number: "3003",
-        ar: ["التبليغ عن الفساد", "رقم التبليغ عن الفساد", "رقم أُدرج للتبليغ عن الفساد؛ تحقّق من استمرار اعتماده والجهة التي تستقبله."],
-        fr: ["Signalement de la corruption", "Numéro de signalement de la corruption", "Ce numéro est indiqué pour signaler la corruption. Vérifiez qu’il est toujours en service et quelle autorité le reçoit."],
-        en: ["Reporting corruption", "Corruption reporting number", "This number is listed for reporting corruption. Verify that it is still active and identify the receiving authority."]
-      },
-      {
-        number: "0801 000 180",
-        ar: ["مركز محاربة التسمم", "رقم مركز محاربة التسمم", "عند الاشتباه في التسمم، اطلب المساعدة الطبية سريعاً وتحقق من صلاحية الرقم."],
-        fr: ["Centre antipoison", "Numéro du centre antipoison", "En cas de suspicion d’intoxication, demandez rapidement une assistance médicale et vérifiez la validité du numéro."],
-        en: ["Poison Control Centre", "Poison Control Centre number", "If poisoning is suspected, seek medical help promptly and verify that this number is current."]
-      },
-      {
-        number: "0801 005 353",
-        ar: ["شكايات الصحة", "رقم شكايات الصحة", "رقم مخصص للشكايات الصحية بحسب المعلومات المتداولة؛ تحقّق من اعتماده حالياً."],
-        fr: ["Réclamations en matière de santé", "Numéro des réclamations sanitaires", "Ce numéro est indiqué pour les réclamations sanitaires. Vérifiez qu’il est actuellement reconnu."],
-        en: ["Health complaints", "Health complaints number", "This number is listed for health-related complaints. Verify that it is currently valid."]
-      },
-      {
-        number: "8350",
-        ar: ["مواكبة النساء ضحايا العنف", "رقم مواكبة النساء", "للاستفسار عن خدمات التوجيه والمواكبة المتاحة للنساء ضحايا العنف."],
-        fr: ["Accompagnement des femmes victimes de violence", "Numéro d’accompagnement des femmes", "Pour obtenir des renseignements sur les services d’orientation et d’accompagnement destinés aux femmes victimes de violence."],
-        en: ["Support for women experiencing violence", "Women's support number", "For information about guidance and support services available to women experiencing violence."]
-      }
-    ];   
+const services = [
+  {
+    number: "19",
+    ar: ["الشرطة", "الشرطة – رقم 19", "يوصلك هذا الرقم بخدمة الشرطة للتبليغ عن الجرائم وطلب التدخل الأمني داخل المدن، وفق نطاق التغطية."],
+    fr: ["Police", "Police – numéro 19", "Ce numéro permet de contacter la police pour signaler un crime ou demander une intervention en zone urbaine, selon la couverture du service."],
+    en: ["Police", "Police – number 19", "This number connects you to the police to report crimes or request security assistance in urban areas, subject to service coverage."]
+  },
+  {
+    number: "177",
+    ar: ["الدرك الملكي", "الدرك الملكي – رقم 177", "يوصلك هذا الرقم بخدمة الدرك الملكي للتبليغ عن الحوادث أو طلب المساعدة في المناطق الواقعة ضمن اختصاصه."],
+    fr: ["Gendarmerie royale", "Gendarmerie royale – numéro 177", "Ce numéro permet de contacter la Gendarmerie royale pour signaler un incident ou demander de l’aide dans sa zone de compétence."],
+    en: ["Royal Gendarmerie", "Royal Gendarmerie – number 177", "This number connects you to the Royal Gendarmerie to report incidents or request assistance within its area of responsibility."]
+  },
+  {
+    number: "15",
+    ar: ["الوقاية المدنية", "الوقاية المدنية – رقم 15", "يوصلك هذا الرقم بخدمة الوقاية المدنية لطلب التدخل في حالات الحريق أو الإنقاذ أو الحوادث التي تتطلب تدخلها."],
+    fr: ["Protection civile", "Protection civile – numéro 15", "Ce numéro permet de demander l’intervention de la Protection civile en cas d’incendie, d’accident ou de besoin de secours."],
+    en: ["Civil Protection", "Civil Protection – number 15", "This number is used to request Civil Protection assistance for fires, accidents, rescue operations, or similar emergencies."]
+  },
+  {
+    number: "141",
+    ar: ["المساعدة الطبية الاستعجالية", "المساعدة الطبية الاستعجالية – رقم 141", "يوصلك هذا الرقم بخدمة المساعدة الطبية الاستعجالية للاستفسار عن المساعدة الطبية العاجلة المتاحة في منطقتك."],
+    fr: ["Aide médicale urgente", "Aide médicale urgente – numéro 141", "Ce numéro est associé au service d’aide médicale urgente. Renseignez-vous sur l’assistance disponible dans votre région."],
+    en: ["Emergency medical assistance", "Emergency medical assistance – number 141", "This number is associated with emergency medical assistance. Ask about the urgent medical help available in your area."]
+  },
+  {
+    number: "3003",
+    ar: ["التبليغ عن الفساد", "التبليغ عن الفساد – رقم 3003", "يوصلك هذا الرقم، إذا كانت الخدمة لا تزال معتمدة، بالجهة المختصة بتلقي بلاغات الفساد. تحقّق من الجهة المستقبلة قبل الاعتماد عليه."],
+    fr: ["Signalement de la corruption", "Signalement de la corruption – numéro 3003", "Si ce service est toujours actif, ce numéro permet de contacter l’organisme chargé de recevoir les signalements de corruption. Vérifiez l’autorité compétente."],
+    en: ["Reporting corruption", "Reporting corruption – number 3003", "If this service is still active, this number may connect you to the authority receiving corruption reports. Verify the responsible authority first."]
+  },
+  {
+    number: "0801 000 180",
+    ar: ["مركز محاربة التسمم", "مركز محاربة التسمم – رقم 0801 000 180", "يوصلك هذا الرقم بمركز محاربة التسمم للاستفسار عن التصرف المناسب عند الاشتباه في التعرض لمادة سامة. في الحالات الخطيرة، اطلب الإسعاف فوراً."],
+    fr: ["Centre antipoison", "Centre antipoison – numéro 0801 000 180", "Ce numéro est indiqué pour joindre le centre antipoison et demander des conseils en cas de suspicion d’intoxication. En cas de gravité, demandez immédiatement des secours."],
+    en: ["Poison Control Centre", "Poison Control Centre – number 0801 000 180", "This number is listed for contacting the poison control centre for advice about suspected poisoning. In serious cases, seek emergency help immediately."]
+  },
+  {
+    number: "0801 005 353",
+    ar: ["شكايات الصحة", "شكايات الصحة – رقم 0801 005 353", "يوصلك هذا الرقم، إذا كان معتمداً حالياً، بخدمة استقبال الشكايات المتعلقة بالصحة للاستفسار أو تقديم شكوى بشأن الخدمة الصحية."],
+    fr: ["Réclamations en matière de santé", "Réclamations sanitaires – numéro 0801 005 353", "Si ce numéro est toujours en service, il permet de contacter le service chargé des réclamations relatives à la santé."],
+    en: ["Health complaints", "Health complaints – number 0801 005 353", "If this number is currently active, it may connect you to the service handling health-related complaints."]
+  },
+  {
+    number: "8350",
+    ar: ["مواكبة النساء ضحايا العنف", "مواكبة النساء ضحايا العنف – رقم 8350", "يوصلك هذا الرقم، وفق الخدمة المتاحة، بخدمة التوجيه والمواكبة للنساء ضحايا العنف للحصول على المعلومات والمساعدة المناسبة."],
+    fr: ["Accompagnement des femmes victimes de violence", "Accompagnement des femmes – numéro 8350", "Selon la disponibilité du service, ce numéro permet d’obtenir des informations et une orientation pour les femmes victimes de violence."],
+    en: ["Support for women experiencing violence", "Women's support – number 8350", "Subject to service availability, this number may provide information and guidance for women experiencing violence."]
+  }
+];
     const container = document.getElementById("services");
     const languageSelect = document.getElementById("language");
     let installPrompt = null;
