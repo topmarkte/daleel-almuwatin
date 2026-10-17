@@ -2,6 +2,17 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+  
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register("./sw.js")
+      .catch(function (error) {
+        console.error("Offline setup failed:", error);
+      });
+  });
+}
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#a90f24">
