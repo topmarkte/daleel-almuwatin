@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#b51224">
+  <title>دليل المواطن المغربي</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff7f7;
+      color: #282020;
+    }
+    header {
+      background: linear-gradient(135deg, #8e0718, #d91f35);
+      color: white;
+      text-align: center;
+      padding: 32px 16px;
+      border-radius: 0 0 28px 28px;
+    }
+    header h1 { margin: 0 0 10px; font-size: 27px; }
+    header p { margin: 0; line-height: 1.8; }
+    main { max-width: 600px; margin: auto; padding: 18px 14px; }
+    .card {
+      background: white;
+      border: 1px solid #f0d6d9;
+      border-right: 5px solid #b51224;
+      border-radius: 15px;
+      margin: 13px 0;
+      padding: 17px;
+      box-shadow: 0 5px 18px #7b182010;
+    }
+    .top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .number {
+      background: #b51224;
+      color: white;
+      min-width: 76px;
+      text-align: center;
+      padding: 11px 7px;
+      border-radius: 10px;
+      font-weight: bold;
+      direction: ltr;
+    }
+    .name { flex: 1; font-weight: bold; font-size: 17px; }
+    button {
+      cursor: pointer;
+      border: 0;
+      border-radius: 9px;
+      padding: 10px 13px;
+      font-size: 15px;
+    }
+    .arrow { background: #fff0f1; color: #b51224; }
+    .details {
+      display: none;
+      line-height: 1.9;
+      padding-top: 12px;
+      color: #625458;
+    }
+    .details.open { display: block; }
+    .actions { display: flex; gap: 10px; margin: 20px 0; }
+    .actions button { flex: 1; }
+    .share { background: #b51224; color: white; }
+    .install { background: #292020; color: white; }
+    footer { text-align: center; padding: 20px; color: #78676a; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>دليل المواطن المغربي 🇲🇦</h1>
+    <p>أرقام مهمة قد تحتاج إليها<br>احتفظ بها واجعلها قريبة منك</p>
+  </header>
+
+  <main>
+    <div id="numbers"></div>
+
+    <div class="actions">
+      <button class="share" onclick="shareCard()">مشاركة البطاقة</button>
+      <button class="install" onclick="installCard()">إضافة للشاشة الرئيسية</button>
+    </div>
+    <p style="line-height:1.8;font-size:13px;color:#756467">
+      ملاحظة: تأكد من صلاحية الرقم وتوفر الخدمة قبل الاعتماد عليه.
+    </p>
+  </main>
+
+  <footer>دليل المواطن المغربي · مرجع توعوي</footer>
+
+  <script>
+    const services = [
+      ["19", "الشرطة", "للتواصل مع الشرطة عند الحاجة، وفق التغطية المحلية."],
+      ["177", "الدرك الملكي", "للتبليغ عن الحوادث وطلب تدخل الدرك في المناطق المختصة."],
+      ["15", "الوقاية المدنية", "لطلب الإسعاف أو تدخل الوقاية المدنية عند الطوارئ."],
+      ["112", "طوارئ الهاتف المحمول", "رقم طوارئ قد يعمل من الهاتف المحمول بحسب الشبكة."],
+      ["141", "المساعدة الطبية الاستعجالية", "للحالات الطبية المستعجلة، وفق التغطية المتاحة."],
+      ["3003", "التبليغ عن الفساد", "تحقق من توفر الخط والجهة المختصة قبل الاتصال."],
+      ["0801 000 180", "مركز محاربة التسمم", "للاستفسار بشأن حالات التسمم والتحرك الطبي المناسب."],
+      ["0801 005 353", "شكايات الصحة", "تحقق من أن الرقم ما زال معتمداً قبل تقديم الشكاية."],
+      ["8350", "مواكبة النساء ضحايا العنف", "للاستفسار عن خدمات التوجيه والمواكبة المتاحة."]
+    ];
+
+    const container = document.getElementById("numbers");
+
+    services.forEach((service, i) => {
+      const card = document.createElement("section");
+      card.className = "card";
+      card.innerHTML = `
+        <div class="top">
+          <div class="number">${service[0]}</div>
+          <div class="name">${service[1]}</div>
+          <button class="arrow" aria-expanded="false"
+            aria-label="عرض معلومات ${service[1]}">⌄</button>
+        </div>
+        <div class="details">${service[2]}</div>
+        <p style="margin-bottom:0">
+          <a href="tel:${service[0].replace(/ /g, '')}"
+             style="color:#b51224;text-decoration:none;font-weight:bold">
+             اتصال
+          </a>
+        </p>`;
+
+      const arrow = card.querySelector(".arrow");
+      const details = card.querySelector(".details");
+      arrow.addEventListener("click", () => {
+        const open = details.classList.toggle("open");
+        arrow.textContent = open ? "⌃" : "⌄";
+        arrow.setAttribute("aria-expanded", String(open));
+      });
+      container.appendChild(card);
+    });
+
+    async function shareCard() {
+      const data = {
+        title: "دليل المواطن المغربي",
+        text: "بطاقة أرقام الخدمات المهمة في المغرب",
+        url: location.href
+      };
+      if (navigator.share) {
+        try { await navigator.share(data); }
+        catch (e) {}
+      } else {
+        try {
+          await navigator.clipboard.writeText(location.href);
+          alert("تم نسخ رابط البطاقة.");
+        } catch (e) {
+          alert("انسخ رابط الصفحة من شريط المتصفح لمشاركتها.");
+        }
+      }
+    }
+
+    let installPrompt;
+    window.addEventListener("beforeinstallprompt", event => {
+      event.preventDefault();
+      installPrompt = event;
+    });
+
+    async function installCard() {
+      if (installPrompt) {
+        installPrompt.prompt();
+        await installPrompt.userChoice;
+        installPrompt = null;
+      } else {
+        alert("من قائمة المتصفح ⋮ اختر «إضافة إلى الشاشة الرئيسية» أو «تثبيت التطبيق» إن ظهرت.");
+      }
+    }
+  </script>
+</body>
+</html>
