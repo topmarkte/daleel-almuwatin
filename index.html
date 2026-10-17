@@ -4,156 +4,444 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#b51224">
+  <meta name="theme-color" content="#a90f24">
   <title>دليل المواطن المغربي</title>
+
   <style>
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #fff7f7;
-      color: #282020;
+      color: #292124;
+      background: #faf6f6;
     }
+
     header {
-      background: linear-gradient(135deg, #8e0718, #d91f35);
+      background: linear-gradient(145deg, #760817, #b5122b, #df3448);
       color: white;
       text-align: center;
-      padding: 32px 16px;
-      border-radius: 0 0 28px 28px;
+      padding: 38px 18px 34px;
+      border-radius: 0 0 30px 30px;
+      box-shadow: 0 8px 25px #850b1c25;
     }
-    header h1 { margin: 0 0 10px; font-size: 27px; }
-    header p { margin: 0; line-height: 1.8; }
-    main { max-width: 600px; margin: auto; padding: 18px 14px; }
-    .card {
+
+    .emblem {
+      width: 66px;
+      height: 66px;
+      border: 1px solid #ffffff80;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 16px;
+      font-size: 30px;
+      background: #ffffff12;
+    }
+
+    header h1 {
+      margin: 0 0 12px;
+      font-size: 27px;
+      letter-spacing: -.5px;
+    }
+
+    header p {
+      margin: 0;
+      line-height: 1.9;
+      font-size: 14px;
+      color: #ffebed;
+    }
+
+    main {
+      width: min(100% - 28px, 600px);
+      margin: 22px auto;
+    }
+
+    .intro {
+      margin: 0 4px 17px;
+      color: #77666a;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .service {
       background: white;
-      border: 1px solid #f0d6d9;
-      border-right: 5px solid #b51224;
-      border-radius: 15px;
-      margin: 13px 0;
+      border: 1px solid #eee0e2;
+      border-radius: 18px;
       padding: 17px;
-      box-shadow: 0 5px 18px #7b182010;
+      margin-bottom: 13px;
+      box-shadow: 0 5px 18px #40101908;
+      transition: box-shadow .25s, transform .25s;
     }
-    .top {
+
+    .service:hover {
+      box-shadow: 0 8px 22px #40101912;
+    }
+
+    .service-top {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 13px;
     }
-    .number {
-      background: #b51224;
+
+    .number-box {
+      width: 83px;
+      min-width: 83px;
+      min-height: 61px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+      border-radius: 13px;
       color: white;
-      min-width: 76px;
-      text-align: center;
-      padding: 11px 7px;
-      border-radius: 10px;
-      font-weight: bold;
+      background: linear-gradient(145deg, #c91d35, #930a20);
+      box-shadow: 0 4px 10px #b5122420;
+    }
+
+    .number {
+      font-weight: 800;
+      font-size: 19px;
       direction: ltr;
+      white-space: nowrap;
     }
-    .name { flex: 1; font-weight: bold; font-size: 17px; }
-    button {
+
+    .number-label {
+      font-size: 10px;
+      color: #ffe0e4;
+    }
+
+    .service-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .service-info h2 {
+      margin: 0 0 6px;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #33272a;
+    }
+
+    .service-info p {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.7;
+      color: #89767a;
+    }
+
+    .arrow {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid #f0d5da;
+      background: #fff5f6;
+      color: #ac1027;
+      display: grid;
+      place-items: center;
       cursor: pointer;
-      border: 0;
-      border-radius: 9px;
-      padding: 10px 13px;
-      font-size: 15px;
+      transition: transform .3s, background .3s, color .3s;
     }
-    .arrow { background: #fff0f1; color: #b51224; }
+
+    .arrow svg {
+      width: 17px;
+      height: 17px;
+      transition: transform .3s;
+    }
+
+    .arrow[aria-expanded="true"] {
+      color: white;
+      background: #ad1027;
+      transform: rotate(180deg);
+    }
+
     .details {
-      display: none;
-      line-height: 1.9;
-      padding-top: 12px;
-      color: #625458;
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows .3s ease;
     }
-    .details.open { display: block; }
-    .actions { display: flex; gap: 10px; margin: 20px 0; }
-    .actions button { flex: 1; }
-    .share { background: #b51224; color: white; }
-    .install { background: #292020; color: white; }
-    footer { text-align: center; padding: 20px; color: #78676a; font-size: 13px; }
+
+    .details-inner {
+      overflow: hidden;
+    }
+
+    .details.open {
+      grid-template-rows: 1fr;
+    }
+
+    .details-inner p {
+      border-top: 1px solid #f2e5e7;
+      margin: 15px 0 0;
+      padding-top: 12px;
+      font-size: 13px;
+      color: #68585c;
+      line-height: 2;
+    }
+
+    .call-row {
+      margin-top: 13px;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .call {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 13px;
+      border-radius: 10px;
+      background: #fff0f2;
+      color: #a80e25;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      margin: 24px 0;
+    }
+
+    .actions button {
+      flex: 1;
+      min-height: 47px;
+      border: 0;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .share {
+      color: white;
+      background: #ad1027;
+    }
+
+    .install {
+      color: #a50e24;
+      background: white;
+      border: 1px solid #e7c7cc !important;
+    }
+
+    .notice {
+      padding: 13px 15px;
+      background: #fff0f1;
+      border-radius: 12px;
+      color: #75545a;
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #927f83;
+      font-size: 12px;
+    }
+
+    @media (max-width: 360px) {
+      .service { padding: 12px; }
+      .service-top { gap: 9px; }
+      .number-box { width: 72px; min-width: 72px; }
+      .service-info h2 { font-size: 14px; }
+      .arrow { width: 32px; height: 32px; }
+    }
   </style>
 </head>
+
 <body>
   <header>
-    <h1>دليل المواطن المغربي 🇲🇦</h1>
-    <p>أرقام مهمة قد تحتاج إليها<br>احتفظ بها واجعلها قريبة منك</p>
+    <div class="emblem">🇲🇦</div>
+    <h1>دليل المواطن المغربي</h1>
+    <p>
+      أرقام الخدمات المهمة في المغرب<br>
+      معلومات واضحة، في متناول يدك
+    </p>
   </header>
 
   <main>
-    <div id="numbers"></div>
+    <p class="intro">
+      اختر الخدمة التي تحتاج إليها، واضغط على السهم لعرض معلوماتها.
+      كل عنوان مرتبط برقمه الخاص.
+    </p>
+
+    <div id="services"></div>
 
     <div class="actions">
-      <button class="share" onclick="shareCard()">مشاركة البطاقة</button>
-      <button class="install" onclick="installCard()">إضافة للشاشة الرئيسية</button>
+      <button class="share" onclick="shareCard()">
+        ↗ مشاركة البطاقة
+      </button>
+      <button class="install" onclick="installCard()">
+        ⊕ إضافة للشاشة الرئيسية
+      </button>
     </div>
-    <p style="line-height:1.8;font-size:13px;color:#756467">
-      ملاحظة: تأكد من صلاحية الرقم وتوفر الخدمة قبل الاعتماد عليه.
-    </p>
+
+    <div class="notice">
+      يرجى التحقق من صلاحية الأرقام وتوفر الخدمات قبل الاعتماد عليها.
+      في الحالات الخطيرة، توجّه إلى الجهة المختصة دون تأخير.
+    </div>
   </main>
 
-  <footer>دليل المواطن المغربي · مرجع توعوي</footer>
+  <footer>
+    دليل المواطن المغربي · بطاقة توعوية
+  </footer>
 
   <script>
     const services = [
-      ["19", "الشرطة", "للتواصل مع الشرطة عند الحاجة، وفق التغطية المحلية."],
-      ["177", "الدرك الملكي", "للتبليغ عن الحوادث وطلب تدخل الدرك في المناطق المختصة."],
-      ["15", "الوقاية المدنية", "لطلب الإسعاف أو تدخل الوقاية المدنية عند الطوارئ."],
-      ["112", "طوارئ الهاتف المحمول", "رقم طوارئ قد يعمل من الهاتف المحمول بحسب الشبكة."],
-      ["141", "المساعدة الطبية الاستعجالية", "للحالات الطبية المستعجلة، وفق التغطية المتاحة."],
-      ["3003", "التبليغ عن الفساد", "تحقق من توفر الخط والجهة المختصة قبل الاتصال."],
-      ["0801 000 180", "مركز محاربة التسمم", "للاستفسار بشأن حالات التسمم والتحرك الطبي المناسب."],
-      ["0801 005 353", "شكايات الصحة", "تحقق من أن الرقم ما زال معتمداً قبل تقديم الشكاية."],
-      ["8350", "مواكبة النساء ضحايا العنف", "للاستفسار عن خدمات التوجيه والمواكبة المتاحة."]
+      {
+        number: "19",
+        name: "الشرطة",
+        subtitle: "رقم الشرطة",
+        description: "الرقم 19 مرتبط بخدمة الشرطة. يُرجى مراعاة نطاق التغطية المحلية."
+      },
+      {
+        number: "177",
+        name: "الدرك الملكي",
+        subtitle: "رقم الدرك الملكي",
+        description: "الرقم 177 مخصص للتواصل مع الدرك الملكي في نطاق اختصاصه."
+      },
+      {
+        number: "15",
+        name: "الوقاية المدنية",
+        subtitle: "رقم الوقاية المدنية",
+        description: "الرقم 15 يُستخدم لطلب تدخل الوقاية المدنية وفق الخدمة والتغطية المتاحة."
+      },
+      {
+        number: "141",
+        name: "المساعدة الطبية الاستعجالية",
+        subtitle: "رقم المساعدة الطبية",
+        description: "الرقم 141 مرتبط بالمساعدة الطبية الاستعجالية. تحقّق من توفر الخدمة في منطقتك."
+      },
+      {
+        number: "3003",
+        name: "التبليغ عن الفساد",
+        subtitle: "رقم التبليغ عن الفساد",
+        description: "رقم أُدرج للتبليغ عن الفساد؛ تحقّق من استمرار اعتماده والجهة التي تستقبله."
+      },
+      {
+        number: "0801 000 180",
+        name: "مركز محاربة التسمم",
+        subtitle: "رقم مركز محاربة التسمم",
+        description: "عند الاشتباه في التسمم، اطلب المساعدة الطبية سريعاً وتحقق من صلاحية الرقم."
+      },
+      {
+        number: "0801 005 353",
+        name: "شكايات الصحة",
+        subtitle: "رقم شكايات الصحة",
+        description: "رقم مخصص للشكايات الصحية بحسب المعلومات المتداولة؛ تحقّق من اعتماده حالياً."
+      },
+      {
+        number: "8350",
+        name: "مواكبة النساء ضحايا العنف",
+        subtitle: "رقم مواكبة النساء",
+        description: "للاستفسار عن خدمات التوجيه والمواكبة المتاحة للنساء ضحايا العنف."
+      }
     ];
 
-    const container = document.getElementById("numbers");
+    const container = document.getElementById("services");
 
-    services.forEach((service, i) => {
+    services.forEach(service => {
       const card = document.createElement("section");
-      card.className = "card";
-      card.innerHTML = `
-        <div class="top">
-          <div class="number">${service[0]}</div>
-          <div class="name">${service[1]}</div>
-          <button class="arrow" aria-expanded="false"
-            aria-label="عرض معلومات ${service[1]}">⌄</button>
-        </div>
-        <div class="details">${service[2]}</div>
-        <p style="margin-bottom:0">
-          <a href="tel:${service[0].replace(/ /g, '')}"
-             style="color:#b51224;text-decoration:none;font-weight:bold">
-             اتصال
-          </a>
-        </p>`;
+      card.className = "service";
 
-      const arrow = card.querySelector(".arrow");
-      const details = card.querySelector(".details");
-      arrow.addEventListener("click", () => {
-        const open = details.classList.toggle("open");
-        arrow.textContent = open ? "⌃" : "⌄";
-        arrow.setAttribute("aria-expanded", String(open));
-      });
+      const top = document.createElement("div");
+      top.className = "service-top";
+
+      const numberBox = document.createElement("div");
+      numberBox.className = "number-box";
+
+      const number = document.createElement("span");
+      number.className = "number";
+      number.textContent = service.number;
+
+      const numberLabel = document.createElement("span");
+      numberLabel.className = "number-label";
+      numberLabel.textContent = "رقم الخدمة";
+
+      numberBox.append(number, numberLabel);
+
+      const info = document.createElement("div");
+      info.className = "service-info";
+
+      const heading = document.createElement("h2");
+      heading.textContent = service.name;
+
+      const subtitle = document.createElement("p");
+      subtitle.textContent = service.subtitle + " · " + service.number;
+
+      info.append(heading, subtitle);
+
+      const arrow = document.createElement("button");
+      arrow.className = "arrow";
+      arrow.type = "button";
+      arrow.setAttribute("aria-expanded", "false");
+      arrow.setAttribute("aria-label", "عرض معلومات " + service.name);
+      arrow.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2.2"
+          stroke-linecap="round" stroke-linejoin="round"
+          aria-hidden="true">
+          <path d="m6 9 6 6 6-6"></path>
+        </svg>`;
+
+      top.append(numberBox, info, arrow);
+
+      const details = document.createElement("div");
+      details.className = "details";
+
+      const detailsInner = document.createElement("div");
+      detailsInner.className = "details-inner";
+
+      const description = document.createElement("p");
+      description.textContent =
+        "الخدمة: " + service.name +
+        " — الرقم المرتبط بها: " + service.number +
+        ". " + service.description;
+
+      const callRow = document.createElement("div");
+      callRow.className = "call-row";
+
+      const call = document.createElement("a");
+      call.className = "call";
+      call.href = "tel:" + service.number.replace(/\s/g, "");
+      call.textContent = "☎ اتصال بالرقم " + service.number;
+
+      callRow.appendChild(call);
+      detailsInner.append(description, callRow);
+      details.appendChild(detailsInner);
+      card.append(top, details);
       container.appendChild(card);
+
+      arrow.addEventListener("click", () => {
+        const isOpen = details.classList.toggle("open");
+        arrow.setAttribute("aria-expanded", String(isOpen));
+      });
     });
 
     async function shareCard() {
       const data = {
         title: "دليل المواطن المغربي",
-        text: "بطاقة أرقام الخدمات المهمة في المغرب",
+        text: "أرقام الخدمات المهمة في المغرب",
         url: location.href
       };
+
       if (navigator.share) {
-        try { await navigator.share(data); }
-        catch (e) {}
+        try {
+          await navigator.share(data);
+        } catch (error) {}
       } else {
         try {
           await navigator.clipboard.writeText(location.href);
           alert("تم نسخ رابط البطاقة.");
-        } catch (e) {
-          alert("انسخ رابط الصفحة من شريط المتصفح لمشاركتها.");
+        } catch (error) {
+          alert("انسخ رابط البطاقة من شريط المتصفح لمشاركته.");
         }
       }
     }
 
     let installPrompt;
+
     window.addEventListener("beforeinstallprompt", event => {
       event.preventDefault();
       installPrompt = event;
@@ -165,7 +453,10 @@
         await installPrompt.userChoice;
         installPrompt = null;
       } else {
-        alert("من قائمة المتصفح ⋮ اختر «إضافة إلى الشاشة الرئيسية» أو «تثبيت التطبيق» إن ظهرت.");
+        alert(
+          "افتح قائمة المتصفح ⋮ ثم اختر «إضافة إلى الشاشة الرئيسية» " +
+          "أو «تثبيت التطبيق» إذا ظهر الخيار."
+        );
       }
     }
   </script>
