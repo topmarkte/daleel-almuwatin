@@ -727,5 +727,16 @@ const services = [
 
     applyLanguage("ar");
   </script>
+  
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  const installButton = document.getElementById("install-button");
+
+  if (isIOS && installButton) {
+    installButton.style.display = "none";
+  }
+});
+</script>
 </body>
 </html>
