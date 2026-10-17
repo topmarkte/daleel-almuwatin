@@ -154,22 +154,16 @@
       color: #ffe0e4;
     }
 
-    .service-info { min-width: 0; }
+    .service-info {
+      min-width: 0;
+    }
 
     .service-info h2 {
-      margin: 0 0 6px;
+      margin: 0;
       font-size: 16px;
       line-height: 1.7;
       overflow-wrap: anywhere;
       color: #33272a;
-    }
-
-    .service-info p {
-      margin: 0;
-      font-size: 12px;
-      line-height: 1.8;
-      overflow-wrap: anywhere;
-      color: #89767a;
     }
 
     .arrow {
@@ -215,6 +209,7 @@
     }
 
     .details-inner { overflow: hidden; }
+
     .details.open { grid-template-rows: 1fr; }
 
     .details-inner p {
@@ -318,7 +313,6 @@
       .number-box { min-width: 75px; padding: 7px 6px; }
       .number { font-size: 12px; }
       .service-info h2 { font-size: 14px; }
-      .service-info p { font-size: 11px; }
       .arrow { width: 32px; height: 32px; }
       .actions { gap: 7px; }
       .action-button { font-size: 12px; gap: 6px; }
@@ -358,8 +352,7 @@
 
   <main>
     <p class="intro" id="intro">
-      اختر الخدمة التي تحتاج إليها، واضغط على السهم لعرض معلوماتها.
-      كل عنوان مرتبط برقمه الخاص.
+      اختر الخدمة التي تحتاج إليها واضغط على السهم لمعرفة دورها.
     </p>
 
     <div id="services"></div>
@@ -399,17 +392,16 @@
   <footer id="footer">دليل المواطن المغربي · بطاقة توعوية</footer>
 
   <script>
+    
     const ui = {
       ar: {
         title: "دليل المواطن المغربي",
         subtitle: "أرقام الخدمات المهمة في المغرب",
         subtitle2: "معلومات واضحة، في متناول يدك",
-        intro: "اختر الخدمة التي تحتاج إليها، واضغط على السهم لعرض معلوماتها. كل عنوان مرتبط برقمه الخاص.",
+        intro: "اختر الخدمة التي تحتاج إليها واضغط على السهم لمعرفة دورها.",
         numberLabel: "رقم الخدمة",
-        details: "عرض معلومات",
-        service: "الخدمة",
-        associatedNumber: "الرقم المرتبط بها",
-        call: "اتصال بالرقم",
+        details: "عرض وصف الخدمة",
+        call: "اتصال",
         share: "مشاركة البطاقة",
         install: "إضافة للشاشة الرئيسية",
         notice: "يرجى التحقق من صلاحية الأرقام وتوفر الخدمات قبل الاعتماد عليها. في الحالات الخطيرة، توجّه إلى الجهة المختصة دون تأخير.",
@@ -424,12 +416,10 @@
         title: "Guide du citoyen marocain",
         subtitle: "Numéros des services importants au Maroc",
         subtitle2: "Des informations claires à portée de main",
-        intro: "Choisissez un service et appuyez sur la flèche pour afficher ses informations. Chaque intitulé correspond à son numéro.",
+        intro: "Choisissez un service et appuyez sur la flèche pour découvrir son rôle.",
         numberLabel: "Numéro du service",
-        details: "Afficher les informations de",
-        service: "Service",
-        associatedNumber: "Numéro associé",
-        call: "Appeler le",
+        details: "Afficher la description du service",
+        call: "Appeler",
         share: "Partager la carte",
         install: "Ajouter à l’écran d’accueil",
         notice: "Vérifiez la validité des numéros et la disponibilité des services avant de les utiliser. En cas de danger grave, contactez sans délai le service compétent.",
@@ -444,11 +434,9 @@
         title: "Moroccan Citizen's Guide",
         subtitle: "Important service numbers in Morocco",
         subtitle2: "Clear information, always at hand",
-        intro: "Choose a service and tap the arrow to view its information. Each heading is linked to its corresponding number.",
+        intro: "Choose a service and tap the arrow to learn what it does.",
         numberLabel: "Service number",
-        details: "Show information for",
-        service: "Service",
-        associatedNumber: "Associated number",
+        details: "Show service description",
         call: "Call",
         share: "Share this card",
         install: "Add to Home Screen",
@@ -461,56 +449,58 @@
         language: "Choose language"
       }
     };
-const services = [
-  {
-    number: "19",
-    ar: ["الشرطة", "الشرطة – رقم 19", "يوصلك هذا الرقم بخدمة الشرطة للتبليغ عن الجرائم وطلب التدخل الأمني داخل المدن، وفق نطاق التغطية."],
-    fr: ["Police", "Police – numéro 19", "Ce numéro permet de contacter la police pour signaler un crime ou demander une intervention en zone urbaine, selon la couverture du service."],
-    en: ["Police", "Police – number 19", "This number connects you to the police to report crimes or request security assistance in urban areas, subject to service coverage."]
-  },
-  {
-    number: "177",
-    ar: ["الدرك الملكي", "الدرك الملكي – رقم 177", "يوصلك هذا الرقم بخدمة الدرك الملكي للتبليغ عن الحوادث أو طلب المساعدة في المناطق الواقعة ضمن اختصاصه."],
-    fr: ["Gendarmerie royale", "Gendarmerie royale – numéro 177", "Ce numéro permet de contacter la Gendarmerie royale pour signaler un incident ou demander de l’aide dans sa zone de compétence."],
-    en: ["Royal Gendarmerie", "Royal Gendarmerie – number 177", "This number connects you to the Royal Gendarmerie to report incidents or request assistance within its area of responsibility."]
-  },
-  {
-    number: "15",
-    ar: ["الوقاية المدنية", "الوقاية المدنية – رقم 15", "يوصلك هذا الرقم بخدمة الوقاية المدنية لطلب التدخل في حالات الحريق أو الإنقاذ أو الحوادث التي تتطلب تدخلها."],
-    fr: ["Protection civile", "Protection civile – numéro 15", "Ce numéro permet de demander l’intervention de la Protection civile en cas d’incendie, d’accident ou de besoin de secours."],
-    en: ["Civil Protection", "Civil Protection – number 15", "This number is used to request Civil Protection assistance for fires, accidents, rescue operations, or similar emergencies."]
-  },
-  {
-    number: "141",
-    ar: ["المساعدة الطبية الاستعجالية", "المساعدة الطبية الاستعجالية – رقم 141", "يوصلك هذا الرقم بخدمة المساعدة الطبية الاستعجالية للاستفسار عن المساعدة الطبية العاجلة المتاحة في منطقتك."],
-    fr: ["Aide médicale urgente", "Aide médicale urgente – numéro 141", "Ce numéro est associé au service d’aide médicale urgente. Renseignez-vous sur l’assistance disponible dans votre région."],
-    en: ["Emergency medical assistance", "Emergency medical assistance – number 141", "This number is associated with emergency medical assistance. Ask about the urgent medical help available in your area."]
-  },
-  {
-    number: "3003",
-    ar: ["التبليغ عن الفساد", "التبليغ عن الفساد – رقم 3003", "يوصلك هذا الرقم، إذا كانت الخدمة لا تزال معتمدة، بالجهة المختصة بتلقي بلاغات الفساد. تحقّق من الجهة المستقبلة قبل الاعتماد عليه."],
-    fr: ["Signalement de la corruption", "Signalement de la corruption – numéro 3003", "Si ce service est toujours actif, ce numéro permet de contacter l’organisme chargé de recevoir les signalements de corruption. Vérifiez l’autorité compétente."],
-    en: ["Reporting corruption", "Reporting corruption – number 3003", "If this service is still active, this number may connect you to the authority receiving corruption reports. Verify the responsible authority first."]
-  },
-  {
-    number: "0801 000 180",
-    ar: ["مركز محاربة التسمم", "مركز محاربة التسمم – رقم 0801 000 180", "يوصلك هذا الرقم بمركز محاربة التسمم للاستفسار عن التصرف المناسب عند الاشتباه في التعرض لمادة سامة. في الحالات الخطيرة، اطلب الإسعاف فوراً."],
-    fr: ["Centre antipoison", "Centre antipoison – numéro 0801 000 180", "Ce numéro est indiqué pour joindre le centre antipoison et demander des conseils en cas de suspicion d’intoxication. En cas de gravité, demandez immédiatement des secours."],
-    en: ["Poison Control Centre", "Poison Control Centre – number 0801 000 180", "This number is listed for contacting the poison control centre for advice about suspected poisoning. In serious cases, seek emergency help immediately."]
-  },
-  {
-    number: "0801 005 353",
-    ar: ["شكايات الصحة", "شكايات الصحة – رقم 0801 005 353", "يوصلك هذا الرقم، إذا كان معتمداً حالياً، بخدمة استقبال الشكايات المتعلقة بالصحة للاستفسار أو تقديم شكوى بشأن الخدمة الصحية."],
-    fr: ["Réclamations en matière de santé", "Réclamations sanitaires – numéro 0801 005 353", "Si ce numéro est toujours en service, il permet de contacter le service chargé des réclamations relatives à la santé."],
-    en: ["Health complaints", "Health complaints – number 0801 005 353", "If this number is currently active, it may connect you to the service handling health-related complaints."]
-  },
-  {
-    number: "8350",
-    ar: ["مواكبة النساء ضحايا العنف", "مواكبة النساء ضحايا العنف – رقم 8350", "يوصلك هذا الرقم، وفق الخدمة المتاحة، بخدمة التوجيه والمواكبة للنساء ضحايا العنف للحصول على المعلومات والمساعدة المناسبة."],
-    fr: ["Accompagnement des femmes victimes de violence", "Accompagnement des femmes – numéro 8350", "Selon la disponibilité du service, ce numéro permet d’obtenir des informations et une orientation pour les femmes victimes de violence."],
-    en: ["Support for women experiencing violence", "Women's support – number 8350", "Subject to service availability, this number may provide information and guidance for women experiencing violence."]
-  }
-];
+
+    const services = [
+      {
+        number: "19",
+        ar: ["الشرطة", "الشرطة", "للتبليغ عن الجرائم أو طلب التدخل الأمني من مصالح الشرطة داخل المدن، وفق نطاق التغطية."],
+        fr: ["Police", "Police", "Pour signaler une infraction ou demander une intervention de la police en zone urbaine, selon la couverture du service."],
+        en: ["Police", "Police", "To report a crime or request police assistance in urban areas, subject to service coverage."]
+      },
+      {
+        number: "177",
+        ar: ["الدرك الملكي", "الدرك الملكي", "للتبليغ عن الحوادث أو طلب المساعدة من مصالح الدرك الملكي في المناطق الواقعة ضمن اختصاصه."],
+        fr: ["Gendarmerie royale", "Gendarmerie royale", "Pour signaler un incident ou demander l’aide de la Gendarmerie royale dans sa zone de compétence."],
+        en: ["Royal Gendarmerie", "Royal Gendarmerie", "To report an incident or request assistance from the Royal Gendarmerie within its area of responsibility."]
+      },
+      {
+        number: "15",
+        ar: ["الوقاية المدنية", "الوقاية المدنية", "لطلب تدخل الوقاية المدنية في حالات الحريق أو الإنقاذ أو الحوادث التي تتطلب تدخلها."],
+        fr: ["Protection civile", "Protection civile", "Pour demander l’intervention de la Protection civile en cas d’incendie, d’accident ou de besoin de secours."],
+        en: ["Civil Protection", "Civil Protection", "To request Civil Protection assistance in the event of a fire, accident or rescue emergency."]
+      },
+      {
+        number: "141",
+        ar: ["المساعدة الطبية الاستعجالية", "المساعدة الطبية الاستعجالية", "للاستفسار عن المساعدة الطبية الاستعجالية المتاحة في منطقتك وطلب التوجيه المناسب."],
+        fr: ["Aide médicale urgente", "Aide médicale urgente", "Pour obtenir des renseignements sur l’aide médicale urgente disponible dans votre région et demander une orientation."],
+        en: ["Emergency medical assistance", "Emergency medical assistance", "To inquire about emergency medical assistance available in your area and obtain appropriate guidance."]
+      },
+      {
+        number: "3003",
+        ar: ["التبليغ عن الفساد", "التبليغ عن الفساد", "للتواصل مع الجهة المختصة بتلقي بلاغات الفساد إذا كانت هذه الخدمة لا تزال معتمدة. يُرجى التحقق من الجهة المستقبلة."],
+        fr: ["Signalement de la corruption", "Signalement de la corruption", "Pour contacter l’organisme chargé de recevoir les signalements de corruption si ce service est toujours actif. Vérifiez l’autorité compétente."],
+        en: ["Reporting corruption", "Reporting corruption", "To contact the authority receiving corruption reports if this service is still active. Please verify the responsible authority."]
+      },
+      {
+        number: "0801 000 180",
+        ar: ["مركز محاربة التسمم", "مركز محاربة التسمم", "للاستفسار عن التصرف المناسب عند الاشتباه في التعرض لمادة سامة. في الحالات الخطيرة، اطلب المساعدة الطبية فوراً."],
+        fr: ["Centre antipoison", "Centre antipoison", "Pour demander conseil en cas de suspicion d’intoxication. En cas de situation grave, sollicitez immédiatement une aide médicale."],
+        en: ["Poison Control Centre", "Poison Control Centre", "To seek advice if poisoning is suspected. In serious cases, obtain emergency medical assistance immediately."]
+      },
+      {
+        number: "0801 005 353",
+        ar: ["شكايات الصحة", "شكايات الصحة", "للاستفسار عن كيفية تقديم شكاية تتعلق بالخدمات الصحية، إذا كان الرقم والخدمة معتمدين حالياً."],
+        fr: ["Réclamations en matière de santé", "Réclamations sanitaires", "Pour obtenir des renseignements sur le dépôt d’une réclamation relative aux services de santé, si ce numéro est toujours actif."],
+        en: ["Health complaints", "Health complaints", "To inquire about submitting a complaint concerning health services, if this number is currently active."]
+      },
+      {
+        number: "8350",
+        ar: ["مواكبة النساء ضحايا العنف", "مواكبة النساء ضحايا العنف", "للاستفسار عن خدمات التوجيه والمواكبة والمساعدة المتاحة للنساء ضحايا العنف، وفق الخدمة المتوفرة."],
+        fr: ["Accompagnement des femmes victimes de violence", "Accompagnement des femmes", "Pour obtenir des informations sur les services d’orientation, d’accompagnement et d’aide destinés aux femmes victimes de violence."],
+        en: ["Support for women experiencing violence", "Women's support", "To learn about guidance, support and assistance services available to women experiencing violence."]
+      }
+    ];
+
     const container = document.getElementById("services");
     const languageSelect = document.getElementById("language");
     let installPrompt = null;
@@ -520,7 +510,7 @@ const services = [
 
       services.forEach((service, index) => {
         const translated = service[lang];
-        const [name, subtitle, description] = translated;
+        const [name, unusedSubtitle, description] = translated;
 
         const card = document.createElement("section");
         card.className = "service";
@@ -548,16 +538,14 @@ const services = [
         const heading = document.createElement("h2");
         heading.textContent = name;
 
-        const sub = document.createElement("p");
-        sub.textContent = subtitle + " · " + service.number;
-
-        info.append(heading, sub);
+        // يظهر اسم الخدمة فقط، من دون رقم إضافي تحته.
+        info.appendChild(heading);
 
         const arrow = document.createElement("button");
         arrow.className = "arrow";
         arrow.type = "button";
         arrow.setAttribute("aria-expanded", "false");
-        arrow.setAttribute("aria-label", ui[lang].details + " " + name);
+        arrow.setAttribute("aria-label", ui[lang].details + ": " + name);
         arrow.setAttribute("aria-controls", "details-" + index);
 
         arrow.innerHTML = `
@@ -577,11 +565,9 @@ const services = [
         const inner = document.createElement("div");
         inner.className = "details-inner";
 
+        // الوصف مستقل: لا اسم الخدمة ولا الرقم مكرران داخله.
         const paragraph = document.createElement("p");
-        paragraph.textContent =
-          ui[lang].service + ": " + name +
-          " — " + ui[lang].associatedNumber + ": " +
-          service.number + ". " + description;
+        paragraph.textContent = description;
 
         const callRow = document.createElement("div");
         callRow.className = "call-row";
@@ -611,7 +597,7 @@ const services = [
           </svg>`;
 
         const callText = document.createElement("span");
-        callText.textContent = ui[lang].call + " " + service.number;
+        callText.textContent = ui[lang].call;
         call.appendChild(callText);
 
         callRow.appendChild(call);
@@ -626,7 +612,7 @@ const services = [
         });
       });
     }
-
+    
     function applyLanguage(lang) {
       if (!ui[lang]) lang = "ar";
 
@@ -638,6 +624,7 @@ const services = [
 
       document.getElementById("language-label").textContent = text.language;
       languageSelect.setAttribute("aria-label", text.language);
+
       document.getElementById("title").textContent = text.title;
 
       const subtitle = document.getElementById("subtitle");
@@ -663,25 +650,6 @@ const services = [
     languageSelect.addEventListener("change", event => {
       applyLanguage(event.target.value);
     });
-
-    async function copyLink() {
-      if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(location.href);
-        return;
-      }
-
-      const field = document.createElement("textarea");
-      field.value = location.href;
-      field.style.position = "fixed";
-      field.style.opacity = "0";
-      document.body.appendChild(field);
-      field.select();
-
-      const copied = document.execCommand("copy");
-      field.remove();
-
-      if (!copied) throw new Error("Copy failed");
-    }
 
     async function shareCard() {
       const lang = languageSelect.value;
@@ -710,26 +678,43 @@ const services = [
       }
     }
 
-    document.getElementById("share-button")
-      .addEventListener("click", shareCard);
+    async function copyLink() {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(location.href);
+        return;
+      }
+
+      const field = document.createElement("textarea");
+      field.value = location.href;
+      field.style.position = "fixed";
+      field.style.opacity = "0";
+      document.body.appendChild(field);
+      field.select();
+
+      const copied = document.execCommand("copy");
+      field.remove();
+
+      if (!copied) throw new Error("Copy failed");
+    }
+
+    document.getElementById("share-button").addEventListener("click", shareCard);
 
     window.addEventListener("beforeinstallprompt", event => {
       event.preventDefault();
       installPrompt = event;
     });
 
-    document.getElementById("install-button")
-      .addEventListener("click", async () => {
-        const lang = languageSelect.value;
+    document.getElementById("install-button").addEventListener("click", async () => {
+      const lang = languageSelect.value;
 
-        if (installPrompt) {
-          installPrompt.prompt();
-          await installPrompt.userChoice;
-          installPrompt = null;
-        } else {
-          alert(ui[lang].installHelp);
-        }
-      });
+      if (installPrompt) {
+        installPrompt.prompt();
+        await installPrompt.userChoice;
+        installPrompt = null;
+      } else {
+        alert(ui[lang].installHelp);
+      }
+    });
 
     applyLanguage("ar");
   </script>
