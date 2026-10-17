@@ -449,58 +449,56 @@
         language: "Choose language"
       }
     };
-
-    const services = [
-      {
-        number: "19",
-        ar: ["الشرطة", "الشرطة", "للتبليغ عن الجرائم أو طلب التدخل الأمني من مصالح الشرطة داخل المدن، وفق نطاق التغطية."],
-        fr: ["Police", "Police", "Pour signaler une infraction ou demander une intervention de la police en zone urbaine, selon la couverture du service."],
-        en: ["Police", "Police", "To report a crime or request police assistance in urban areas, subject to service coverage."]
-      },
-      {
-        number: "177",
-        ar: ["الدرك الملكي", "الدرك الملكي", "للتبليغ عن الحوادث أو طلب المساعدة من مصالح الدرك الملكي في المناطق الواقعة ضمن اختصاصه."],
-        fr: ["Gendarmerie royale", "Gendarmerie royale", "Pour signaler un incident ou demander l’aide de la Gendarmerie royale dans sa zone de compétence."],
-        en: ["Royal Gendarmerie", "Royal Gendarmerie", "To report an incident or request assistance from the Royal Gendarmerie within its area of responsibility."]
-      },
-      {
-        number: "15",
-        ar: ["الوقاية المدنية", "الوقاية المدنية", "لطلب تدخل الوقاية المدنية في حالات الحريق أو الإنقاذ أو الحوادث التي تتطلب تدخلها."],
-        fr: ["Protection civile", "Protection civile", "Pour demander l’intervention de la Protection civile en cas d’incendie, d’accident ou de besoin de secours."],
-        en: ["Civil Protection", "Civil Protection", "To request Civil Protection assistance in the event of a fire, accident or rescue emergency."]
-      },
-      {
-        number: "141",
-        ar: ["المساعدة الطبية الاستعجالية", "المساعدة الطبية الاستعجالية", "للاستفسار عن المساعدة الطبية الاستعجالية المتاحة في منطقتك وطلب التوجيه المناسب."],
-        fr: ["Aide médicale urgente", "Aide médicale urgente", "Pour obtenir des renseignements sur l’aide médicale urgente disponible dans votre région et demander une orientation."],
-        en: ["Emergency medical assistance", "Emergency medical assistance", "To inquire about emergency medical assistance available in your area and obtain appropriate guidance."]
-      },
-      {
-        number: "3003",
-        ar: ["التبليغ عن الفساد", "التبليغ عن الفساد", "للتواصل مع الجهة المختصة بتلقي بلاغات الفساد إذا كانت هذه الخدمة لا تزال معتمدة. يُرجى التحقق من الجهة المستقبلة."],
-        fr: ["Signalement de la corruption", "Signalement de la corruption", "Pour contacter l’organisme chargé de recevoir les signalements de corruption si ce service est toujours actif. Vérifiez l’autorité compétente."],
-        en: ["Reporting corruption", "Reporting corruption", "To contact the authority receiving corruption reports if this service is still active. Please verify the responsible authority."]
-      },
-      {
-        number: "0801 000 180",
-        ar: ["مركز محاربة التسمم", "مركز محاربة التسمم", "للاستفسار عن التصرف المناسب عند الاشتباه في التعرض لمادة سامة. في الحالات الخطيرة، اطلب المساعدة الطبية فوراً."],
-        fr: ["Centre antipoison", "Centre antipoison", "Pour demander conseil en cas de suspicion d’intoxication. En cas de situation grave, sollicitez immédiatement une aide médicale."],
-        en: ["Poison Control Centre", "Poison Control Centre", "To seek advice if poisoning is suspected. In serious cases, obtain emergency medical assistance immediately."]
-      },
-      {
-        number: "0801 005 353",
-        ar: ["شكايات الصحة", "شكايات الصحة", "للاستفسار عن كيفية تقديم شكاية تتعلق بالخدمات الصحية، إذا كان الرقم والخدمة معتمدين حالياً."],
-        fr: ["Réclamations en matière de santé", "Réclamations sanitaires", "Pour obtenir des renseignements sur le dépôt d’une réclamation relative aux services de santé, si ce numéro est toujours actif."],
-        en: ["Health complaints", "Health complaints", "To inquire about submitting a complaint concerning health services, if this number is currently active."]
-      },
-      {
-        number: "8350",
-        ar: ["مواكبة النساء ضحايا العنف", "مواكبة النساء ضحايا العنف", "للاستفسار عن خدمات التوجيه والمواكبة والمساعدة المتاحة للنساء ضحايا العنف، وفق الخدمة المتوفرة."],
-        fr: ["Accompagnement des femmes victimes de violence", "Accompagnement des femmes", "Pour obtenir des informations sur les services d’orientation, d’accompagnement et d’aide destinés aux femmes victimes de violence."],
-        en: ["Support for women experiencing violence", "Women's support", "To learn about guidance, support and assistance services available to women experiencing violence."]
-      }
-    ];
-
+const services = [
+  {
+    number: "19",
+    ar: ["الشرطة", "الشرطة", "للتبليغ عن الجرائم والحوادث وطلب التدخل الأمني في الحالات التي تستدعي ذلك."],
+    fr: ["Police", "Police", "Pour signaler des crimes ou des incidents et demander une intervention policière lorsque la situation l’exige."],
+    en: ["Police", "Police", "To report crimes or incidents and request police intervention when the situation requires it."]
+  },
+  {
+    number: "177",
+    ar: ["الدرك الملكي", "الدرك الملكي", "للتبليغ عن الحوادث وطلب تدخل مصالح الدرك الملكي في المناطق الداخلة ضمن اختصاصها."],
+    fr: ["Gendarmerie royale", "Gendarmerie royale", "Pour signaler des incidents et demander l’intervention de la Gendarmerie royale dans les zones relevant de sa compétence."],
+    en: ["Royal Gendarmerie", "Royal Gendarmerie", "To report incidents and request Royal Gendarmerie intervention in areas under its jurisdiction."]
+  },
+  {
+    number: "15",
+    ar: ["الوقاية المدنية", "الوقاية المدنية", "لطلب تدخل فرق الوقاية المدنية في حالات الحرائق والإنقاذ والحوادث الطارئة."],
+    fr: ["Protection civile", "Protection civile", "Pour demander l’intervention des équipes de la Protection civile en cas d’incendie, de sauvetage ou d’urgence."],
+    en: ["Civil Protection", "Civil Protection", "To request Civil Protection intervention in cases of fire, rescue or emergency."]
+  },
+  {
+    number: "141",
+    ar: ["المساعدة الطبية الاستعجالية", "المساعدة الطبية الاستعجالية", "للحصول على التوجيه المناسب بشأن الحالات الطبية المستعجلة وسبل طلب المساعدة."],
+    fr: ["Aide médicale urgente", "Aide médicale urgente", "Pour obtenir des conseils adaptés concernant les urgences médicales et les moyens de demander de l’aide."],
+    en: ["Emergency medical assistance", "Emergency medical assistance", "To obtain appropriate guidance on medical emergencies and how to request assistance."]
+  },
+  {
+    number: "3003",
+    ar: ["التبليغ عن الفساد", "التبليغ عن الفساد", "للتعرّف على إجراءات تقديم البلاغات المتعلقة بشبهات الفساد إلى الجهات المختصة."],
+    fr: ["Signalement de la corruption", "Signalement de la corruption", "Pour connaître les procédures de signalement des faits présumés de corruption auprès des autorités compétentes."],
+    en: ["Reporting corruption", "Reporting corruption", "To learn about the procedures for reporting suspected corruption to the competent authorities."]
+  },
+  {
+    number: "0801 000 180",
+    ar: ["مركز محاربة التسمم", "مركز محاربة التسمم", "للحصول على الإرشادات اللازمة عند الاشتباه في التعرّض لمادة سامة، وفق طبيعة الحالة."],
+    fr: ["Centre antipoison", "Centre antipoison", "Pour obtenir les conseils nécessaires en cas de suspicion d’exposition à une substance toxique, selon la nature de la situation."],
+    en: ["Poison Control Centre", "Poison Control Centre", "To obtain appropriate guidance when exposure to a toxic substance is suspected, depending on the situation."]
+  },
+  {
+    number: "0801 005 353",
+    ar: ["شكايات الصحة", "شكايات الصحة", "للتعرّف على إجراءات تقديم الشكايات المتعلقة بالخدمات الصحية إلى الجهات المعنية."],
+    fr: ["Réclamations en matière de santé", "Réclamations sanitaires", "Pour connaître les procédures de dépôt de réclamations concernant les services de santé auprès des organismes concernés."],
+    en: ["Health complaints", "Health complaints", "To learn about the procedures for submitting complaints about health services to the relevant authorities."]
+  },
+  {
+    number: "8350",
+    ar: ["مواكبة النساء ضحايا العنف", "مواكبة النساء ضحايا العنف", "للتعرّف على خدمات الاستقبال والتوجيه والمواكبة والدعم المتاحة للنساء ضحايا العنف."],
+    fr: ["Accompagnement des femmes victimes de violence", "Accompagnement des femmes", "Pour découvrir les services d’accueil, d’orientation, d’accompagnement et de soutien destinés aux femmes victimes de violence."],
+    en: ["Support for women experiencing violence", "Women's support", "To learn about the reception, guidance, assistance and support services available to women experiencing violence."]
+  }
+];
     const container = document.getElementById("services");
     const languageSelect = document.getElementById("language");
     let installPrompt = null;
