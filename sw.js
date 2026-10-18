@@ -1,9 +1,11 @@
-
-const CACHE_NAME = "daleel-citizen-v2";
+const CACHE_NAME = "daleel-citizen-v3";
 
 const APP_FILES = [
   "./",
-  "./index.html"
+  "./index.html",
+  "./manifest.json",
+  "./icon-192.png",
+  "./icon-512.png"
 ];
 
 self.addEventListener("install", (event) => {
@@ -41,16 +43,19 @@ self.addEventListener("fetch", (event) => {
     event.respondWith(
       fetch(request)
         .then((response) => {
-          const copy = response.clone();
-          caches.open(CACHE_NAME).then((cache) =>
-            cache.put("./index.html", copy)
-          );
+          if (response.ok) {
+            const copy = response.clone();
+            caches.open(CACHE_NAME).then((cache) =>
+              cache.put("./index.html", copy)
+            );
+          }
           return response;
         })
         .catch(async () => {
           return (
-            await caches.match("./index.html")
-          ) || (await caches.match("./"));
+            (await caches.match("./index.html")) ||
+            (await caches.match("./"))
+          );
         })
     );
     return;
@@ -72,4 +77,3 @@ self.addEventListener("fetch", (event) => {
     })
   );
 });
-        
