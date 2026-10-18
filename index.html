@@ -709,23 +709,37 @@ const services = [
 
     document.getElementById("share-button").addEventListener("click", shareCard);
 
-    window.addEventListener("beforeinstallprompt", event => {
-      event.preventDefault();
-      installPrompt = event;
-    });
+    const installButton = document.getElementById("install-button");
+window.addEventListener("beforeinstallprompt", (event) => {
+  event.preventDefault();
+  installPrompt = event;
+  installButton.style.display = "inline-flex";
+});
 
-    document.getElementById("install-button").addEventListener("click", async () => {
-      const lang = languageSelect.value;
+window.addEventListener("appinstalled", () => {
+  installPrompt = null;
+  installButton.style.display = "none";
+});
 
-      if (installPrompt) {
-        installPrompt.prompt();
-        await installPrompt.userChoice;
-        installPrompt = null;
-      } else {
-        alert(ui[lang].installHelp);
-      }
-    });
+installButton.addEventListener("click", async () => {
+  const lang = languageSelect.value;
 
+  if (!installPrompt) {
+    alert(ui[lang].installHelp);
+    return;
+  }
+
+  const promptEvent = installPrompt;
+  installPrompt = null;
+
+  try {
+    await promptEvent.prompt();
+    await promptEvent.userChoice;
+  } catch (error) {
+    console.error("Installation failed:", error);
+    alert(ui[lang].installHelp);
+  }
+});
     applyLanguage("ar");
   </script>
   
