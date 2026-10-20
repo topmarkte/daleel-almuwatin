@@ -34,6 +34,8 @@
       line-height: 1.8;
     }
 
+    body.menu-open { overflow: hidden; }
+
     button, select { font: inherit; }
     button { cursor: pointer; }
 
@@ -68,6 +70,35 @@
     .hero::before { top: -75px; right: -45px; }
     .hero::after { bottom: -90px; left: -35px; }
 
+    /* زر القائمة الجانبية */
+    .citizen-menu-trigger {
+      position: absolute;
+      z-index: 3;
+      top: 12px;
+      right: 12px;
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      color: var(--gold-light);
+      background: #ffffff12;
+      border: 1px solid #d8b66bcc;
+      border-radius: 13px;
+      box-shadow: 0 3px 12px #25000825;
+      transition: background .2s, transform .2s;
+    }
+
+    .citizen-menu-trigger:hover {
+      background: #ffffff24;
+      transform: translateY(-1px);
+    }
+
+    .citizen-menu-trigger svg {
+      width: 23px;
+      height: 23px;
+    }
+
     .emblem {
       width: 68px;
       height: 68px;
@@ -94,6 +125,186 @@
       margin: 8px 0 0;
       color: #ffeadb;
       font-size: 14px;
+    }
+
+    /* القائمة الجانبية */
+    .citizen-menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(31, 5, 10, .58);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      opacity: 0;
+      transition: opacity .25s ease;
+    }
+
+    .citizen-menu-overlay.visible { opacity: 1; }
+
+    .citizen-side-menu {
+      position: fixed;
+      z-index: 1001;
+      top: 0;
+      right: 0;
+      width: min(340px, 88vw);
+      height: 100%;
+      height: 100dvh;
+      overflow-y: auto;
+      padding: 22px 18px;
+      color: var(--text);
+      background: var(--cream);
+      border-left: 1px solid var(--gold);
+      box-shadow: -12px 0 35px #25000820;
+      transform: translateX(105%);
+      visibility: hidden;
+      transition: transform .28s ease, visibility .28s ease;
+    }
+
+    .citizen-side-menu.visible {
+      transform: translateX(0);
+      visibility: visible;
+    }
+
+    html[dir="ltr"] .citizen-side-menu {
+      right: auto;
+      left: 0;
+      border-left: 0;
+      border-right: 1px solid var(--gold);
+      box-shadow: 12px 0 35px #25000820;
+      transform: translateX(-105%);
+    }
+
+    html[dir="ltr"] .citizen-side-menu.visible {
+      transform: translateX(0);
+    }
+
+    .citizen-menu-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .citizen-menu-brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 0;
+    }
+
+    .citizen-menu-brand-icon {
+      flex: 0 0 44px;
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      color: var(--gold-light);
+      background: linear-gradient(145deg, var(--red), var(--red-deep));
+      border: 1px solid var(--gold);
+      border-radius: 14px;
+    }
+
+    .citizen-menu-brand strong {
+      display: block;
+      color: var(--red-dark);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .citizen-menu-brand small {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .citizen-menu-close {
+      flex: 0 0 40px;
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      color: var(--red-dark);
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .citizen-menu-close:hover {
+      color: white;
+      background: var(--red);
+      border-color: var(--red);
+    }
+
+    .citizen-menu-label {
+      margin: 23px 4px 10px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .citizen-menu-links {
+      display: grid;
+      gap: 9px;
+    }
+
+    .citizen-menu-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 58px;
+      padding: 12px;
+      color: var(--red-dark);
+      text-decoration: none;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      transition: border-color .2s, background .2s, transform .2s;
+    }
+
+    .citizen-menu-link:hover {
+      background: #fff8e9;
+      border-color: var(--gold);
+      transform: translateX(-2px);
+    }
+
+    html[dir="ltr"] .citizen-menu-link:hover {
+      transform: translateX(2px);
+    }
+
+    .citizen-menu-link-icon {
+      flex: 0 0 38px;
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      color: var(--gold-light);
+      background: linear-gradient(145deg, var(--red), var(--red-deep));
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+    }
+
+    .citizen-menu-link-text {
+      flex: 1;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .citizen-menu-link-arrow {
+      display: grid;
+      place-items: center;
+      color: #b18b3e;
+    }
+
+    .citizen-menu-footer {
+      margin-top: 25px;
+      padding: 14px 10px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 11px;
+      border-top: 1px solid var(--border);
     }
 
     .language-wrap {
@@ -410,7 +621,8 @@
         padding-top: 10px;
       }
 
-      .hero { padding: 25px 13px 21px; border-radius: 20px; }
+      .hero { padding: 62px 13px 21px; border-radius: 20px; }
+      .citizen-menu-trigger { top: 10px; right: 10px; }
       .service-top { gap: 8px; padding: 12px 10px; }
       .service-index { flex-basis: 30px; width: 30px; height: 30px; }
       .service-icon { flex-basis: 38px; width: 38px; height: 38px; }
@@ -442,6 +654,20 @@
 <body>
   <main class="page">
     <header class="hero">
+      <button
+        class="citizen-menu-trigger"
+        id="citizenMenuOpen"
+        type="button"
+        aria-label="فتح القائمة"
+        aria-controls="citizenSideMenu"
+        aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+          width="23" height="23" fill="none" stroke="currentColor"
+          stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16"/>
+        </svg>
+      </button>
+
       <div class="emblem" aria-hidden="true" id="emblemIcon"></div>
       <h1 id="pageTitle">دليل المواطن المغربي</h1>
       <p id="subtitle">مرجعك المبسط للوصول إلى أرقام الخدمات والمواقع الرقمية</p>
@@ -494,6 +720,117 @@
     </footer>
   </main>
 
+  <!-- خلفية القائمة -->
+  <div
+    class="citizen-menu-overlay"
+    id="citizenMenuOverlay"
+    hidden
+    aria-hidden="true">
+  </div>
+
+  <!-- القائمة الجانبية -->
+  <aside
+    class="citizen-side-menu"
+    id="citizenSideMenu"
+    aria-label="القائمة الرئيسية"
+    aria-hidden="true"
+    hidden>
+
+    <div class="citizen-menu-header">
+      <div class="citizen-menu-brand">
+        <span class="citizen-menu-brand-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2.5 15 9l6.5 3-6.5 3-3 6.5L9 15l-6.5-3L9 9z"/>
+            <circle cx="12" cy="12" r="8.5"/>
+          </svg>
+        </span>
+        <span>
+          <strong id="menuBrandTitle">دليل المواطن المغربي</strong>
+          <small id="menuBrandSubtitle">القائمة الرئيسية</small>
+        </span>
+      </div>
+
+      <button
+        class="citizen-menu-close"
+        id="citizenMenuClose"
+        type="button"
+        aria-label="إغلاق القائمة">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+          viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="m18 6-12 12M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <p class="citizen-menu-label" id="menuSectionLabel">معلومات الموقع</p>
+
+    <nav class="citizen-menu-links" aria-label="روابط صفحات الموقع">
+      <a class="citizen-menu-link" href="./about.html">
+        <span class="citizen-menu-link-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 11v5M12 7h.01"/>
+          </svg>
+        </span>
+        <span class="citizen-menu-link-text" id="menuAboutText">من نحن</span>
+        <span class="citizen-menu-link-arrow" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m9 18 6-6-6-6"/>
+          </svg>
+        </span>
+      </a>
+
+      <a class="citizen-menu-link" href="./contact.html">
+        <span class="citizen-menu-link-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="14" rx="2"/>
+            <path d="m3 7 9 6 9-6"/>
+          </svg>
+        </span>
+        <span class="citizen-menu-link-text" id="menuContactText">اتصل بنا</span>
+        <span class="citizen-menu-link-arrow" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m9 18 6-6-6-6"/>
+          </svg>
+        </span>
+      </a>
+
+      <a class="citizen-menu-link" href="./privacy.html">
+        <span class="citizen-menu-link-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11z"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+        </span>
+        <span class="citizen-menu-link-text" id="menuPrivacyText">سياسة الخصوصية</span>
+        <span class="citizen-menu-link-arrow" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m9 18 6-6-6-6"/>
+          </svg>
+        </span>
+      </a>
+    </nav>
+
+    <div class="citizen-menu-footer" id="menuFooter">
+      دليل المواطن المغربي — دليل إرشادي مستقل
+    </div>
+  </aside>
+
   <script>
     const icon = (name, size = 24) => {
       const paths = {
@@ -544,6 +881,14 @@
         shared: "تعذر فتح المشاركة. يمكنك نسخ رابط الموقع من شريط العنوان.",
         footerTitle: "دليل المواطن المغربي",
         footerText: "دليل إرشادي مستقل، وليس موقعاً حكومياً رسمياً.",
+        menuOpen: "فتح القائمة",
+        menuClose: "إغلاق القائمة",
+        menuSubtitle: "القائمة الرئيسية",
+        menuSection: "معلومات الموقع",
+        menuAbout: "من نحن",
+        menuContact: "اتصل بنا",
+        menuPrivacy: "سياسة الخصوصية",
+        menuFooter: "دليل المواطن المغربي — دليل إرشادي مستقل",
         services: [
           { name: "الأمن الوطني — الشرطة", number: "19", summary: "للتبليغ عن الحالات الأمنية المستعجلة.", details: "استخدم الرقم في الحالات التي تتطلب تدخلاً أمنياً عاجلاً. تحقق من نطاق الخدمة محلياً." },
           { name: "الدرك الملكي", number: "177", summary: "للحالات الأمنية ضمن نطاق اختصاص الدرك.", details: "قد يختلف نطاق الاختصاص حسب المنطقة. عند الحاجة، اتبع إرشادات الجهات الرسمية." },
@@ -582,6 +927,14 @@
         shared: "Le partage n'a pas pu s'ouvrir. Vous pouvez copier l'adresse depuis le navigateur.",
         footerTitle: "Guide du citoyen marocain",
         footerText: "Guide indépendant, non officiel et distinct des sites gouvernementaux.",
+        menuOpen: "Ouvrir le menu",
+        menuClose: "Fermer le menu",
+        menuSubtitle: "Menu principal",
+        menuSection: "Informations du site",
+        menuAbout: "À propos",
+        menuContact: "Contactez-nous",
+        menuPrivacy: "Politique de confidentialité",
+        menuFooter: "Guide du citoyen marocain — Guide indépendant",
         services: [
           { name: "Sûreté nationale — Police", number: "19", summary: "Pour signaler une urgence de sécurité.", details: "Utilisez ce numéro pour les situations nécessitant une intervention urgente. Vérifiez les services disponibles localement." },
           { name: "Gendarmerie royale", number: "177", summary: "Pour les urgences relevant de la gendarmerie.", details: "La compétence dépend de la zone concernée. Suivez les indications des autorités officielles." },
@@ -620,6 +973,14 @@
         shared: "Sharing could not be opened. You can copy the website address from your browser.",
         footerTitle: "Moroccan Citizen Guide",
         footerText: "An independent informational guide, not an official government website.",
+        menuOpen: "Open menu",
+        menuClose: "Close menu",
+        menuSubtitle: "Main menu",
+        menuSection: "Site information",
+        menuAbout: "About us",
+        menuContact: "Contact us",
+        menuPrivacy: "Privacy policy",
+        menuFooter: "Moroccan Citizen Guide — Independent guide",
         services: [
           { name: "National Security — Police", number: "19", summary: "For urgent security incidents.", details: "Use for situations requiring urgent police assistance. Check local service availability." },
           { name: "Royal Gendarmerie", number: "177", summary: "For emergencies within the gendarmerie's jurisdiction.", details: "Jurisdiction depends on the area. Follow official guidance." },
@@ -649,6 +1010,7 @@
     const $ = (id) => document.getElementById(id);
     let currentLanguage = "ar";
     let deferredInstallPrompt = null;
+    let menuPreviouslyFocusedElement = null;
 
     $("emblemIcon").innerHTML = icon("emblem", 34);
     $("phoneHeadingIcon").innerHTML = icon("phone", 23);
@@ -676,6 +1038,18 @@
       $("installText").textContent = t.install;
       $("footerTitle").textContent = t.footerTitle;
       $("footerText").textContent = t.footerText;
+
+      /* تحديث نصوص القائمة حسب اللغة المختارة */
+      $("citizenMenuOpen").setAttribute("aria-label", t.menuOpen);
+      $("citizenMenuClose").setAttribute("aria-label", t.menuClose);
+      $("citizenSideMenu").setAttribute("aria-label", t.menuSubtitle);
+      $("menuBrandTitle").textContent = t.title;
+      $("menuBrandSubtitle").textContent = t.menuSubtitle;
+      $("menuSectionLabel").textContent = t.menuSection;
+      $("menuAboutText").textContent = t.menuAbout;
+      $("menuContactText").textContent = t.menuContact;
+      $("menuPrivacyText").textContent = t.menuPrivacy;
+      $("menuFooter").textContent = t.menuFooter;
 
       $("language").setAttribute(
         "aria-label",
@@ -809,6 +1183,59 @@
       });
     }
 
+    /* فتح القائمة وإغلاقها */
+    function openCitizenMenu() {
+      if (!$("citizenSideMenu").hidden) return;
+
+      menuPreviouslyFocusedElement = document.activeElement;
+
+      $("citizenSideMenu").hidden = false;
+      $("citizenMenuOverlay").hidden = false;
+
+      $("citizenSideMenu").setAttribute("aria-hidden", "false");
+      $("citizenMenuOverlay").setAttribute("aria-hidden", "false");
+      $("citizenMenuOpen").setAttribute("aria-expanded", "true");
+      document.body.classList.add("menu-open");
+
+      requestAnimationFrame(() => {
+        $("citizenSideMenu").classList.add("visible");
+        $("citizenMenuOverlay").classList.add("visible");
+        $("citizenMenuClose").focus();
+      });
+    }
+
+    function closeCitizenMenu() {
+      if ($("citizenSideMenu").hidden) return;
+
+      $("citizenSideMenu").classList.remove("visible");
+      $("citizenMenuOverlay").classList.remove("visible");
+      $("citizenSideMenu").setAttribute("aria-hidden", "true");
+      $("citizenMenuOverlay").setAttribute("aria-hidden", "true");
+      $("citizenMenuOpen").setAttribute("aria-expanded", "false");
+      document.body.classList.remove("menu-open");
+
+      window.setTimeout(() => {
+        $("citizenSideMenu").hidden = true;
+        $("citizenMenuOverlay").hidden = true;
+      }, 300);
+
+      if (menuPreviouslyFocusedElement) {
+        menuPreviouslyFocusedElement.focus();
+      } else {
+        $("citizenMenuOpen").focus();
+      }
+    }
+
+    $("citizenMenuOpen").addEventListener("click", openCitizenMenu);
+    $("citizenMenuClose").addEventListener("click", closeCitizenMenu);
+    $("citizenMenuOverlay").addEventListener("click", closeCitizenMenu);
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !$("citizenSideMenu").hidden) {
+        closeCitizenMenu();
+      }
+    });
+
     async function shareGuide() {
       const t = translations[currentLanguage];
       const shareData = {
@@ -884,386 +1311,6 @@
     }
 
     applyLanguage("ar");
-    
-<style>
-  /* القائمة الجانبية لدليل المواطن المغربي */
-  .citizen-menu-trigger {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    z-index: 5;
-    width: 43px;
-    height: 43px;
-    display: grid;
-    place-items: center;
-    border: 1px solid #d8b66b;
-    border-radius: 14px;
-    color: #ffe7a3;
-    background: #650817;
-    box-shadow: 0 4px 14px #0002;
-  }
-
-  .citizen-menu-trigger:hover {
-    background: #45050f;
-  }
-
-  .citizen-menu-trigger:focus-visible,
-  .citizen-menu-close:focus-visible,
-  .citizen-menu-link:focus-visible {
-    outline: 3px solid #d8b66b;
-    outline-offset: 3px;
-  }
-
-  .citizen-menu-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 9998;
-    background: #18070bc2;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity .25s, visibility .25s;
-  }
-
-  .citizen-menu-overlay.is-open {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  .citizen-side-menu {
-    position: fixed;
-    z-index: 9999;
-    top: 0;
-    right: 0;
-    width: min(330px, 86vw);
-    height: 100%;
-    height: 100dvh;
-    padding: 25px 20px;
-    overflow-y: auto;
-    color: #292323;
-    background: #fffaf3;
-    border-left: 2px solid #d8b66b;
-    box-shadow: -10px 0 35px #0002;
-    transform: translateX(105%);
-    transition: transform .3s ease;
-    visibility: hidden;
-  }
-
-  html[dir="ltr"] .citizen-side-menu {
-    right: auto;
-    left: 0;
-    border-left: 0;
-    border-right: 2px solid #d8b66b;
-    transform: translateX(-105%);
-  }
-
-  .citizen-side-menu.is-open {
-    transform: translateX(0);
-    visibility: visible;
-  }
-
-  .citizen-menu-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding-bottom: 18px;
-    border-bottom: 1px solid #eadbd8;
-  }
-
-  .citizen-menu-brand {
-    color: #650817;
-    font-size: 18px;
-    font-weight: 800;
-  }
-
-  .citizen-menu-subtitle {
-    margin-top: 4px;
-    color: #746b6b;
-    font-size: 12px;
-  }
-
-  .citizen-menu-close {
-    flex: 0 0 40px;
-    width: 40px;
-    height: 40px;
-    border: 1px solid #d8b66b;
-    border-radius: 12px;
-    color: #650817;
-    background: white;
-    font-size: 25px;
-  }
-
-  .citizen-menu-links {
-    display: grid;
-    gap: 11px;
-    margin-top: 22px;
-  }
-
-  .citizen-menu-link {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 14px 12px;
-    border: 1px solid #eadbd8;
-    border-radius: 14px;
-    color: #650817;
-    background: white;
-    text-decoration: none;
-    font-weight: 700;
-    transition: border-color .2s, background .2s,
-                transform .2s;
-  }
-
-  .citizen-menu-link:hover {
-    border-color: #d8b66b;
-    background: #fff5e3;
-    transform: translateY(-2px);
-  }
-
-  .citizen-menu-link svg {
-    flex: 0 0 23px;
-    color: #a90f24;
-  }
-
-  body.citizen-menu-locked {
-    overflow: hidden;
-  }
-
-  @media (max-width: 520px) {
-    .citizen-menu-trigger {
-      top: 10px;
-      right: 10px;
-      width: 40px;
-      height: 40px;
-    }
-
-    html[dir="ltr"] .citizen-menu-trigger {
-      right: auto;
-      left: 10px;
-    }
-
-    .hero {
-      padding-top: 57px;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .citizen-side-menu,
-    .citizen-menu-overlay,
-    .citizen-menu-link {
-      transition: none;
-    }
-  }
-</style>
-
-<button
-  class="citizen-menu-trigger"
-  id="citizenMenuOpen"
-  type="button"
-  aria-label="فتح القائمة"
-  aria-controls="citizenSideMenu"
-  aria-expanded="false"
->
-  <svg width="24" height="24" viewBox="0 0 24 24"
-       fill="none" stroke="currentColor" stroke-width="1.8"
-       stroke-linecap="round" aria-hidden="true">
-    <path d="M4 7h16M4 12h16M4 17h16"/>
-  </svg>
-</button>
-
-<div
-  class="citizen-menu-overlay"
-  id="citizenMenuOverlay"
-  aria-hidden="true"
-></div>
-
-<aside
-  class="citizen-side-menu"
-  id="citizenSideMenu"
-  role="dialog"
-  aria-modal="true"
-  aria-labelledby="citizenMenuTitle"
-  aria-hidden="true"
-  tabindex="-1"
-  inert
->
-  <div class="citizen-menu-head">
-    <div>
-      <div class="citizen-menu-brand" id="citizenMenuTitle">
-        دليل المواطن المغربي
-      </div>
-      <div class="citizen-menu-subtitle" id="citizenMenuSubtitle">
-        خدمات ومعلومات تهمك
-      </div>
-    </div>
-
-    <button
-      class="citizen-menu-close"
-      id="citizenMenuClose"
-      type="button"
-      aria-label="إغلاق القائمة"
-    >×</button>
-  </div>
-
-  <nav class="citizen-menu-links" aria-label="روابط الموقع">
-    <a class="citizen-menu-link" href="./about.html">
-      <svg width="23" height="23" viewBox="0 0 24 24"
-           fill="none" stroke="currentColor" stroke-width="1.7"
-           stroke-linecap="round" stroke-linejoin="round"
-           aria-hidden="true">
-        <circle cx="12" cy="12" r="9"/>
-        <path d="M12 11v5M12 7h.01"/>
-      </svg>
-      <span data-menu-page="about">من نحن</span>
-    </a>
-
-    <a class="citizen-menu-link" href="./contact.html">
-      <svg width="23" height="23" viewBox="0 0 24 24"
-           fill="none" stroke="currentColor" stroke-width="1.7"
-           stroke-linecap="round" stroke-linejoin="round"
-           aria-hidden="true">
-        <rect x="3" y="5" width="18" height="14" rx="2"/>
-        <path d="m3 7 9 6 9-6"/>
-      </svg>
-      <span data-menu-page="contact">اتصل بنا</span>
-    </a>
-
-    <a class="citizen-menu-link" href="./privacy.html">
-      <svg width="23" height="23" viewBox="0 0 24 24"
-           fill="none" stroke="currentColor" stroke-width="1.7"
-           stroke-linecap="round" stroke-linejoin="round"
-           aria-hidden="true">
-        <path d="M12 3 20 6v5c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/>
-        <path d="m9 12 2 2 4-4"/>
-      </svg>
-      <span data-menu-page="privacy">سياسة الخصوصية</span>
-    </a>
-  </nav>
-</aside>
-
-<script>
-(function () {
-  const openButton = document.getElementById("citizenMenuOpen");
-  const closeButton = document.getElementById("citizenMenuClose");
-  const menu = document.getElementById("citizenSideMenu");
-  const overlay = document.getElementById("citizenMenuOverlay");
-  const subtitle = document.getElementById("citizenMenuSubtitle");
-
-  if (!openButton || !closeButton || !menu || !overlay) return;
-
-  const menuTranslations = {
-    ar: {
-      open: "فتح القائمة",
-      close: "إغلاق القائمة",
-      subtitle: "خدمات ومعلومات تهمك",
-      about: "من نحن",
-      contact: "اتصل بنا",
-      privacy: "سياسة الخصوصية"
-    },
-    fr: {
-      open: "Ouvrir le menu",
-      close: "Fermer le menu",
-      subtitle: "Services et informations utiles",
-      about: "À propos",
-      contact: "Contactez-nous",
-      privacy: "Politique de confidentialité"
-    },
-    en: {
-      open: "Open menu",
-      close: "Close menu",
-      subtitle: "Useful services and information",
-      about: "About us",
-      contact: "Contact us",
-      privacy: "Privacy policy"
-    }
-  };
-
-  let previousFocus = null;
-
-  function updateMenuLanguage() {
-    const language = document.documentElement.lang || "ar";
-    const t = menuTranslations[language] || menuTranslations.ar;
-
-    openButton.setAttribute("aria-label", t.open);
-    closeButton.setAttribute("aria-label", t.close);
-    subtitle.textContent = t.subtitle;
-
-    menu.querySelectorAll("[data-menu-page]").forEach(function (item) {
-      item.textContent = t[item.dataset.menuPage];
-    });
-  }
-
-  function openMenu() {
-    previousFocus = document.activeElement;
-
-    menu.inert = false;
-    menu.setAttribute("aria-hidden", "false");
-    menu.classList.add("is-open");
-    overlay.classList.add("is-open");
-
-    openButton.setAttribute("aria-expanded", "true");
-    overlay.setAttribute("aria-hidden", "false");
-    document.body.classList.add("citizen-menu-locked");
-
-    closeButton.focus();
-  }
-
-  function closeMenu() {
-    menu.classList.remove("is-open");
-    overlay.classList.remove("is-open");
-
-    menu.setAttribute("aria-hidden", "true");
-    menu.inert = true;
-
-    openButton.setAttribute("aria-expanded", "false");
-    overlay.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("citizen-menu-locked");
-
-    if (previousFocus && typeof previousFocus.focus === "function") {
-      previousFocus.focus();
-    } else {
-      openButton.focus();
-    }
-  }
-
-  openButton.addEventListener("click", openMenu);
-  closeButton.addEventListener("click", closeMenu);
-  overlay.addEventListener("click", closeMenu);
-
-  document.addEventListener("keydown", function (event) {
-    if (!menu.classList.contains("is-open")) return;
-
-    if (event.key === "Escape") {
-      closeMenu();
-      return;
-    }
-
-    if (event.key === "Tab") {
-      const focusable = menu.querySelectorAll(
-        'button:not([disabled]), a[href]'
-      );
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey &&
-                 document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
-      }
-    }
-  });
-
-  const languageSelect = document.getElementById("language");
-
-  if (languageSelect) {
-    languageSelect.addEventListener("change", updateMenuLanguage);
-  }
-
-  updateMenuLanguage();
-})();
-</script>
+  </script>
 </body>
 </html>
