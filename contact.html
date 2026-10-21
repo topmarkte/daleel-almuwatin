@@ -1,0 +1,344 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#a90f24">
+  <meta name="description" content="تواصل مع فريق دليل المواطن المغربي للاستفسارات والاقتراحات والإبلاغ عن المعلومات التي تحتاج إلى تحديث.">
+  <title>اتصل بنا | دليل المواطن المغربي</title>
+
+  <style>
+    :root {
+      --red: #a90f24;
+      --dark-red: #760817;
+      --light: #fff5f6;
+      --text: #292929;
+      --muted: #686868;
+      --border: #f0d9dd;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Tahoma, Arial, sans-serif;
+      background: #fafafa;
+      color: var(--text);
+      line-height: 1.9;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .header {
+      background: #fff;
+      border-bottom: 3px solid var(--red);
+      padding: 17px 16px;
+      box-shadow: 0 3px 12px #00000008;
+    }
+
+    .header-inner {
+      max-width: 900px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      color: var(--red);
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .back {
+      color: var(--red);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 6px 13px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--red), var(--dark-red));
+      color: #fff;
+      text-align: center;
+      padding: 43px 18px 48px;
+    }
+
+    .hero-icon {
+      width: 66px;
+      height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      background: #ffffff1c;
+      border: 1px solid #ffffff50;
+      border-radius: 20px;
+      font-size: 32px;
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: 29px;
+    }
+
+    .hero p {
+      margin: 0 auto;
+      max-width: 580px;
+      font-size: 15px;
+      color: #ffeaed;
+    }
+
+    .container {
+      width: min(900px, 92%);
+      margin: -20px auto 35px;
+      position: relative;
+    }
+
+    .intro {
+      background: #fff;
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      box-shadow: 0 5px 20px #00000008;
+      margin-bottom: 22px;
+    }
+
+    .intro h2 {
+      margin: 0 0 8px;
+      color: var(--red);
+      font-size: 20px;
+    }
+
+    .intro p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      margin: 28px 0 14px;
+      color: #292929;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 15px;
+    }
+
+    .contact-card {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 14px;
+      padding: 21px 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      transition: transform .2s, border-color .2s;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-3px);
+      border-color: #e3aab3;
+    }
+
+    .contact-icon {
+      min-width: 47px;
+      height: 47px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--light);
+      border-radius: 12px;
+      font-size: 23px;
+    }
+
+    .contact-card h3 {
+      font-size: 16px;
+      margin: 0 0 4px;
+      color: var(--red);
+    }
+
+    .contact-card p {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 0 0 9px;
+    }
+
+    .contact-link {
+      color: var(--red);
+      font-size: 13px;
+      font-weight: bold;
+      overflow-wrap: anywhere;
+    }
+
+    .notice {
+      margin-top: 23px;
+      padding: 18px;
+      background: #fff5f6;
+      border-right: 4px solid var(--red);
+      border-radius: 10px;
+      font-size: 14px;
+      color: #494949;
+    }
+
+    .notice strong {
+      color: var(--red);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 22px 15px;
+      background: #fff;
+      border-top: 1px solid #eee;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .footer a {
+      color: var(--red);
+      font-weight: bold;
+    }
+
+    @media (max-width: 560px) {
+      .hero {
+        padding: 34px 16px 42px;
+      }
+
+      .hero h1 {
+        font-size: 25px;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .intro {
+        padding: 18px;
+      }
+
+      .contact-card {
+        padding: 17px 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <a class="logo" href="index.html">دليل المواطن المغربي</a>
+      <a class="back" href="index.html">→ الصفحة الرئيسية</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-icon">✉</div>
+    <h1>اتصل بنا</h1>
+    <p>
+      نحن نهتم بآرائكم واقتراحاتكم، ونسعى باستمرار إلى تطوير دليل المواطن المغربي
+      وتقديم معلومات أكثر فائدة للمواطن.
+    </p>
+  </section>
+
+  <main class="container">
+
+    <section class="intro">
+      <h2>كيف يمكننا مساعدتك؟</h2>
+      <p>
+        إذا كانت لديك ملاحظة حول الموقع، أو اقتراح لإضافة خدمة جديدة،
+        أو وجدت معلومة تحتاج إلى تصحيح أو تحديث، يمكنك التواصل معنا عبر
+        إحدى وسائل التواصل المتاحة أدناه.
+      </p>
+    </section>
+
+    <h2 class="section-title">وسائل التواصل</h2>
+
+    <div class="contact-grid">
+
+      <article class="contact-card">
+        <div class="contact-icon">💬</div>
+        <div>
+          <h3>واتساب</h3>
+          <p>للاستفسارات والاقتراحات وملاحظات الزوار.</p>
+          <a class="contact-link"
+             href="https://wa.me/"
+             target="_blank"
+             rel="noopener noreferrer">
+            التواصل عبر واتساب ←
+          </a>
+        </div>
+      </article>
+
+      <article class="contact-card">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <h3>البريد الإلكتروني</h3>
+          <p>لإرسال رسالتك أو الإبلاغ عن معلومة تحتاج إلى تحديث.</p>
+          <a class="contact-link" href="mailto:">
+            مراسلتنا عبر البريد ←
+          </a>
+        </div>
+      </article>
+
+      <article class="contact-card">
+        <div class="contact-icon">📘</div>
+        <div>
+          <h3>فيسبوك</h3>
+          <p>تابع صفحتنا وتواصل معنا عبر شبكات التواصل الاجتماعي.</p>
+          <a class="contact-link"
+             href="https://www.facebook.com/"
+             target="_blank"
+             rel="noopener noreferrer">
+            الانتقال إلى فيسبوك ←
+          </a>
+        </div>
+      </article>
+
+      <article class="contact-card">
+        <div class="contact-icon">💡</div>
+        <div>
+          <h3>اقتراحاتكم</h3>
+          <p>نرحب بأفكاركم التي تساعدنا على تحسين الدليل وتطوير خدماته.</p>
+          <a class="contact-link" href="mailto:">
+            أرسل اقتراحك ←
+          </a>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="notice">
+      <strong>ملاحظة مهمة:</strong>
+      دليل المواطن المغربي موقع إرشادي لتسهيل الوصول إلى المعلومات
+      والخدمات المفيدة. لا تمثل هذه الصفحة جهة حكومية رسمية.
+      يرجى التأكد من المعلومات المهمة عبر المصادر الرسمية المختصة.
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> دليل المواطن المغربي — جميع الحقوق محفوظة.</p>
+    <a href="index.html">العودة إلى الصفحة الرئيسية</a>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+
+</body>
+    </html>
+    
