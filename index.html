@@ -1019,10 +1019,14 @@
     $("installIcon").innerHTML = icon("install", 21);
 
     function applyLanguage(language) {
-      currentLanguage = translations[language] ? language : "ar";
-      const t = translations[currentLanguage];
-      const isArabic = currentLanguage === "ar";
+  currentLanguage = translations[language] ? language : "ar";
+  const t = translations[currentLanguage];
 
+  try {
+    localStorage.setItem("citizenGuideLanguage", currentLanguage);
+  } catch (error) {}
+
+  const isArabic = currentLanguage === "ar";
       document.documentElement.lang = currentLanguage;
       document.documentElement.dir = isArabic ? "rtl" : "ltr";
       document.body.dir = isArabic ? "rtl" : "ltr";
