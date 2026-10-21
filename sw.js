@@ -4,6 +4,14 @@ self.skipWaiting();
 
 self.addEventListener("activate", (event) => {
 event.waitUntil(
-self.clients.claim()
+caches.keys()
+.then((keys) =>
+Promise.all(
+keys
+.filter((key) => key.startsWith("daleel-citizen-"))
+.map((key) => caches.delete(key))
+)
+)
+.then(() => self.clients.claim())
 );
 });
