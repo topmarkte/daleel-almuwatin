@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -438,8 +439,8 @@
     <a href="index.html" data-i18n="home">الرئيسية</a>
     &nbsp; | &nbsp;
     <a href="contact.html" data-i18n="contactLink">اتصل بنا</a>
-  </footer>
-
+      </footer>
+      
   <script>
     "use strict";
 
@@ -557,4 +558,117 @@
 
         h2: "2. Information you provide when contacting us",
         p2: "If you contact us with a message or suggestion, we may see the information included in your message, such as your name, email address, or other details you choose to share.",
-        p3: "This information is used to answer your questions, review your feedback, and improve the information and services provided by th
+        p3: "This information is used to answer your questions, review your feedback, and improve the information and services provided by the site.",
+
+        h3: "3. Technical information and cookies",
+        p4: "Hosting providers or external services used to operate the site may record certain technical information about your visit, depending on their features and settings.",
+        p5: "Cookies are small files that your browser may store to help operate certain services, remember preferences, or measure website usage. You can manage cookie settings in your browser.",
+
+        h4: "4. Advertising and external services",
+        p6: "The site may contain links to external websites and services. Those sites may collect information according to their own policies and settings.",
+        p7: "When advertisements or third-party analytics tools are used, technologies such as cookies may be used depending on the services enabled, their settings, and the choices available to visitors.",
+        p8: "You can read Google's information about data use on sites and apps that use its services:",
+        googleLink: "Google privacy information for partner sites and apps",
+
+        h5: "5. Links to other websites",
+        p9: "The Moroccan Citizen Guide may link to government websites, institutions, and other services to make information easier to access. When you visit those websites, their own privacy policies apply. The Guide does not control how those sites collect or use information.",
+
+        h6: "6. Information security",
+        p10: "We handle information shared by visitors through the available contact methods carefully. However, absolute security for information transmitted over the Internet cannot be guaranteed.",
+        p11: "We therefore recommend that you do not send passwords, banking information, or other sensitive personal data through messages.",
+
+        h7: "7. Your privacy choices",
+        p12: "You can manage cookies through your browser settings and review the privacy and advertising options provided by the external services you use.",
+        p13: "If you have sent us personal information through a contact method, you can contact us to request that it be reviewed or deleted, subject to legal requirements and our ability to process the request.",
+
+        h8: "8. Children's privacy",
+        p14: "The site provides general informational content. It does not seek personal information from children simply for browsing its pages.",
+
+        h9: "9. Changes to this Privacy Policy",
+        p15: "Our privacy practices may change when the site's services or features change. You can revisit this page to read the published policy.",
+
+        h10: "10. Contact us",
+            p16: "If you have questions about privacy, you can visit the",
+        
+        p16: "If you have questions about privacy, you can visit the",
+        contactLink: "Contact us",
+        p17: "page to see the available contact methods.",
+        home: "Home",
+        languageLabel: "Choose language"
+      }
+    };
+
+    function readSavedLanguage() {
+      try {
+        const saved = localStorage.getItem(LANGUAGE_KEY);
+        return translations[saved] ? saved : "ar";
+      } catch (error) {
+        return "ar";
+      }
+    }
+
+    function saveLanguage(language) {
+      try {
+        localStorage.setItem(LANGUAGE_KEY, language);
+      } catch (error) {
+        // تستمر الترجمة حتى إذا كان التخزين المحلي غير متاح.
+      }
+    }
+
+    function applyLanguage(language, saveChoice = true) {
+      const lang = translations[language] ? language : "ar";
+      const dictionary = translations[lang];
+      const isArabic = lang === "ar";
+
+      document.documentElement.lang = lang;
+      document.documentElement.dir = isArabic ? "rtl" : "ltr";
+
+      languageSelector.value = lang;
+      languageSelector.setAttribute(
+        "aria-label",
+        dictionary.languageLabel
+      );
+
+      document.querySelectorAll("[data-i18n]").forEach(element => {
+        const key = element.getAttribute("data-i18n");
+
+        if (Object.prototype.hasOwnProperty.call(dictionary, key)) {
+          element.textContent = dictionary[key];
+        }
+      });
+
+      document.title =
+        dictionary.pageTitle + " | " + dictionary.logo;
+
+      document.querySelector('meta[name="description"]').setAttribute(
+        "content",
+        dictionary.pageTitle + " - " + dictionary.logo
+      );
+
+      document.querySelector('meta[name="theme-color"]').setAttribute(
+        "content",
+        "#a90f24"
+      );
+
+      if (saveChoice) {
+        saveLanguage(lang);
+      }
+    }
+
+    languageSelector.addEventListener("change", function () {
+      applyLanguage(this.value);
+    });
+
+    // تطبيق اللغة المحفوظة عند فتح الصفحة.
+    applyLanguage(readSavedLanguage(), false);
+
+    // مزامنة اللغة إذا غيّرها الزائر في صفحة أخرى على النطاق نفسه.
+    window.addEventListener("storage", function (event) {
+      if (event.key === LANGUAGE_KEY && translations[event.newValue]) {
+        applyLanguage(event.newValue, false);
+      }
+    });
+  </script>
+
+</body>
+</html>
