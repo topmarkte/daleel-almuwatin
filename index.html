@@ -1266,19 +1266,45 @@
       }
     }
 
-    async function installGuide() {
-      const t = translations[currentLanguage];
+    
+async function installGuide() {
+  const t = translations[currentLanguage];
 
-      if (deferredInstallPrompt) {
-        deferredInstallPrompt.prompt();
-        await deferredInstallPrompt.userChoice;
-        deferredInstallPrompt = null;
-        updateInstallButton();
-        return;
+  // إذا كان المتصفح يدعم التثبيت التلقائي على Android
+  if (deferredInstallPrompt) {
+    deferredInstallPrompt.prompt();
+    await deferredInstallPrompt.userChoice;
+    deferredInstallPrompt = null;
+    updateInstallButton();
+    return;
+  }
+
+  // تعليمات خاصة بـ iPhone و iPad
+  const isIOS =
+    /iphone|ipad|ipod/i.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+  if (isIOS) {
+    const message = {
+      ar: "لإضافة الدليل إلى الشاشة الرئيسية:\n1. اضغط على زر المشاركة في Safari.\n2. اختر «إضافة إلى الشاشة الرئيسية».\n3. اضغط «إضافة».",
+      fr: "Pour ajouter le guide à l’écran d’accueil :\n1. Appuyez sur Partager dans Safari.\n2. Choisissez « Sur l’écran d’accueil ».\n3. Appuyez sur « Ajouter ».",
+      en: "To add the guide to your Home Screen:\n1. Tap Share in Safari.\n2. Choose “Add to Home Screen”.\n3. Tap “Add”."
+    };
+
+    alert(message[currentLanguage] || message.ar);
+    return;
+  }
+
+  // تعليمات بديلة للمتصفحات التي لا توفر التثبيت التلقائي
+  const message = {
+    ar: "إذا لم تظهر نافذة التثبيت، افتح قائمة المتصفح ⋮ ثم اختر «إضافة إلى الشاشة الرئيسية» أو «تثبيت التطبيق» إن كان الخيار متاحًا.",
+    fr: "Si la fenêtre d’installation n’apparaît pas, ouvrez le menu du navigateur et choisissez « Ajouter à l’écran d’accueil » ou « Installer l’application », si disponible.",
+    en: "If the install prompt does not appear, open your browser menu and choose “Add to Home screen” or “Install app”, if available."
+  };
+
+  alert(message[currentLanguage] || message.ar);
       }
-
-      alert(t.installing);
-    }
+    
 
     function updateInstallButton() {
       $("installText").textContent = translations[currentLanguage].install;
