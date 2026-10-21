@@ -307,19 +307,155 @@
     <a href="contact.html">اتصل بنا</a>
   </footer>
 
-    <script>
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
 
-    try {
-      const savedLanguage =
-        localStorage.getItem("citizenGuideLanguage") || "ar";
+<script>
+document.getElementById("year").textContent =
+  new Date().getFullYear();
 
-      document.documentElement.lang = savedLanguage;
-      document.documentElement.dir =
-        savedLanguage === "ar" ? "rtl" : "ltr";
-    } catch (error) {}
-    </script>
+const privacyTranslations = {
+  ar: {
+    logo: "دليل المواطن المغربي",
+    back: "← الصفحة الرئيسية",
+    title: "سياسة الخصوصية",
+    intro: "نحترم خصوصيتك ونهتم بحماية معلوماتك أثناء تصفح موقع دليل المواطن المغربي والاستفادة من محتواه.",
+    sections: [
+      ["الخصوصية أثناء تصفح الموقع", "يهدف موقع دليل المواطن المغربي إلى توفير معلومات إرشادية وروابط مفيدة للمواطنين. يمكنك تصفح محتوى الموقع دون إنشاء حساب أو إدخال بيانات شخصية، ما لم تتطلب إحدى الخدمات المتاحة ذلك."],
+      ["المعلومات التي تقدمها عند التواصل", "إذا اخترت التواصل معنا وإرسال رسالة أو اقتراح، فقد نطّلع على المعلومات التي تضمنها رسالتك، مثل الاسم أو عنوان البريد الإلكتروني أو أي تفاصيل تختار مشاركتها.", "تُستخدم هذه المعلومات للرد على استفساراتك ومتابعة ملاحظاتك وتحسين المعلومات والخدمات التي يقدمها الموقع."],
+      ["المعلومات التقنية وملفات تعريف الارتباط", "قد تسجل خدمات الاستضافة أو الخدمات الخارجية المستخدمة في تشغيل الموقع بعض المعلومات التقنية المتعلقة بالزيارة، وفقًا لطبيعة الخدمة وإعداداتها.", "ملفات تعريف الارتباط هي ملفات صغيرة قد يحفظها المتصفح للمساعدة في تشغيل بعض الخدمات أو تذكر تفضيلات المستخدم أو قياس استخدام المواقع. ويمكنك إدارة إعداداتها من خلال متصفحك."],
+      ["الإعلانات والخدمات الخارجية", "قد يحتوي الموقع على روابط لخدمات ومواقع خارجية. وإذا استخدمت هذه المواقع، فقد تجمع معلومات وفقًا لسياساتها وإعداداتها الخاصة.", "عند عرض إعلانات أو استخدام أدوات تحليل من جهات خارجية، قد تُستخدم تقنيات مثل ملفات تعريف الارتباط وفقًا للخدمات المفعّلة وإعداداتها والخيارات المتاحة للزائر.", "يمكنك الاطلاع على معلومات Google المتعلقة باستخدام البيانات في المواقع والتطبيقات التي تستخدم خدماتها عبر", "صفحة خصوصية Google للمواقع والتطبيقات الشريكة"],
+      ["الروابط إلى المواقع الأخرى", "قد يتضمن دليل المواطن المغربي روابط إلى مواقع حكومية ومؤسسات وخدمات أخرى بهدف تسهيل الوصول إلى المعلومات. عند الانتقال إلى أحد هذه المواقع، تسري سياسة الخصوصية الخاصة به، ولا يتحكم دليل المواطن المغربي في كيفية جمع تلك المواقع للمعلومات أو استخدامها."],
+      ["حماية المعلومات", "نحرص على التعامل بحذر مع المعلومات التي يشاركها الزوار عبر وسائل التواصل المتاحة. ومع ذلك، لا يمكن ضمان الأمان المطلق لنقل المعلومات عبر الإنترنت.", "لذلك، يُنصح بعدم إرسال كلمات المرور أو المعلومات البنكية أو غيرها من البيانات الشخصية الحساسة عبر رسائل التواصل."],
+      ["خياراتك المتعلقة بالخصوصية", "يمكنك إدارة ملفات تعريف الارتباط من إعدادات متصفحك، كما يمكنك مراجعة إعدادات الخصوصية والإعلانات المتاحة لدى الخدمات الخارجية التي تستخدمها.", "وإذا كنت قد أرسلت إلينا معلومات شخصية عبر إحدى وسائل التواصل، فيمكنك التواصل معنا بشأن طلب مراجعتها أو حذفها، مع مراعاة المتطلبات القانونية وإمكانية تنفيذ الطلب."],
+      ["خصوصية الأطفال", "يقدم الموقع محتوى إرشاديًا عامًا. ولا يهدف إلى طلب معلومات شخصية من الأطفال لمجرد تصفح صفحاته."],
+      ["التغييرات على سياسة الخصوصية", "قد تتغير ممارسات الخصوصية عند تغيير الخدمات أو خصائص الموقع. ويمكنك الرجوع إلى هذه الصفحة للاطلاع على سياسة الخصوصية المنشورة."],
+      ["التواصل معنا", "إذا كانت لديك أسئلة أو استفسارات تتعلق بالخصوصية، يمكنك زيارة صفحة", "اتصل بنا", "للاطلاع على وسائل التواصل المتاحة."]
+    ],
+    home: "الرئيسية",
+    contact: "اتصل بنا",
+    language: "اختيار اللغة"
+  },
+  fr: {
+    logo: "Guide du citoyen marocain",
+    back: "← Page d’accueil",
+    title: "Politique de confidentialité",
+    intro: "Nous respectons votre vie privée et veillons à la protection de vos informations lorsque vous consultez le Guide du citoyen marocain.",
+    sections: [
+      ["1. Confidentialité lors de la navigation", "Le site fournit des informations pratiques et des liens utiles aux citoyens. Vous pouvez consulter son contenu sans créer de compte ni fournir de données personnelles, sauf si un service le nécessite."],
+      ["2. Informations communiquées lors d’un contact", "Si vous nous envoyez un message ou une suggestion, nous pouvons consulter les informations qu’il contient, comme votre nom, votre adresse e-mail ou les détails que vous choisissez de partager.", "Ces informations servent à répondre à vos questions, à examiner vos remarques et à améliorer les informations et services du site."],
+      ["3. Informations techniques et cookies", "Les services d’hébergement ou les services externes utilisés par le site peuvent enregistrer certaines informations techniques relatives à votre visite, selon leurs fonctionnalités et paramètres.", "Les cookies sont de petits fichiers que votre navigateur peut enregistrer pour faire fonctionner certains services, mémoriser vos préférences ou mesurer l’utilisation du site. Vous pouvez gérer leurs paramètres dans votre navigateur."],
+      ["4. Publicités et services externes", "Le site peut contenir des liens vers des services et sites externes. Ces sites peuvent recueillir des informations conformément à leurs propres politiques et paramètres.", "Lorsque des publicités ou des outils d’analyse tiers sont utilisés, des technologies telles que les cookies peuvent être employées selon les services activés, leurs paramètres et les choix proposés aux visiteurs.", "Vous pouvez consulter les informations de Google sur l’utilisation des données par les sites et applications qui utilisent ses services :", "Politique de confidentialité de Google pour les sites et applications partenaires"],
+      ["5. Liens vers d’autres sites", "Le Guide du citoyen marocain peut proposer des liens vers des sites gouvernementaux, des institutions et d’autres services afin de faciliter l’accès à l’information. Lorsque vous visitez ces sites, leurs propres politiques de confidentialité s’appliquent. Le Guide ne contrôle pas la manière dont ils recueillent ou utilisent les informations."],
+      ["6. Protection des informations", "Nous traitons avec prudence les informations partagées par les visiteurs via les moyens de contact disponibles. Toutefois, la sécurité absolue des transmissions sur Internet ne peut être garantie.", "Il est donc conseillé de ne pas envoyer de mots de passe, d’informations bancaires ou d’autres données personnelles sensibles par message."],
+      ["7. Vos choix en matière de confidentialité", "Vous pouvez gérer les cookies dans les paramètres de votre navigateur et consulter les options de confidentialité et de publicité proposées par les services externes que vous utilisez.", "Si vous nous avez transmis des informations personnelles par un moyen de contact, vous pouvez nous demander de les examiner ou de les supprimer, sous réserve des obligations légales et de la possibilité de traiter votre demande."],
+      ["8. Confidentialité des enfants", "Le site propose des informations générales. Il n’a pas pour objectif de demander des informations personnelles aux enfants simplement pour consulter ses pages."],
+      ["9. Modifications de la politique", "Nos pratiques en matière de confidentialité peuvent évoluer si les services ou les fonctionnalités du site changent. Vous pouvez consulter cette page pour prendre connaissance de la politique publiée."],
+      ["10. Nous contacter", "Pour toute question concernant la confidentialité, vous pouvez consulter la page", "Contactez-nous", "pour connaître les moyens de contact disponibles."]
+    ],
+    home: "Accueil",
+    contact: "Contact",
+    language: "Choisir la langue"
+  },
+  en: {
+    logo: "Moroccan Citizen Guide",
+    back: "← Home page",
+    title: "Privacy Policy",
+    intro: "We respect your privacy and care about protecting your information while you browse the Moroccan Citizen Guide.",
+    sections: [
+      ["1. Privacy while browsing", "The Moroccan Citizen Guide provides practical information and useful links for citizens. You can browse the site without creating an account or providing personal data, unless a particular service requires it."],
+      ["2. Information you provide when contacting us", "If you contact us with a message or suggestion, we may see the information included in your message, such as your name, email address, or other details you choose to share.", "This information is used to answer your questions, review your feedback, and improve the information and services provided by the site."],
+      ["3. Technical information and cookies", "Hosting providers or external services used to operate the site may record certain technical information about your visit, depending on their features and settings.", "Cookies are small files that your browser may store to help operate certain services, remember preferences, or measure website usage. You can manage cookie settings in your browser."],
+      ["4. Advertising and external services", "The site may contain links to external websites and services. Those sites may collect information according to their own policies and settings.", "When advertisements or third-party analytics tools are used, technologies such as cookies may be used depending on the services enabled, their settings, and the choices available to visitors.", "You can read Google's information about data use on sites and apps that use its services:", "Google Privacy information for partner sites and apps"],
+      ["5. Links to other websites", "The Moroccan Citizen Guide may link to government websites, institutions, and other services to make information easier to access. When you visit those websites, their own privacy policies apply. The Guide does not control how those sites collect or use information."],
+      ["6. Information security", "We handle information shared by visitors through the available contact methods carefully. However, absolute security for information transmitted over the Internet cannot be guaranteed.", "We therefore recommend that you do not send passwords, banking information, or other sensitive personal data through messages."],
+      ["7. Your privacy choices", "You can manage cookies through your browser settings and review the privacy and advertising options provided by the external services you use.", "If you have sent us personal information through a contact method, you can contact us to request that it be reviewed or deleted, subject to legal requirements and our ability to process the request."],
+      ["8. Children's privacy", "The site provides general informational content. It does not seek personal information from children simply for browsing its pages."],
+      ["9. Changes to this policy", "Our privacy practices may change when the site's services or features change. You can revisit this page to read the published policy."],
+      ["10. Contact us", "If you have questions about privacy, you can visit the", "Contact us", "page to see the available contact methods."]
+    ],
+    home: "Home",
+    contact: "Contact us",
+    language: "Choose language"
+  }
+};
 
+const languageSelector = document.getElementById("languageSelector");
+const logo = document.querySelector(".logo");
+const back = document.querySelector(".back");
+const heroTitle = document.querySelector(".hero h1");
+const heroIntro = document.querySelector(".hero p");
+const headings = document.querySelectorAll(".content h2");
+const paragraphs = document.querySelectorAll(".content p");
+const footerLinks = document.querySelectorAll(".footer a");
+const contentLinks = document.querySelectorAll(".content a");
+
+function applyPrivacyLanguage(language) {
+  const lang = privacyTranslations[language] ? language : "ar";
+  const t = privacyTranslations[lang];
+  const isArabic = lang === "ar";
+
+  document.documentElement.lang = lang;
+  document.documentElement.dir = isArabic ? "rtl" : "ltr";
+  languageSelector.value = lang;
+  languageSelector.setAttribute("aria-label", t.language);
+
+  logo.textContent = t.logo;
+  back.textContent = t.back;
+  heroTitle.textContent = t.title;
+  heroIntro.textContent = t.intro;
+
+  headings.forEach((heading, i) => {
+    heading.textContent = t.sections[i][0];
+  });
+
+  paragraphs.forEach((paragraph, i) => {
+    const sectionIndex = [0, 1, 1, 2, 2, 3, 3, 3, 4, 5, 5, 6, 6, 7, 8, 9, 9, 9][i];
+    const itemIndex = [1, 1, 2, 1, 2, 1, 2, 3, 1, 1, 2, 1, 2, 1, 1, 1, 2, 3][i];
+    if (sectionIndex !== undefined && t.sections[sectionIndex][itemIndex] !== undefined) {
+      if (i === 7) {
+        paragraph.childNodes[0].textContent = t.sections[3][3] + " ";
+        if (contentLinks[0]) contentLinks[0].textContent = t.sections[3][4];
+      } else if (i === 15) {
+        paragraph.childNodes[0].textContent = t.sections[9][1] + " ";
+        if (contentLinks[2]) contentLinks[2].textContent = t.sections[9][2];
+        const lastText = paragraph.lastChild;
+        if (lastText && lastText.nodeType === Node.TEXT_NODE) {
+          lastText.textContent = " " + t.sections[9][3];
+        }
+      } else {
+        paragraph.textContent = t.sections[sectionIndex][itemIndex];
+      }
+    }
+  });
+
+  if (footerLinks[0]) footerLinks[0].textContent = t.home;
+  if (footerLinks[1]) footerLinks[1].textContent = t.contact;
+  document.querySelector(".content h2").style.borderRight = isArabic ? "3px solid var(--red)" : "none";
+  document.querySelectorAll(".content h2").forEach(h => {
+    h.style.borderRight = isArabic ? "3px solid var(--red)" : "none";
+    h.style.borderLeft = isArabic ? "none" : "3px solid var(--red)";
+    h.style.paddingRight = isArabic ? "12px" : "0";
+    h.style.paddingLeft = isArabic ? "0" : "12px";
+  });
+
+  try {
+    localStorage.setItem("citizenGuideLanguage", lang);
+  } catch (error) {}
+}
+
+languageSelector.addEventListener("change", function () {
+  applyPrivacyLanguage(this.value);
+});
+
+const savedLanguage = (() => {
+  try {
+    return localStorage.getItem("citizenGuideLanguage") || "ar";
+  } catch (error) {
+    return "ar";
+  }
+})();
+
+applyPrivacyLanguage(savedLanguage);
+  </script>
+  
 </body>
 </html>
