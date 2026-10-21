@@ -1331,7 +1331,8 @@ async function installGuide() {
       deferredInstallPrompt = null;
       updateInstallButton();
     });
-    applyLanguage("ar");
+    const savedLanguage = localStorage.getItem("citizenGuideLanguage") || "ar";
+applyLanguage(savedLanguage);
   </script>
 </body>
 </html>
