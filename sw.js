@@ -1,4 +1,4 @@
-const CACHE_NAME = "daleel-citizen-v9";
+const CACHE_NAME = "daleel-citizen-v10";
 
 const APP_FILES = [
   "./",
