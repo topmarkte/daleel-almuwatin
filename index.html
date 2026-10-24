@@ -1024,7 +1024,7 @@
     function applyLanguage(language) {
   currentLanguage = translations[language] ? language : "ar";
   const t = translations[currentLanguage];
-
+    $("language").value = currentLanguage;
   try {
     localStorage.setItem("citizenGuideLanguage", currentLanguage);
   } catch (error) {}
