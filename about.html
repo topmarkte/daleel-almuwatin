@@ -7,63 +7,164 @@
   <meta name="description" content="تعرف على دليل المواطن المغربي وأهدافه في تسهيل الوصول إلى المعلومات والخدمات المفيدة.">
   <title>من نحن | دليل المواطن المغربي</title>
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --red: #a90f24;
+      --dark-red: #760817;
+      --deep-red: #45050f;
+      --gold: #d8b66b;
+      --gold-light: #ffe7a3;
+      --cream: #fffaf3;
+      --text: #292323;
+      --muted: #746b6b;
+      --border: #eadbd8;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f7f7f7;
-      color: #292929;
-      line-height: 2;
+      font-family: Arial, Tahoma, sans-serif;
+      background:
+        radial-gradient(circle at top, #fff0e9 0, transparent 360px),
+        var(--cream);
+      color: var(--text);
+      line-height: 1.9;
     }
-    header {
-      background: #a90f24;
-      color: white;
-      padding: 24px 16px;
-      text-align: center;
-      border-bottom: 5px solid #760817;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 27px;
-    }
-    header p {
-      margin: 6px 0 0;
-      font-size: 14px;
-    }
-    main {
-      max-width: 850px;
-      margin: 28px auto;
-      padding: 0 16px;
-    }
-    section {
-      background: white;
-      padding: 22px;
-      margin-bottom: 18px;
-      border-radius: 12px;
-      border-right: 4px solid #a90f24;
-      box-shadow: 0 3px 12px rgba(0,0,0,.05);
-    }
-    h2 {
-      color: #a90f24;
-      font-size: 20px;
-      margin-top: 0;
-    }
-    p { margin-bottom: 0; }
-    .back {
-      display: inline-block;
-      background: #a90f24;
-      color: white;
+
+    a {
       text-decoration: none;
-      padding: 10px 22px;
-      border-radius: 8px;
-      margin: 8px 0 25px;
     }
-    footer {
-      background: #760817;
-      color: white;
+
+    header {
+      position: relative;
+      overflow: hidden;
+      padding: 48px 18px 54px;
       text-align: center;
-      padding: 18px 12px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--red), var(--dark-red) 65%, var(--deep-red));
+      border-bottom: 3px solid var(--gold);
+      box-shadow: 0 10px 30px #45050f20;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      width: 230px;
+      height: 230px;
+      border: 1px solid #ffe7a340;
+      border-radius: 50%;
+      top: -135px;
+      right: -65px;
+      box-shadow: 0 0 0 18px #ffe7a30a, 0 0 0 38px #ffe7a308;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      border: 1px solid #ffe7a330;
+      border-radius: 50%;
+      bottom: -120px;
+      left: -35px;
+    }
+
+    header h1 {
+      position: relative;
+      margin: 0;
+      font-size: clamp(26px, 5vw, 36px);
+      line-height: 1.5;
+    }
+
+    header p {
+      position: relative;
+      margin: 10px auto 0;
+      max-width: 600px;
+      color: #ffeadb;
+      font-size: 15px;
+    }
+
+    main {
+      width: min(900px, 92%);
+      margin: 30px auto;
+    }
+
+    section {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(145deg, #fff, #fffaf3);
+      padding: 25px 24px;
+      margin-bottom: 19px;
+      border: 1px solid var(--border);
+      border-right: 4px solid var(--red);
+      border-radius: 17px;
+      box-shadow: 0 8px 24px #45050f0a;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    section:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px #45050f12;
+    }
+
+    h2 {
+      color: var(--red);
+      font-size: 21px;
+      margin: 0 0 9px;
+    }
+
+    section p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--red), var(--dark-red));
+      color: white;
+      border: 1px solid var(--gold);
+      padding: 11px 19px;
+      border-radius: 12px;
+      margin: 8px 0 25px;
+      font-size: 14px;
+      font-weight: bold;
+      box-shadow: 0 5px 15px #76081720;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .back:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px #76081730;
+    }
+
+    footer {
+      background: linear-gradient(135deg, var(--dark-red), var(--deep-red));
+      color: #ffeadb;
+      text-align: center;
+      padding: 22px 12px;
+      border-top: 2px solid var(--gold);
       font-size: 13px;
+    }
+
+    @media (max-width: 560px) {
+      header {
+        padding: 38px 16px 44px;
+      }
+
+      main {
+        width: 92%;
+        margin-top: 22px;
+      }
+
+      section {
+        padding: 20px 17px;
+      }
     }
   </style>
 </head>
