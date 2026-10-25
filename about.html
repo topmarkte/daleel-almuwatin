@@ -244,5 +244,119 @@
   <footer>
     دليل المواطن المغربي © جميع الحقوق محفوظة
   </footer>
+
+  <script>
+    const aboutTranslations = {
+      ar: {
+        pageTitle: "من نحن | دليل المواطن المغربي",
+        description: "تعرف على دليل المواطن المغربي وأهدافه في تسهيل الوصول إلى المعلومات والخدمات المفيدة.",
+        siteTitle: "دليل المواطن المغربي",
+        subtitle: "معلومات مفيدة وخدمات أقرب إليك",
+        headings: [
+          "من نحن؟",
+          "رؤيتنا",
+          "ماذا نقدم؟",
+          "التزامنا تجاه الزائر"
+        ],
+        paragraphs: [
+          "دليل المواطن المغربي منصة رقمية تهدف إلى تسهيل الوصول إلى المعلومات والأرقام والمواقع الإلكترونية المفيدة للمواطن المغربي، من خلال تقديمها في مكان واحد وبطريقة واضحة وسهلة الاستخدام.",
+          "نسعى إلى تطوير دليل رقمي منظم يساعد المواطنين على الوصول إلى المعلومات والخدمات المفيدة بسرعة، مع الاهتمام بسهولة التصفح وإمكانية استخدام الموقع من مختلف الأجهزة.",
+          "نعمل على جمع وتنظيم أرقام الخدمات والمواقع الرقمية المفيدة، وتسهيل الوصول إليها. ونحرص على توضيح المعلومات قدر الإمكان، مع ضرورة الرجوع إلى الجهات الرسمية للتحقق من المعلومات الحساسة أو التي قد تتغير.",
+          "نهدف إلى توفير تجربة تصفح بسيطة وواضحة، واحترام خصوصية الزوار، والعمل على تحسين المحتوى باستمرار. ولا تمثل هذه المنصة جهة حكومية رسمية، ولا تغني معلوماتها عن التواصل مع الجهات المختصة."
+        ],
+        back: "⌂ العودة إلى الصفحة الرئيسية",
+        footer: "دليل المواطن المغربي © جميع الحقوق محفوظة",
+        languageLabel: "اختر اللغة"
+      },
+      fr: {
+        pageTitle: "À propos | Guide du citoyen marocain",
+        description: "Découvrez le Guide du citoyen marocain et son objectif de faciliter l’accès aux informations et services utiles.",
+        siteTitle: "Guide du citoyen marocain",
+        subtitle: "Des informations utiles et des services plus accessibles",
+        headings: [
+          "Qui sommes-nous ?",
+          "Notre vision",
+          "Que proposons-nous ?",
+          "Notre engagement envers les visiteurs"
+        ],
+        paragraphs: [
+          "Le Guide du citoyen marocain est une plateforme numérique qui facilite l’accès aux informations, aux numéros utiles et aux sites web destinés aux citoyens marocains, en les regroupant dans un espace clair et facile à utiliser.",
+          "Nous souhaitons développer un guide numérique organisé permettant aux citoyens de trouver rapidement des informations et des services utiles, avec une navigation simple sur différents appareils.",
+          "Nous rassemblons et organisons les numéros de services et les sites numériques utiles afin d’en faciliter l’accès. Nous nous efforçons de présenter les informations clairement. Pour les informations sensibles ou susceptibles de changer, il est conseillé de consulter les organismes officiels.",
+          "Nous souhaitons offrir une navigation simple et claire, respecter la vie privée des visiteurs et améliorer continuellement le contenu. Cette plateforme n’est pas un organisme gouvernemental officiel et ne remplace pas le contact avec les autorités compétentes."
+        ],
+        back: "⌂ Retour à la page d’accueil",
+        footer: "Guide du citoyen marocain © Tous droits réservés",
+        languageLabel: "Choisir la langue"
+      },
+      en: {
+        pageTitle: "About Us | Moroccan Citizen Guide",
+        description: "Learn about the Moroccan Citizen Guide and its aim to make useful information and services easier to access.",
+        siteTitle: "Moroccan Citizen Guide",
+        subtitle: "Useful information and services within easier reach",
+        headings: [
+          "Who We Are",
+          "Our Vision",
+          "What We Offer",
+          "Our Commitment to Visitors"
+        ],
+        paragraphs: [
+          "The Moroccan Citizen Guide is a digital platform designed to make useful information, service numbers and websites easier for Moroccan citizens to access by bringing them together in one clear and easy-to-use place.",
+          "Our vision is to develop an organized digital guide that helps citizens find useful information and services quickly, with easy navigation across different devices.",
+          "We collect and organize useful service numbers and digital websites to make them easier to access. We aim to present information clearly. For sensitive information or details that may change, visitors should verify them with the relevant official authorities.",
+          "We aim to provide a simple and clear browsing experience, respect visitors’ privacy and continuously improve our content. This platform is not an official government entity and does not replace contacting the relevant authorities."
+        ],
+        back: "⌂ Back to the homepage",
+        footer: "Moroccan Citizen Guide © All rights reserved",
+        languageLabel: "Choose language"
+      }
+    };
+
+    function applyAboutLanguage(language) {
+      const selected = aboutTranslations[language] ? language : "ar";
+      const t = aboutTranslations[selected];
+      const isArabic = selected === "ar";
+
+      document.documentElement.lang = selected;
+      document.documentElement.dir = isArabic ? "rtl" : "ltr";
+      document.body.dir = isArabic ? "rtl" : "ltr";
+      document.title = t.pageTitle;
+
+      const description = document.querySelector('meta[name="description"]');
+      if (description) description.content = t.description;
+
+      document.querySelector("header h1").textContent = t.siteTitle;
+      document.querySelector("header p").textContent = t.subtitle;
+
+      const sections = document.querySelectorAll("main section");
+      sections.forEach((section, index) => {
+        section.querySelector("h2").textContent = t.headings[index];
+        section.querySelector("p").textContent = t.paragraphs[index];
+      });
+
+      document.querySelector(".back").textContent = t.back;
+      document.querySelector("footer").textContent = t.footer;
+
+      const languageSelect = document.getElementById("language");
+      languageSelect.value = selected;
+      languageSelect.setAttribute("aria-label", t.languageLabel);
+      document.getElementById("languageLabel").textContent = t.languageLabel;
+
+      try {
+        localStorage.setItem("citizenGuideLanguage", selected);
+      } catch (error) {}
+    }
+
+    document.getElementById("language").addEventListener("change", function () {
+      applyAboutLanguage(this.value);
+    });
+
+    let savedAboutLanguage = "ar";
+    try {
+      savedAboutLanguage = localStorage.getItem("citizenGuideLanguage") || "ar";
+    } catch (error) {}
+
+    applyAboutLanguage(savedAboutLanguage);
+  </script>
 </body>
 </html>
