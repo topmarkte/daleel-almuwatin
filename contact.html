@@ -413,6 +413,116 @@
   </footer>
 
   <script>
+    
+const contactTranslations = {
+  ar: {
+    title: "اتصل بنا",
+    logo: "دليل المواطن المغربي",
+    back: "العودة إلى الصفحة الرئيسية",
+    hero: "نحن نهتم بآرائكم واقتراحاتكم، ونسعى باستمرار إلى تطوير دليل المواطن المغربي وتقديم معلومات أكثر فائدة للمواطن.",
+    help: "كيف يمكننا مساعدتك؟",
+    intro: "إذا كانت لديك ملاحظة حول الموقع، أو اقتراح لإضافة خدمة جديدة، أو وجدت معلومة تحتاج إلى تصحيح أو تحديث، يمكنك التواصل معنا عبر البريد الإلكتروني.",
+    section: "التواصل عبر البريد الإلكتروني",
+    email: "البريد الإلكتروني",
+    emailText: "يمكنك مراسلتنا للاستفسارات والاقتراحات، أو للإبلاغ عن معلومة تحتاج إلى تصحيح أو تحديث.",
+    emailButton: "مراسلتنا عبر البريد الإلكتروني",
+    noticeTitle: "ملاحظة مهمة:",
+    notice: "دليل المواطن المغربي موقع إرشادي لتسهيل الوصول إلى المعلومات والخدمات المفيدة. لا تمثل هذه الصفحة جهة حكومية رسمية. يرجى التأكد من المعلومات المهمة عبر المصادر الرسمية المختصة.",
+    footer: "دليل المواطن المغربي — جميع الحقوق محفوظة.",
+    language: "اختر اللغة"
+  },
+  fr: {
+    title: "Contactez-nous",
+    logo: "Guide du citoyen marocain",
+    back: "Retour à la page d’accueil",
+    hero: "Vos avis et suggestions nous tiennent à cœur. Nous cherchons continuellement à améliorer ce guide et à fournir des informations utiles aux citoyens.",
+    help: "Comment pouvons-nous vous aider ?",
+    intro: "Si vous avez une remarque sur le site, une suggestion de nouveau service ou si vous repérez une information à corriger ou à mettre à jour, vous pouvez nous contacter par e-mail.",
+    section: "Contact par e-mail",
+    email: "Adresse e-mail",
+    emailText: "Vous pouvez nous écrire pour vos questions et suggestions, ou pour signaler une information à corriger ou à mettre à jour.",
+    emailButton: "Nous contacter par e-mail",
+    noticeTitle: "Remarque importante :",
+    notice: "Le Guide du citoyen marocain est un site informatif qui facilite l’accès à des informations et services utiles. Cette page ne représente aucune administration gouvernementale officielle. Veuillez vérifier les informations importantes auprès des sources officielles compétentes.",
+    footer: "Guide du citoyen marocain — Tous droits réservés.",
+    language: "Choisir la langue"
+  },
+  en: {
+    title: "Contact Us",
+    logo: "Moroccan Citizen Guide",
+    back: "Return to homepage",
+    hero: "We value your feedback and suggestions. We continually work to improve this guide and provide more useful information for citizens.",
+    help: "How can we help you?",
+    intro: "If you have feedback about the website, a suggestion for a new service, or notice information that needs correction or updating, you can contact us by email.",
+    section: "Contact by email",
+    email: "Email address",
+    emailText: "You can email us with questions and suggestions, or to report information that needs correction or updating.",
+    emailButton: "Contact us by email",
+    noticeTitle: "Important note:",
+    notice: "The Moroccan Citizen Guide is an informational website that helps visitors access useful information and services. This page does not represent an official government body. Please verify important information with the relevant official sources.",
+    footer: "Moroccan Citizen Guide — All rights reserved.",
+    language: "Choose language"
+  }
+};
+
+const contactLanguageSelect = document.getElementById("language");
+
+function applyContactLanguage(language) {
+  const selectedLanguage = contactTranslations[language]
+    ? language
+    : "ar";
+  const t = contactTranslations[selectedLanguage];
+  const isArabic = selectedLanguage === "ar";
+
+  document.documentElement.lang = selectedLanguage;
+  document.documentElement.dir = isArabic ? "rtl" : "ltr";
+  document.body.dir = isArabic ? "rtl" : "ltr";
+  contactLanguageSelect.value = selectedLanguage;
+  contactLanguageSelect.setAttribute("aria-label", t.language);
+
+  document.title = t.title + " | " + t.logo;
+  document.querySelector('meta[name="description"]').content = t.hero;
+
+  document.querySelector(".logo").textContent = t.logo;
+  document.querySelector(".back span:last-child").textContent = t.back;
+  document.querySelector(".hero h1").textContent = t.title;
+  document.querySelector(".hero p").textContent = t.hero;
+  document.querySelector(".intro h2").textContent = t.help;
+  document.querySelector(".intro p").textContent = t.intro;
+  document.querySelector(".section-title").textContent = t.section;
+  document.querySelector(".contact-card h3").textContent = t.email;
+  document.querySelector(".contact-card p").textContent = t.emailText;
+  document.querySelector(".email-button").innerHTML =
+    '<span aria-hidden="true">✉</span> ' + t.emailButton;
+
+  document.querySelector(".notice").innerHTML =
+    "<strong>" + t.noticeTitle + "</strong> " + t.notice;
+
+  document.querySelector(".footer p").innerHTML =
+    '© <span id="year">' +
+    new Date().getFullYear() +
+    "</span> " + t.footer;
+}
+
+contactLanguageSelect.addEventListener("change", function () {
+  const language = this.value;
+
+  try {
+    localStorage.setItem("citizenGuideLanguage", language);
+  } catch (error) {}
+
+  applyContactLanguage(language);
+});
+
+let savedContactLanguage = "ar";
+
+try {
+  savedContactLanguage =
+    localStorage.getItem("citizenGuideLanguage") || "ar";
+} catch (error) {}
+
+applyContactLanguage(savedContactLanguage);
+    
     document.getElementById("year").textContent =
       new Date().getFullYear();
   </script>
