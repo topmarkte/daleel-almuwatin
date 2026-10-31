@@ -218,7 +218,14 @@
                   margin .25s ease;
     }
 
-    /* الكمبيوتر: يظهر الوصف عند مرور مؤشر الفأرة */
+    /* إظهار الوصف عند تحديد البطاقة */
+    .category-card.show-description .card-description {
+      max-height: 150px;
+      opacity: 1;
+      margin-top: 3px;
+    }
+
+    /* الكمبيوتر: إظهار الوصف عند مرور مؤشر الفأرة */
     @media (hover: hover) and (pointer: fine) {
       .category-card:hover .card-description,
       .category-card:focus-visible .card-description {
@@ -227,15 +234,6 @@
         margin-top: 3px;
       }
     }
-
-    /* إظهار الوصف أثناء ملامسة الإصبع للفئة */
-@media (hover: none), (pointer: coarse) {
-  .category-card:active .card-description {
-    max-height: 150px;
-    opacity: 1;
-    margin-top: 3px;
-  }
-}
 
     .notice {
       margin-top: 30px;
@@ -542,6 +540,7 @@
 
     document.querySelectorAll("[data-i18n]").forEach(element => {
       const key = element.getAttribute("data-i18n");
+
       if (translations[key] !== undefined) {
         element.textContent = translations[key];
       }
@@ -560,37 +559,56 @@
 
   const savedLanguage = localStorage.getItem("citizenGuideLanguage") || "ar";
   applyDocumentsLanguage(savedLanguage);
-  // التحكم في ظهور وصف الأزرار على الهاتف
-const categoryCards = document.querySelectorAll(".category-card");
 
-const isTouchDevice = window.matchMedia(
-  "(hover: none), (pointer: coarse)"
-).matches;
 
-categoryCards.forEach(card => {
-  card.addEventListener("click", function(event) {
-    if (!isTouchDevice) return;
+  /* التحكم في ظهور وصف البطاقات على الهاتف */
 
-    if (!this.classList.contains("show-description")) {
-      event.preventDefault();
+  const categoryCards = document.querySelectorAll(".category-card");
 
-      categoryCards.forEach(otherCard => {
-        otherCard.classList.remove("show-description");
+  const isTouchDevice = window.matchMedia(
+    "(hover: none), (pointer: coarse)"
+  ).matches;
+
+  categoryCards.forEach(card => {
+
+    card.addEventListener("click", function(event) {
+
+      if (!isTouchDevice) return;
+
+      // إذا لم تكن البطاقة محددة، نظهر وصفها ونمنع الانتقال للرابط
+      if (!this.classList.contains("show-description")) {
+
+        event.preventDefault();
+
+        // إخفاء وصف جميع البطاقات الأخرى
+        categoryCards.forEach(otherCard => {
+          otherCard.classList.remove("show-description");
+        });
+
+        // إظهار وصف البطاقة المختارة
+        this.classList.add("show-description");
+      }
+
+      // إذا كانت البطاقة محددة مسبقاً، يسمح بفتح رابطها
+    });
+
+  });
+
+
+  /* إخفاء الوصف عند الضغط على مساحة فارغة من الصفحة */
+
+  document.addEventListener("click", function(event) {
+
+    if (!event.target.closest(".category-card")) {
+
+      categoryCards.forEach(card => {
+        card.classList.remove("show-description");
       });
 
-      this.classList.add("show-description");
     }
-  });
-});
 
-// إخفاء الوصف عند الضغط خارج الأزرار
-document.addEventListener("click", function(event) {
-  if (!event.target.closest(".category-card")) {
-    categoryCards.forEach(card => {
-      card.classList.remove("show-description");
-    });
-  }
-});
+  });
+
 </script>
 
 </body>
