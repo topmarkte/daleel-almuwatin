@@ -183,6 +183,7 @@
       border-radius: 13px;
       display: grid;
       place-items: center;
+      flex-shrink: 0;
     }
 
     .category-icon svg {
@@ -205,6 +206,45 @@
     .card-caption {
       color: var(--muted);
       font-size: 12px;
+      transition: opacity .2s ease;
+    }
+
+    /* الشرح المخفي افتراضياً */
+    .card-description {
+      display: block;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+      transition: max-height .3s ease, opacity .25s ease, margin .25s ease;
+    }
+
+    /* ظهور الشرح عند تمرير مؤشر الكمبيوتر */
+    @media (hover: hover) and (pointer: fine) {
+      .category-card:hover .card-description,
+      .category-card:focus-visible .card-description {
+        max-height: 130px;
+        opacity: 1;
+        margin-top: 3px;
+      }
+
+      .category-card:hover .card-caption,
+      .category-card:focus-visible .card-caption {
+        display: none;
+      }
+    }
+
+    /* ظهور الشرح بعد اللمسة الأولى على الهاتف */
+    .category-card.show-description .card-description {
+      max-height: 150px;
+      opacity: 1;
+      margin-top: 3px;
+    }
+
+    .category-card.show-description .card-caption {
+      display: none;
     }
 
     .notice {
@@ -322,6 +362,7 @@
         <svg viewBox="0 0 24 24"><path d="M12 21s-8-4.5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6.5-8 11-8 11Z"/><path d="M12 8v8M8 12h8"/></svg>
       </span>
       <h3 data-i18n="mutuelle">التعاضدية العامة لموظفي الإدارات العمومية</h3>
+      <span class="card-description" data-i18n="descMutuelle"></span>
       <span class="card-caption" data-i18n="explore">استكشف الوثائق</span>
     </a>
 
@@ -330,13 +371,16 @@
         <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-4 2.5-6 6-6s6 2 6 6M15 15c3.5-.5 6 1.5 6 5"/></svg>
       </span>
       <h3 data-i18n="cooperatives">التعاونيات</h3>
+      <span class="card-description" data-i18n="descCooperatives"></span>
       <span class="card-caption" data-i18n="explore">استكشف الوثائق</span>
     </a>
+
     <a class="category-card" href="./documents/cnops.html">
       <span class="category-icon">
         <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="M12 7v8M8 11h8"/></svg>
       </span>
       <h3 data-i18n="cnops">CNOPS</h3>
+      <span class="card-description" data-i18n="descCnops"></span>
       <span class="card-caption" data-i18n="explore">استكشف الوثائق</span>
     </a>
 
@@ -345,6 +389,7 @@
         <svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="12" cy="9" r="2.5"/><path d="M8 17c.8-2 2-3 4-3s3.2 1 4 3"/></svg>
       </span>
       <h3 data-i18n="cndp">حماية المعطيات الشخصية CNDP</h3>
+      <span class="card-description" data-i18n="descCndp"></span>
       <span class="card-caption" data-i18n="explore">استكشف الوثائق</span>
     </a>
 
@@ -353,6 +398,7 @@
         <svg viewBox="0 0 24 24"><path d="M12 3v18M5 7h14M7 7l-4 8h8L7 7Zm10 0-4 8h8l-4-8ZM5 21h14"/></svg>
       </span>
       <h3 data-i18n="laws">قوانين</h3>
+      <span class="card-description" data-i18n="descLaws"></span>
       <span class="card-caption" data-i18n="explore">استكشف الوثائق</span>
     </a>
 
@@ -361,6 +407,7 @@
         <svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/><path d="M14 3v5h5M8 13h8M8 17h8"/></svg>
       </span>
       <h3 data-i18n="forms">مطبوعات</h3>
+      <span class="card-description" data-i18n="descForms"></span>
       <span class="card-caption" data-i18n="explore">استكشف الوثائق</span>
     </a>
 
@@ -369,6 +416,7 @@
         <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM8 8h8M8 12h8M8 16h5"/></svg>
       </span>
       <h3 data-i18n="bacNational">الامتحانات الوطنية الثانية باكالوريا</h3>
+      <span class="card-description" data-i18n="descBacNational"></span>
       <span class="card-caption" data-i18n="explore">استكشف الوثائق</span>
     </a>
 
@@ -377,6 +425,7 @@
         <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM8 8h8M8 12h8M8 16h5"/><path d="m16 16 2 2 3-4"/></svg>
       </span>
       <h3 data-i18n="bacRegional">الامتحانات الجهوية الأولى باكالوريا</h3>
+      <span class="card-description" data-i18n="descBacRegional"></span>
       <span class="card-caption" data-i18n="explore">استكشف الوثائق</span>
     </a>
 
@@ -402,18 +451,35 @@
       intro: "فضاء يجمع مجموعة من الفئات التي تتيح الوصول إلى الوثائق والمطبوعات والملفات المفيدة للمواطن المغربي.",
       categoriesTitle: "الفئات",
       explore: "استكشف الوثائق",
+
       mutuelle: "التعاضدية العامة لموظفي الإدارات العمومية",
+      descMutuelle: "وثائق الانخراط والتغطية الصحية والتعويضات والخدمات المقدمة لموظفي الإدارات العمومية.",
+
       cooperatives: "التعاونيات",
-      commercial: "السجل التجاري",
+      descCooperatives: "ملفات وإجراءات تأسيس التعاونيات وتسييرها والوثائق الإدارية المرتبطة بها.",
+
       cnops: "CNOPS",
+      descCnops: "نماذج ووثائق التأمين الإجباري عن المرض والتغطية الصحية والتعويضات.",
+
       cndp: "حماية المعطيات الشخصية CNDP",
+      descCndp: "معلومات ووثائق التصريح بالمعطيات الشخصية وحمايتها وفق القوانين المعمول بها.",
+
       laws: "قوانين",
+      descLaws: "مجموعة من النصوص القانونية والتشريعية المغربية للرجوع إليها والاستفادة منها.",
+
       forms: "مطبوعات",
+      descForms: "مطبوعات ونماذج إدارية قابلة للاطلاع والتحميل والاستعمال عند الحاجة.",
+
       bacNational: "الامتحانات الوطنية الثانية باكالوريا",
+      descBacNational: "مواضيع الامتحانات الوطنية الثانية باكالوريا مع نماذج وموارد للمراجعة والاستعداد.",
+
       bacRegional: "الامتحانات الجهوية الأولى باكالوريا",
+      descBacRegional: "مواضيع الامتحانات الجهوية الأولى باكالوريا ونماذج تساعد على التحضير.",
+
       notice: "تنبيه: هذا الموقع دليل مستقل، ويُنصح بالتحقق من شروط وصلاحية الوثائق لدى الجهات الرسمية المختصة.",
       footer: "دليل المواطن المغربي — فضاء للمعلومات والخدمات المفيدة."
     },
+
     fr: {
       brand: "Guide du citoyen marocain",
       home: "Accueil",
@@ -421,18 +487,35 @@
       intro: "Un espace regroupant différentes catégories permettant d'accéder aux documents, formulaires et fichiers utiles aux citoyens marocains.",
       categoriesTitle: "Catégories",
       explore: "Consulter les documents",
+
       mutuelle: "Mutuelle générale du personnel des administrations publiques",
+      descMutuelle: "Documents d’adhésion, couverture médicale, remboursements et services destinés au personnel des administrations publiques.",
+
       cooperatives: "Coopératives",
-      commercial: "Registre de commerce",
+      descCooperatives: "Dossiers et démarches pour créer et gérer une coopérative, ainsi que les documents administratifs associés.",
+
       cnops: "CNOPS",
+      descCnops: "Formulaires et documents relatifs à l’assurance maladie obligatoire, à la couverture médicale et aux remboursements.",
+
       cndp: "Protection des données personnelles CNDP",
+      descCndp: "Informations et documents concernant la déclaration et la protection des données personnelles.",
+
       laws: "Lois",
+      descLaws: "Textes juridiques et législatifs marocains à consulter.",
+
       forms: "Formulaires",
+      descForms: "Formulaires et modèles administratifs à consulter, télécharger et utiliser.",
+
       bacNational: "Examens nationaux du baccalauréat (2e année)",
+      descBacNational: "Sujets des examens nationaux du baccalauréat (2e année) et ressources de révision.",
+
       bacRegional: "Examens régionaux du baccalauréat (1re année)",
+      descBacRegional: "Sujets des examens régionaux du baccalauréat (1re année) pour préparer les épreuves.",
+
       notice: "Attention : ce site est un guide indépendant. Il est conseillé de vérifier les conditions et la validité des documents auprès des organismes officiels compétents.",
       footer: "Guide du citoyen marocain — Un espace d'informations et de services utiles."
     },
+
     en: {
       brand: "Moroccan Citizen Guide",
       home: "Home",
@@ -440,15 +523,31 @@
       intro: "A space bringing together categories that provide access to documents, forms and useful files for Moroccan citizens.",
       categoriesTitle: "Categories",
       explore: "Explore documents",
+
       mutuelle: "General Mutual Fund for Public Administration Staff",
+      descMutuelle: "Membership, healthcare coverage, reimbursement and service documents for public administration staff.",
+
       cooperatives: "Cooperatives",
-      commercial: "Commercial Register",
+      descCooperatives: "Guides and documents for establishing and managing cooperatives and completing related administrative procedures.",
+
       cnops: "CNOPS",
+      descCnops: "Forms and documents related to mandatory health insurance, healthcare coverage and reimbursements.",
+
       cndp: "Personal Data Protection CNDP",
+      descCndp: "Information and documents about declaring and protecting personal data.",
+
       laws: "Laws",
+      descLaws: "Moroccan legal and legislative texts for reference.",
+
       forms: "Forms",
+      descForms: "Administrative forms and templates to view, download and use when needed.",
+
       bacNational: "National Baccalaureate Exams (Second Year)",
+      descBacNational: "Second-year baccalaureate national exam papers and revision resources.",
+
       bacRegional: "Regional Baccalaureate Exams (First Year)",
+      descBacRegional: "First-year baccalaureate regional exam papers and preparation resources.",
+
       notice: "Notice: This website is an independent guide. Please verify document requirements and validity with the relevant official authorities.",
       footer: "Moroccan Citizen Guide — Information and useful services."
     }
@@ -464,7 +563,7 @@
 
     document.querySelectorAll("[data-i18n]").forEach(element => {
       const key = element.getAttribute("data-i18n");
-      if (translations[key]) {
+      if (translations[key] !== undefined) {
         element.textContent = translations[key];
       }
     });
@@ -478,6 +577,25 @@
 
   languageSelector.addEventListener("change", function () {
     applyDocumentsLanguage(this.value);
+  });
+
+  // الهاتف: اللمسة الأولى تعرض الشرح، واللمسة الثانية تفتح الصفحة.
+  document.querySelectorAll(".category-card").forEach(card => {
+    card.addEventListener("click", function (event) {
+      const isTouchDevice = window.matchMedia(
+        "(hover: none), (pointer: coarse)"
+      ).matches;
+
+      if (isTouchDevice && !this.classList.contains("show-description")) {
+        event.preventDefault();
+
+        document.querySelectorAll(".category-card.show-description").forEach(openCard => {
+          openCard.classList.remove("show-description");
+        });
+
+        this.classList.add("show-description");
+      }
+    });
   });
 
   const savedLanguage = localStorage.getItem("citizenGuideLanguage") || "ar";
