@@ -218,7 +218,7 @@
                   margin .25s ease;
     }
 
-    /* إظهار الوصف أثناء مرور الإصبع */
+    /* إظهار الوصف للبطاقة المحددة بحركة الإصبع */
     .category-card.touch-hover .card-description {
       max-height: 150px;
       opacity: 1;
@@ -561,7 +561,7 @@
   applyDocumentsLanguage(savedLanguage);
 
 
-  /* التحكم في ظهور الوصف أثناء حركة الإصبع على الهاتف */
+  /* التحكم في ظهور وصف البطاقات باللمس */
 
   const categoryCards = document.querySelectorAll(".category-card");
 
@@ -577,7 +577,7 @@
     });
   }
 
-  /* إظهار الوصف عند ملامسة الإصبع للبطاقة */
+  /* عند لمس بطاقة: إظهار وصفها */
   document.addEventListener("touchstart", function(event) {
     const touch = event.touches[0];
     if (!touch) return;
@@ -592,11 +592,12 @@
     if (card) {
       showTouchCard(card);
     } else {
+      /* لمس مساحة فارغة يخفي الوصف */
       hideTouchCards();
     }
   }, { passive: true });
 
-  /* نقل الوصف إلى البطاقة التي يمر فوقها الإصبع */
+  /* عند تحريك الإصبع فوق بطاقة أخرى: نقل الوصف إليها */
   document.addEventListener("touchmove", function(event) {
     const touch = event.touches[0];
     if (!touch) return;
@@ -610,17 +611,19 @@
 
     if (card) {
       showTouchCard(card);
-    } else {
-      hideTouchCards();
     }
   }, { passive: true });
 
-  /* إخفاء الوصف فور رفع الإصبع */
-  document.addEventListener("touchend", hideTouchCards, { passive: true });
+  /* لا نخفي الوصف عند رفع الإصبع، بل يبقى ظاهراً */
 
-  document.addEventListener("touchcancel", hideTouchCards, { passive: true });
+  /* الضغط بالماوس على مساحة فارغة يخفي الوصف */
+  document.addEventListener("click", function(event) {
+    if (!event.target.closest(".category-card")) {
+      hideTouchCards();
+    }
+  });
 
 </script>
 
 </body>
-</html>
+  </html>
