@@ -228,11 +228,13 @@
       }
     }
 
-    /* إظهار الوصف عند اختيار الزر باللمس */
-.category-card.show-description .card-description {
-  max-height: 150px;
-  opacity: 1;
-  margin-top: 3px;
+    /* إظهار الوصف أثناء ملامسة الإصبع للفئة */
+@media (hover: none), (pointer: coarse) {
+  .category-card:active .card-description {
+    max-height: 150px;
+    opacity: 1;
+    margin-top: 3px;
+  }
 }
 
     .notice {
