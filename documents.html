@@ -228,14 +228,12 @@
       }
     }
 
-    /* الهاتف: يظهر الوصف أثناء لمس الزر فقط */
-    @media (hover: none), (pointer: coarse) {
-      .category-card:active .card-description {
-        max-height: 150px;
-        opacity: 1;
-        margin-top: 3px;
-      }
-    }
+    /* إظهار الوصف عند اختيار الزر باللمس */
+.category-card.show-description .card-description {
+  max-height: 150px;
+  opacity: 1;
+  margin-top: 3px;
+}
 
     .notice {
       margin-top: 30px;
@@ -560,6 +558,37 @@
 
   const savedLanguage = localStorage.getItem("citizenGuideLanguage") || "ar";
   applyDocumentsLanguage(savedLanguage);
+  // التحكم في ظهور وصف الأزرار على الهاتف
+const categoryCards = document.querySelectorAll(".category-card");
+
+const isTouchDevice = window.matchMedia(
+  "(hover: none), (pointer: coarse)"
+).matches;
+
+categoryCards.forEach(card => {
+  card.addEventListener("click", function(event) {
+    if (!isTouchDevice) return;
+
+    if (!this.classList.contains("show-description")) {
+      event.preventDefault();
+
+      categoryCards.forEach(otherCard => {
+        otherCard.classList.remove("show-description");
+      });
+
+      this.classList.add("show-description");
+    }
+  });
+});
+
+// إخفاء الوصف عند الضغط خارج الأزرار
+document.addEventListener("click", function(event) {
+  if (!event.target.closest(".category-card")) {
+    categoryCards.forEach(card => {
+      card.classList.remove("show-description");
+    });
+  }
+});
 </script>
 
 </body>
