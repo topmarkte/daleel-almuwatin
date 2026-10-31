@@ -203,7 +203,7 @@
       line-height: 1.6;
     }
 
-    /* الوصف مخفي في الوضع العادي */
+    /* الوصف مخفي افتراضياً */
     .card-description {
       display: block;
       max-height: 0;
@@ -218,8 +218,8 @@
                   margin .25s ease;
     }
 
-    /* إظهار الوصف عند تحديد البطاقة */
-    .category-card.show-description .card-description {
+    /* إظهار الوصف أثناء مرور الإصبع */
+    .category-card.touch-hover .card-description {
       max-height: 150px;
       opacity: 1;
       margin-top: 3px;
@@ -561,55 +561,66 @@
   applyDocumentsLanguage(savedLanguage);
 
 
-  /* التحكم في ظهور وصف البطاقات على الهاتف */
+  /* التحكم في ظهور الوصف أثناء حركة الإصبع على الهاتف */
 
   const categoryCards = document.querySelectorAll(".category-card");
 
-  const isTouchDevice = window.matchMedia(
-    "(hover: none), (pointer: coarse)"
-  ).matches;
-
-  categoryCards.forEach(card => {
-
-    card.addEventListener("click", function(event) {
-
-      if (!isTouchDevice) return;
-
-      // إذا لم تكن البطاقة محددة، نظهر وصفها ونمنع الانتقال للرابط
-      if (!this.classList.contains("show-description")) {
-
-        event.preventDefault();
-
-        // إخفاء وصف جميع البطاقات الأخرى
-        categoryCards.forEach(otherCard => {
-          otherCard.classList.remove("show-description");
-        });
-
-        // إظهار وصف البطاقة المختارة
-        this.classList.add("show-description");
-      }
-
-      // إذا كانت البطاقة محددة مسبقاً، يسمح بفتح رابطها
+  function showTouchCard(card) {
+    categoryCards.forEach(otherCard => {
+      otherCard.classList.toggle("touch-hover", otherCard === card);
     });
+  }
 
-  });
+  function hideTouchCards() {
+    categoryCards.forEach(card => {
+      card.classList.remove("touch-hover");
+    });
+  }
 
+  /* إظهار الوصف عند ملامسة الإصبع للبطاقة */
+  document.addEventListener("touchstart", function(event) {
+    const touch = event.touches[0];
+    if (!touch) return;
 
-  /* إخفاء الوصف عند الضغط على مساحة فارغة من الصفحة */
+    const element = document.elementFromPoint(
+      touch.clientX,
+      touch.clientY
+    );
 
-  document.addEventListener("click", function(event) {
+    const card = element && element.closest(".category-card");
 
-    if (!event.target.closest(".category-card")) {
-
-      categoryCards.forEach(card => {
-        card.classList.remove("show-description");
-      });
-
+    if (card) {
+      showTouchCard(card);
+    } else {
+      hideTouchCards();
     }
+  }, { passive: true });
 
-  });
+  /* نقل الوصف إلى البطاقة التي يمر فوقها الإصبع */
+  document.addEventListener("touchmove", function(event) {
+    const touch = event.touches[0];
+    if (!touch) return;
+
+    const element = document.elementFromPoint(
+      touch.clientX,
+      touch.clientY
+    );
+
+    const card = element && element.closest(".category-card");
+
+    if (card) {
+      showTouchCard(card);
+    } else {
+      hideTouchCards();
+    }
+  }, { passive: true });
+
+  /* إخفاء الوصف فور رفع الإصبع */
+  document.addEventListener("touchend", hideTouchCards, { passive: true });
+
+  document.addEventListener("touchcancel", hideTouchCards, { passive: true });
 
 </script>
 
 </body>
-  </html>
+</html>
