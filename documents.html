@@ -203,13 +203,7 @@
       line-height: 1.6;
     }
 
-    .card-caption {
-      color: var(--muted);
-      font-size: 12px;
-      transition: opacity .2s ease;
-    }
-
-    /* الشرح المخفي افتراضياً */
+    /* الوصف مخفي في الوضع العادي */
     .card-description {
       display: block;
       max-height: 0;
@@ -218,33 +212,29 @@
       color: var(--muted);
       font-size: 13px;
       line-height: 1.7;
-      transition: max-height .3s ease, opacity .25s ease, margin .25s ease;
+      margin-top: 0;
+      transition: max-height .3s ease,
+                  opacity .25s ease,
+                  margin .25s ease;
     }
 
-    /* ظهور الشرح عند تمرير مؤشر الكمبيوتر */
+    /* الكمبيوتر: يظهر الوصف عند مرور مؤشر الفأرة */
     @media (hover: hover) and (pointer: fine) {
       .category-card:hover .card-description,
       .category-card:focus-visible .card-description {
-        max-height: 130px;
+        max-height: 150px;
         opacity: 1;
         margin-top: 3px;
       }
+    }
 
-      .category-card:hover .card-caption,
-      .category-card:focus-visible .card-caption {
-        display: none;
+    /* الهاتف: يظهر الوصف أثناء لمس الزر فقط */
+    @media (hover: none), (pointer: coarse) {
+      .category-card:active .card-description {
+        max-height: 150px;
+        opacity: 1;
+        margin-top: 3px;
       }
-    }
-
-    /* ظهور الشرح بعد اللمسة الأولى على الهاتف */
-    .category-card.show-description .card-description {
-      max-height: 150px;
-      opacity: 1;
-      margin-top: 3px;
-    }
-
-    .category-card.show-description .card-caption {
-      display: none;
     }
 
     .notice {
@@ -363,7 +353,6 @@
       </span>
       <h3 data-i18n="mutuelle">التعاضدية العامة لموظفي الإدارات العمومية</h3>
       <span class="card-description" data-i18n="descMutuelle"></span>
-      <span class="card-caption" data-i18n="explore">استكشف الوثائق</span>
     </a>
 
     <a class="category-card" href="./documents/cooperatives.html">
@@ -372,7 +361,6 @@
       </span>
       <h3 data-i18n="cooperatives">التعاونيات</h3>
       <span class="card-description" data-i18n="descCooperatives"></span>
-      <span class="card-caption" data-i18n="explore">استكشف الوثائق</span>
     </a>
 
     <a class="category-card" href="./documents/cnops.html">
@@ -381,7 +369,6 @@
       </span>
       <h3 data-i18n="cnops">CNOPS</h3>
       <span class="card-description" data-i18n="descCnops"></span>
-      <span class="card-caption" data-i18n="explore">استكشف الوثائق</span>
     </a>
 
     <a class="category-card" href="./documents/cndp.html">
@@ -390,7 +377,6 @@
       </span>
       <h3 data-i18n="cndp">حماية المعطيات الشخصية CNDP</h3>
       <span class="card-description" data-i18n="descCndp"></span>
-      <span class="card-caption" data-i18n="explore">استكشف الوثائق</span>
     </a>
 
     <a class="category-card" href="./documents/laws.html">
@@ -399,7 +385,6 @@
       </span>
       <h3 data-i18n="laws">قوانين</h3>
       <span class="card-description" data-i18n="descLaws"></span>
-      <span class="card-caption" data-i18n="explore">استكشف الوثائق</span>
     </a>
 
     <a class="category-card" href="./documents/forms.html">
@@ -408,7 +393,6 @@
       </span>
       <h3 data-i18n="forms">مطبوعات</h3>
       <span class="card-description" data-i18n="descForms"></span>
-      <span class="card-caption" data-i18n="explore">استكشف الوثائق</span>
     </a>
 
     <a class="category-card" href="./documents/bac-national.html">
@@ -417,7 +401,6 @@
       </span>
       <h3 data-i18n="bacNational">الامتحانات الوطنية الثانية باكالوريا</h3>
       <span class="card-description" data-i18n="descBacNational"></span>
-      <span class="card-caption" data-i18n="explore">استكشف الوثائق</span>
     </a>
 
     <a class="category-card" href="./documents/bac-regional.html">
@@ -426,7 +409,6 @@
       </span>
       <h3 data-i18n="bacRegional">الامتحانات الجهوية الأولى باكالوريا</h3>
       <span class="card-description" data-i18n="descBacRegional"></span>
-      <span class="card-caption" data-i18n="explore">استكشف الوثائق</span>
     </a>
 
   </div>
@@ -450,7 +432,6 @@
       title: "الوثائق والملفات",
       intro: "فضاء يجمع مجموعة من الفئات التي تتيح الوصول إلى الوثائق والمطبوعات والملفات المفيدة للمواطن المغربي.",
       categoriesTitle: "الفئات",
-      explore: "استكشف الوثائق",
 
       mutuelle: "التعاضدية العامة لموظفي الإدارات العمومية",
       descMutuelle: "وثائق الانخراط والتغطية الصحية والتعويضات والخدمات المقدمة لموظفي الإدارات العمومية.",
@@ -486,7 +467,6 @@
       title: "Documents et fichiers",
       intro: "Un espace regroupant différentes catégories permettant d'accéder aux documents, formulaires et fichiers utiles aux citoyens marocains.",
       categoriesTitle: "Catégories",
-      explore: "Consulter les documents",
 
       mutuelle: "Mutuelle générale du personnel des administrations publiques",
       descMutuelle: "Documents d’adhésion, couverture médicale, remboursements et services destinés au personnel des administrations publiques.",
@@ -522,7 +502,6 @@
       title: "Documents and Files",
       intro: "A space bringing together categories that provide access to documents, forms and useful files for Moroccan citizens.",
       categoriesTitle: "Categories",
-      explore: "Explore documents",
 
       mutuelle: "General Mutual Fund for Public Administration Staff",
       descMutuelle: "Membership, healthcare coverage, reimbursement and service documents for public administration staff.",
@@ -577,25 +556,6 @@
 
   languageSelector.addEventListener("change", function () {
     applyDocumentsLanguage(this.value);
-  });
-
-  // الهاتف: اللمسة الأولى تعرض الشرح، واللمسة الثانية تفتح الصفحة.
-  document.querySelectorAll(".category-card").forEach(card => {
-    card.addEventListener("click", function (event) {
-      const isTouchDevice = window.matchMedia(
-        "(hover: none), (pointer: coarse)"
-      ).matches;
-
-      if (isTouchDevice && !this.classList.contains("show-description")) {
-        event.preventDefault();
-
-        document.querySelectorAll(".category-card.show-description").forEach(openCard => {
-          openCard.classList.remove("show-description");
-        });
-
-        this.classList.add("show-description");
-      }
-    });
   });
 
   const savedLanguage = localStorage.getItem("citizenGuideLanguage") || "ar";
