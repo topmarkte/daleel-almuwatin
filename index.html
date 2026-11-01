@@ -1356,8 +1356,21 @@ async function installGuide() {
       deferredInstallPrompt = null;
       updateInstallButton();
     });
-    const savedLanguage = localStorage.getItem("citizenGuideLanguage") || "ar";
-applyLanguage(savedLanguage);
+    function restoreSavedLanguage() {
+  let savedLanguage = "ar";
+
+  try {
+    savedLanguage = localStorage.getItem("citizenGuideLanguage") || "ar";
+  } catch (error) {}
+
+  applyLanguage(savedLanguage);
+}
+
+// استرجاع اللغة عند فتح الصفحة
+restoreSavedLanguage();
+
+// إعادة التحقق من اللغة عند العودة إلى الصفحة
+window.addEventListener("pageshow", restoreSavedLanguage);
   </script>
 </body>
 </html>
