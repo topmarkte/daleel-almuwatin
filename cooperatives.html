@@ -1,0 +1,604 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#a90f24">
+  <meta name="description" content="وثائق ونماذج تأسيس وملاءمة التعاونيات بالمغرب.">
+  <title>وثائق التعاونيات | دليل المواطن المغربي</title>
+
+  <style>
+    :root {
+      --red: #a90f24;
+      --dark-red: #760817;
+      --deep-red: #45050f;
+      --gold: #d8b66b;
+      --cream: #fffaf3;
+      --text: #332b2b;
+      --muted: #756969;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Tahoma, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    header {
+      background: linear-gradient(120deg, var(--deep-red), var(--red));
+      color: white;
+      padding: 15px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      border-bottom: 3px solid var(--gold);
+    }
+
+    .brand { font-size: 18px; font-weight: bold; }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      color: white;
+      border: 1px solid rgba(255,255,255,.6);
+      padding: 7px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+    }
+
+    .nav-btn:hover {
+      background: rgba(255,255,255,.13);
+      border-color: var(--gold);
+    }
+
+    select {
+      background: white;
+      color: var(--dark-red);
+      border: 1px solid var(--gold);
+      border-radius: 8px;
+      padding: 8px 9px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 43px 18px 35px;
+      background: linear-gradient(145deg, #fffaf3, #f5e9dc);
+      border-bottom: 1px solid #ead9c7;
+    }
+
+    .hero h1 {
+      color: var(--dark-red);
+      font-size: clamp(23px, 5vw, 34px);
+      margin: 0 0 10px;
+    }
+
+    .hero p {
+      max-width: 750px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    main {
+      width: min(1050px, 92%);
+      margin: 35px auto 50px;
+    }
+
+    .section-title {
+      text-align: center;
+      color: var(--dark-red);
+      font-size: 23px;
+      margin: 0 0 25px;
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 65px;
+      height: 3px;
+      margin: 9px auto 0;
+      background: var(--gold);
+      border-radius: 5px;
+    }
+
+    .documents-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 17px;
+    }
+
+    .document-card {
+      background: white;
+      border: 1px solid #eadbc9;
+      border-radius: 14px;
+      padding: 19px;
+      box-shadow: 0 5px 17px rgba(69,5,15,.06);
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+      transition: transform .25s, box-shadow .25s, border-color .25s;
+      animation: enter .5s both;
+    }
+
+    .document-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold);
+      box-shadow: 0 10px 23px rgba(69,5,15,.11);
+    }
+
+    .document-info {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+    }
+
+    .pdf-icon {
+      width: 47px;
+      height: 47px;
+      min-width: 47px;
+      border-radius: 12px;
+      background: #fff0ed;
+      color: var(--red);
+      display: grid;
+      place-items: center;
+    }
+
+    .pdf-icon svg {
+      width: 27px;
+      height: 27px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .document-number {
+      color: var(--red);
+      font-size: 11px;
+      font-weight: bold;
+      margin-bottom: 3px;
+    }
+
+    .document-card h3 {
+      color: var(--dark-red);
+      font-size: 14px;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .document-preview {
+      width: 100%;
+      height: 230px;
+      overflow: hidden;
+      border: 1px solid #eadbc9;
+      border-radius: 10px;
+      background: #f5f5f5;
+    }
+
+    .document-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      background: white;
+    }
+
+    .document-actions {
+      display: flex;
+      gap: 9px;
+      margin-top: auto;
+    }
+
+    .action-btn {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 7px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: bold;
+      text-align: center;
+      transition: .2s;
+    }
+
+    .view-btn {
+      background: var(--red);
+      color: white;
+      border: 1px solid var(--red);
+    }
+
+    .download-btn {
+      background: var(--deep-red);
+      color: white;
+      border: 1px solid var(--deep-red);
+    }
+
+    .action-btn:hover {
+      background: var(--gold);
+      color: var(--deep-red);
+      border-color: var(--gold);
+    }
+
+    .action-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    .notice {
+      margin-top: 28px;
+      padding: 14px 17px;
+      background: #fff5e6;
+      border-right: 4px solid var(--gold);
+      border-radius: 9px;
+      color: #66513b;
+      font-size: 13px;
+    }
+
+    html[dir="ltr"] .notice {
+      border-right: 0;
+      border-left: 4px solid var(--gold);
+    }
+
+    .bottom-navigation {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .bottom-navigation a {
+      background: var(--dark-red);
+      color: white;
+      padding: 10px 18px;
+      border-radius: 9px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .bottom-navigation a:hover { background: var(--red); }
+
+    footer {
+      text-align: center;
+      padding: 22px 15px;
+      background: var(--deep-red);
+      color: white;
+      font-size: 13px;
+      border-top: 3px solid var(--gold);
+    }
+
+    footer a { color: var(--gold); }
+
+    @keyframes enter {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 650px) {
+      header { padding: 13px 4%; }
+      .brand { font-size: 14px; }
+      .nav-btn { padding: 6px 8px; font-size: 11px; }
+      .hero { padding: 32px 14px; }
+      .documents-grid {
+        grid-template-columns: 1fr;
+        gap: 13px;
+      }
+      .document-card { padding: 16px; }
+      .document-card h3 { font-size: 13px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand" data-i18n="brand">دليل المواطن المغربي</div>
+
+  <div class="header-actions">
+    <a class="nav-btn" href="./index.html" data-i18n="home">الصفحة الرئيسية</a>
+
+    <a class="nav-btn" href="./documents.html" data-i18n="back">
+      العودة إلى الوثائق والملفات
+    </a>
+
+    <select id="languageSelector" aria-label="Language">
+      <option value="ar">العربية</option>
+      <option value="fr">Français</option>
+      <option value="en">English</option>
+    </select>
+  </div>
+</header>
+
+<section class="hero">
+  <h1 data-i18n="title">وثائق التعاونيات بالمغرب</h1>
+  <p data-i18n="intro">
+    فضاء مخصص للوثائق والنماذج المتعلقة بتأسيس التعاونيات وتسجيلها وملاءمتها مع القانون المغربي. يمكنك الاطلاع على الوثائق أو تحميلها.
+  </p>
+</section>
+
+<main>
+  <h2 class="section-title" data-i18n="documentsTitle">
+    الوثائق والنماذج المتاحة
+  </h2>
+
+  <div class="documents-grid" id="documentsGrid"></div>
+
+  <div class="notice" data-i18n="notice">
+    تنبيه: هذا الموقع دليل مستقل وليس موقعاً رسمياً. يرجى التأكد من صلاحية الوثائق وشروط استعمالها لدى الجهات المختصة.
+  </div>
+
+  <div class="bottom-navigation">
+    <a href="./index.html" data-i18n="home">الصفحة الرئيسية</a>
+    <a href="./documents.html" data-i18n="back">العودة إلى الوثائق والملفات</a>
+  </div>
+</main>
+
+<footer>
+  <span data-i18n="footer">
+    دليل المواطن المغربي — فضاء للمعلومات والخدمات المفيدة.
+  </span>
+  <br>
+  <a href="./index.html" data-i18n="home">الصفحة الرئيسية</a>
+</footer>
+
+<script>
+const documents = [
+  {
+    file: "PDF.11.pdf",
+    preview: "Screenshot_20261101-183406.jpg",
+    ar: "النظام الأساسي للتعاونيات",
+    fr: "Statuts des coopératives",
+    en: "Cooperative bylaws"
+  },
+  {
+    file: "PDF.22.pdf",
+    preview: "Screenshot_20261101-183429.jpg",
+    ar: "مرسوم بتحديد قواعد تنظيم وتسيير سجل التعاونيات",
+    fr: "Décret fixant les règles d'organisation et de gestion du registre des coopératives",
+    en: "Decree setting the rules for organizing and managing the cooperatives register"
+  },
+  {
+    file: "PDF.33.pdf",
+    preview: "Screenshot_20261101-183457.jpg",
+    ar: "دليل مسطرة تأسيس وملاءمة التعاونيات وفق القانون رقم 112.12",
+    fr: "Guide de création et de mise en conformité des coopératives selon la loi 112.12",
+    en: "Guide to establishing and aligning cooperatives under Law 112.12"
+  },
+  {
+    file: "PDF.44.pdf",
+    preview: "Screenshot_20261101-183530.jpg",
+    ar: "قائمة بالأعضاء المكتتبين",
+    fr: "Liste des membres souscripteurs",
+    en: "List of subscribing members"
+  },
+  {
+    file: "PDF.55.pdf",
+    preview: "Screenshot_20261101-183555.jpg",
+    ar: "قرار وزير العدل بتحديد كيفيات مسك السجل المحلي للتعاونيات",
+    fr: "Arrêté du ministre de la Justice fixant les modalités de tenue du registre local des coopératives",
+    en: "Order of the Minister of Justice setting the procedures for keeping the local cooperatives register"
+  },
+  {
+    file: "PDF.66.pdf",
+    preview: "Screenshot_20261101-183624.jpg",
+    ar: "طلب المصادقة على التسمية",
+    fr: "Demande de validation de la dénomination",
+    en: "Application for approval of the name"
+  },
+  {
+    file: "PDF.77.pdf",
+    preview: "Screenshot_20261101-183645.jpg",
+    ar: "مسطرة تأسيس التعاونيات",
+    fr: "Procédure de création des coopératives",
+    en: "Cooperative establishment procedure"
+  },
+  {
+    file: "PDF.88.pdf",
+    preview: "Screenshot_20261101-183705.jpg",
+    ar: "طلب التسجيل في السجل المحلي للتعاونيات",
+    fr: "Demande d'inscription au registre local des coopératives",
+    en: "Application for registration in the local cooperatives register"
+  },
+  {
+    file: "PDF.99.pdf",
+    preview: "Screenshot_20261101-183730.jpg",
+    ar: "دليل ومسطرة ملاءمة التعاونيات السكنية مع القانون الجديد 112.12",
+    fr: "Guide et procédure de mise en conformité des coopératives d'habitation avec la nouvelle loi 112.12",
+    en: "Guide and procedure for aligning housing cooperatives with the new Law 112.12"
+  },
+  {
+    file: "PDF.1010.pdf",
+    preview: "Screenshot_20261101-183757.jpg",
+    ar: "إجراءات التأسيس والملاءمة وفق أحكام القانون الجديد للتعاونيات",
+    fr: "Procédures de création et de mise en conformité selon les dispositions de la nouvelle loi sur les coopératives",
+    en: "Establishment and compliance procedures under the new cooperatives law"
+  },
+  {
+    file: "PDF.1111.pdf",
+    preview: "Screenshot_20261101-183818.jpg",
+    ar: "دليل الملاءمة",
+    fr: "Guide de mise en conformité",
+    en: "Compliance guide"
+  },
+  {
+    file: "PDF.1212.pdf",
+    preview: "Screenshot_20261101-183837.jpg",
+    ar: "نموذج النظام الأساسي للتعاونيات",
+    fr: "Modèle de statuts des coopératives",
+    en: "Model cooperative bylaws"
+  }
+];
+
+const translations = {
+  ar: {
+    brand: "دليل المواطن المغربي",
+    home: "الصفحة الرئيسية",
+    back: "العودة إلى الوثائق والملفات",
+    title: "وثائق التعاونيات بالمغرب",
+    intro: "فضاء مخصص للوثائق والنماذج المتعلقة بتأسيس التعاونيات وتسجيلها وملاءمتها مع القانون المغربي. يمكنك الاطلاع على الوثائق أو تحميلها.",
+    documentsTitle: "الوثائق والنماذج المتاحة",
+    view: "عرض الوثيقة",
+    download: "تحميل الوثيقة",
+    number: "الوثيقة",
+    notice: "تنبيه: هذا الموقع دليل مستقل وليس موقعاً رسمياً. يرجى التأكد من صلاحية الوثائق وشروط استعمالها لدى الجهات المختصة.",
+    footer: "دليل المواطن المغربي — فضاء للمعلومات والخدمات المفيدة."
+  },
+  fr: {
+    brand: "Guide du citoyen marocain",
+    home: "Accueil",
+    back: "Retour aux documents",
+    title: "Documents des coopératives au Maroc",
+    intro: "Espace consacré aux documents et formulaires relatifs à la création, à l'enregistrement et à la mise en conformité des coopératives avec la législation marocaine. Vous pouvez consulter ou télécharger les documents.",
+    documentsTitle: "Documents et formulaires disponibles",
+    view: "Consulter",
+    download: "Télécharger",
+    number: "Document",
+    notice: "Attention : ce site est un guide indépendant et n'est pas un site officiel. Veuillez vérifier la validité des documents et leurs conditions d'utilisation auprès des autorités compétentes.",
+    footer: "Guide du citoyen marocain — Un espace d'informations et de services utiles."
+  },
+  en: {
+    brand: "Moroccan Citizen Guide",
+    home: "Home",
+    back: "Back to Documents",
+    title: "Cooperative Documents in Morocco",
+    intro: "A space dedicated to documents and forms related to the establishment, registration and legal compliance of cooperatives in Morocco. You can view or download the documents.",
+    documentsTitle: "Available Documents and Forms",
+    view: "View document",
+    download: "Download document",
+    number: "Document",
+    notice: "Notice: This website is an independent guide and is not an official website. Please verify document validity and conditions of use with the relevant authorities.",
+    footer: "Moroccan Citizen Guide — Information and useful services."
+  }
+};
+
+const documentsGrid = document.getElementById("documentsGrid");
+
+function createDocuments(language) {
+  documentsGrid.innerHTML = "";
+
+  documents.forEach((doc, index) => {
+    const title = doc[language] || doc.ar;
+    const path = "./cooperatives-files/" + doc.file;
+
+    const card = document.createElement("article");
+    card.className = "document-card";
+
+    card.innerHTML = `
+      <div class="document-info">
+        <span class="pdf-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M6 2h8l5 5v15H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z"/>
+            <path d="M14 2v6h5"/>
+            <path d="M8 16h8M8 12h5"/>
+          </svg>
+        </span>
+        <div>
+          <div class="document-number">
+            ${translations[language].number} ${String(index + 1).padStart(2, "0")}
+          </div>
+          <h3></h3>
+        </div>
+      </div>
+
+      <div class="document-preview">
+        <img
+          src="./cooperatives-files/${doc.preview}"
+          alt="${title}"
+          loading="lazy">
+      </div>
+
+      <div class="document-actions">
+        <a class="action-btn view-btn" href="${path}" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24">
+            <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+          <span>${translations[language].view}</span>
+        </a>
+
+        <a class="action-btn download-btn" href="${path}" download="${doc.file}">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 3v12m-5-5 5 5 5-5"/>
+            <path d="M5 17v4h14v-4"/>
+          </svg>
+          <span>${translations[language].download}</span>
+        </a>
+      </div>
+    `;
+
+    card.querySelector("h3").textContent = title;
+    documentsGrid.appendChild(card);
+  });
+}
+
+const languageSelector = document.getElementById("languageSelector");
+
+function applyLanguage(language) {
+  const selected = translations[language] || translations.ar;
+
+  document.documentElement.lang = language;
+  document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
+
+  document.querySelectorAll("[data-i18n]").forEach(element => {
+    const key = element.getAttribute("data-i18n");
+
+    if (selected[key] !== undefined) {
+      element.textContent = selected[key];
+    }
+  });
+
+  document.title = selected.title + " | " + selected.brand;
+  document.querySelector('meta[name="description"]').content = selected.intro;
+
+  languageSelector.value = language;
+  localStorage.setItem("citizenGuideLanguage", language);
+
+  createDocuments(language);
+}
+
+languageSelector.addEventListener("change", function () {
+  applyLanguage(this.value);
+});
+
+const savedLanguage =
+  localStorage.getItem("citizenGuideLanguage") || "ar";
+
+applyLanguage(savedLanguage);
+</script>
+
+</body>
+  </html>
+  
