@@ -201,10 +201,11 @@
   background: #f5f5f5;
 }
 
-.document-preview iframe {
+.document-preview img {
   width: 100%;
   height: 100%;
-  border: 0;
+  object-fit: contain;
+  display: block;
   background: white;
 }
     .document-actions {
@@ -427,60 +428,70 @@
 const documents = [
   {
     file: "PDF.1.pdf",
+    preview: "Screenshot_20261101-144141.jpg",
     ar: "طلب منحة ورصيد الوفاة لذوي حقوق المنخرط المتوفى",
     fr: "Demande de prime et de capital décès au profit des ayants droit de l'adhérent décédé",
     en: "Death grant and death benefit application for the deceased member's beneficiaries"
   },
   {
     file: "PDF.2.pdf",
+    preview: Screenshot_20261101-144153.jpg
     ar: "طلب الانخراط في التعاضدية العامة لموظفي الإدارات العمومية",
     fr: "Demande d'adhésion à la Mutuelle générale du personnel des administrations publiques",
     en: "Membership application to the General Mutual Fund for Public Administration Staff"
   },
   {
     file: "PDF.3.pdf",
+    preview: Screenshot_20261101-144208.jpg
     ar: "طلب الاستفادة من منحة الوفاة بالتعويضات التكميلية",
     fr: "Demande de bénéfice de la prime décès avec les indemnités complémentaires",
     en: "Application for the death grant with supplementary benefits"
   },
   {
     file: "PDF.4.pdf",
+    preview: Screenshot_20261101-144228.jpg
     ar: "ورقة علاجات الأسنان واسترجاع المصاريف من التعاضدية",
     fr: "Feuille de soins dentaires et demande de remboursement des frais auprès de la mutuelle",
     en: "Dental treatment form and reimbursement of expenses by the mutual fund"
   },
   {
     file: "PDF.5.pdf",
+    preview: Screenshot_20261101-144239.jpg
     ar: "استمارة طلب التعويض عن الأمراض المزمنة والمكلفة",
     fr: "Formulaire de demande de remboursement des maladies chroniques et coûteuses",
     en: "Application form for reimbursement of chronic and costly diseases"
   },
   {
     file: "PDF.6.pdf",
+    preview: Screenshot_20261101-144257.jpg
     ar: "طلب استخراج وتجديد بطاقة الانخراط في التعاضدية العامة",
     fr: "Demande de délivrance et de renouvellement de la carte d'adhésion à la mutuelle générale",
     en: "Application for issuing or renewing the general mutual fund membership card"
   },
   {
     file: "PDF.7.pdf",
+    preview: Screenshot_20261101-144309.jpg
     ar: "استمارة ملف تقاعد واستمرار التغطية الصحية للمتقاعدين",
     fr: "Formulaire de dossier de retraite et de maintien de la couverture médicale des retraités",
     en: "Retirement file form and continuation of healthcare coverage for retirees"
   },
   {
     file: "PDF.8.pdf",
+    preview: Screenshot_20261101-144324.jpg
     ar: "استمارة تحيين الوضعية الإدارية والعائلية بالتعاضدية العامة",
     fr: "Formulaire de mise à jour de la situation administrative et familiale auprès de la mutuelle",
     en: "Form for updating administrative and family status with the general mutual fund"
   },
   {
     file: "PDF.9.pdf",
+    preview: Screenshot_20261101-144334.jpg
     ar: "طلب استرجاع مصاريف الفحوصات والتحاليل الطبية التكميلية",
     fr: "Demande de remboursement des frais d'examens et d'analyses médicales complémentaires",
     en: "Application for reimbursement of supplementary medical examination and test expenses"
   },
   {
     file: "PDF.10.pdf",
+    preview: Screenshot_20261101-145428.jpg
     ar: "ورقة العلاجات العامة واسترجاع مصاريف الأدوية والاستشارة الطبية",
     fr: "Feuille de soins généraux et demande de remboursement des médicaments et de la consultation médicale",
     en: "General treatment form and reimbursement of medication and medical consultation expenses"
@@ -561,12 +572,11 @@ function createDocuments(language) {
         </div>
       </div>
       <div class="document-preview">
-        <iframe
-          src="${path}#page=1&toolbar=0&navpanes=0"
-          title="${title}"
-          loading="lazy">
-        </iframe>
-      </div>
+  <img
+    src="./mutuelle-files/${doc.preview}"
+    alt="${title}"
+    loading="lazy">
+</div>
       <div class="document-actions">
         <a class="action-btn view-btn" href="${path}" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24">
@@ -576,7 +586,7 @@ function createDocuments(language) {
           <span>${translations[language].view}</span>
         </a>
 
-        <a class="action-btn download-btn" href="${path}" download="${doc.file}.pdf">
+        <a class="action-btn download-btn" href="${path}" download="${doc.file}">
           <svg viewBox="0 0 24 24">
             <path d="M12 3v12m-5-5 5 5 5-5"/>
             <path d="M5 17v4h14v-4"/>
