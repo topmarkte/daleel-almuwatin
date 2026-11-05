@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#a90f24">
+<meta name="description" content="فضاء الوثائق والاستمارات المتعلقة بحماية المعطيات الشخصية بالمغرب.">
+<title>حماية المعطيات الشخصية | دليل المواطن المغربي</title>
+
+<style>
+:root {
+  --red: #a90f24;
+  --dark: #760817;
+  --deep: #45050f;
+  --gold: #d8b66b;
+  --cream: #fffaf3;
+  --white: #ffffff;
+  --text: #5e1721;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Tahoma, sans-serif;
+  background: var(--cream);
+  color: var(--text);
+}
+
+header {
+  background: linear-gradient(120deg, var(--deep), var(--red));
+  border-bottom: 5px solid var(--gold);
+  color: white;
+  padding: 25px 20px 22px;
+}
+
+.header-inner {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.site-name {
+  font-size: 21px;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+.nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.nav a, .nav select {
+  text-decoration: none;
+  color: white;
+  border: 1px solid rgba(255,255,255,.45);
+  border-radius: 13px;
+  padding: 13px 17px;
+  background: transparent;
+  font-family: inherit;
+  font-size: 15px;
+}
+
+.nav select {
+  background: white;
+  color: var(--dark);
+  min-width: 145px;
+  cursor: pointer;
+}
+
+.nav a:hover {
+  background: rgba(255,255,255,.12);
+}
+
+.hero {
+  text-align: center;
+  padding: 65px 20px 55px;
+  background: linear-gradient(120deg, #fffaf3, #f5e9da);
+  border-bottom: 1px solid #eadcc9;
+}
+
+.hero h1 {
+  color: var(--dark);
+  font-size: 34px;
+  line-height: 1.6;
+  margin: 0 auto 20px;
+  max-width: 850px;
+}
+
+.hero p {
+  color: #81736c;
+  font-size: 19px;
+  line-height: 2;
+  max-width: 850px;
+  margin: auto;
+}
+
+.documents {
+  max-width: 1100px;
+  margin: auto;
+  padding: 55px 20px 70px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 32px;
+  color: var(--dark);
+  margin: 0 0 45px;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 110px;
+  height: 5px;
+  background: var(--gold);
+  border-radius: 10px;
+  margin: 22px auto 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 25px;
+}
+
+.card {
+  background: white;
+  border: 1px solid #e2cda5;
+  border-radius: 24px;
+  padding: 25px;
+  box-shadow: 0 8px 25px rgba(80, 30, 20, .07);
+}
+
+.card-heading {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  margin-bottom: 22px;
+}
+
+.doc-icon {
+  width: 78px;
+  height: 78px;
+  border-radius: 20px;
+  background: #fff0ef;
+  color: var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.doc-icon svg {
+  width: 43px;
+  height: 43px;
+}
+
+.doc-number {
+  color: var(--red);
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.card h3 {
+  margin: 0;
+  color: var(--dark);
+  font-size: 21px;
+  line-height: 1.7;
+}
+
+.preview {
+  width: 100%;
+  height: 260px;
+  border: 1px solid #eadfd1;
+  border-radius: 17px;
+  overflow: hidden;
+  background: #fffaf3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+}
+
+.preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+.actions a {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  border-radius: 14px;
+  padding: 17px 8px;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  transition: .2s;
+}
+
+.actions a:hover {
+  transform: translateY(-2px);
+  opacity: .92;
+}
+
+.view-btn {
+  background: var(--red);
+}
+
+.download-btn {
+  background: var(--deep);
+}
+
+.actions svg {
+  width: 21px;
+  height: 21px;
+  flex-shrink: 0;
+}
+
+footer {
+  background: var(--deep);
+  border-top: 4px solid var(--gold);
+  color: white;
+  text-align: center;
+  padding: 25px 15px;
+  line-height: 1.9;
+}
+
+@media (max-width: 700px) {
+  header {
+    padding: 22px 16px;
+  }
+
+  .site-name {
+    font-size: 19px;
+    margin-bottom: 22px;
+  }
+
+  .nav {
+    justify-content: flex-start;
+    gap: 9px;
+  }
+
+  .nav a, .nav select {
+    font-size: 13px;
+    padding: 12px 10px;
+  }
+
+  .hero {
+    padding: 48px 20px 42px;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .hero p {
+    font-size: 17px;
+  }
+
+  .documents {
+    padding: 45px 18px 55px;
+  }
+
+  .section-title {
+    font-size: 27px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .card {
+    padding: 20px;
+    border-radius: 22px;
+  }
+
+  .preview {
+    height: 230px;
+  }
+
+  .card h3 {
+    font-size: 19px;
+  }
+
+  .actions a {
+    font-size: 14px;
+    padding: 15px 5px;
+  }
+}
+
+@media (max-width: 360px) {
+  .actions {
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="site-name" data-i18n="siteName">دليل المواطن المغربي</div>
+
+    <nav class="nav">
+      <a href="index.html" data-i18n="home">الصفحة الرئيسية</a>
+      <a href="documents.html" data-i18n="back">العودة إلى الوثائق والملفات</a>
+
+      <select id="languageSelect" aria-label="Language">
+        <option value="ar">العربية</option>
+        <option value="fr">Français</option>
+        <option value="en">English</option>
+      </select>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <h1 data-i18n="mainTitle">حماية المعطيات الشخصية</h1>
+  <p data-i18n="description">
+    فضاء مخصص للاستمارات والوثائق المتعلقة بحماية المعطيات الشخصية بالمغرب.
+    يمكنك الاطلاع على الوثائق أو تحميلها بسهولة.
+  </p>
+</section>
+
+<main class="documents">
+
+  <h2 class="section-title" data-i18n="sectionTitle">
+    الوثائق والاستمارات المتاحة
+  </h2>
+
+  <div class="grid">
+
+    <!-- الوثيقة الأولى -->
+    <article class="card">
+      <div class="card-heading">
+        <div class="doc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <path d="M14 2v6h6M8 13h8M8 17h8"/>
+          </svg>
+        </div>
+        <div>
+          <div class="doc-number" data-i18n="doc1Number">الوثيقة 01</div>
+          <h3 data-i18n="doc1">استمارة طلب إذن مسبق وفق القرار</h3>
+        </div>
+      </div>
+
+      <div class="preview">
+        <img src="protection-donnees-files/Screenshot_20261105-221146.jpg"
+             alt="استمارة طلب إذن مسبق">
+      </div>
+
+      <div class="actions">
+        <a class="view-btn" href="protection-donnees-files/PDF.B1.pdf" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+          <span data-i18n="view">عرض الوثيقة</span>
+        </a>
+
+        <a class="download-btn" href="protection-donnees-files/PDF.B1.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <path d="M7 10l5 5 5-5M12 15V3"/>
+          </svg>
+          <span data-i18n="download">تحميل الوثيقة</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- الوثيقة الثانية -->
+    <article class="card">
+      <div class="card-heading">
+        <div class="doc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <path d="M14 2v6h6M8 13h8M8 17h8"/>
+          </svg>
+        </div>
+        <div>
+          <div class="doc-number" data-i18n="doc2Number">الوثيقة 02</div>
+          <h3 data-i18n="doc2">استمارة التصريح العادي وفق القرار</h3>
+        </div>
+      </div>
+
+      <div class="preview">
+        <img src="protection-donnees-files/Screenshot_20261105-221216.jpg"
+             alt="استمارة التصريح العادي">
+      </div>
+
+      <div class="actions">
+        <a class="view-btn" href="protection-donnees-files/PDF.B2.pdf" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+          <span data-i18n="view">عرض الوثيقة</span>
+        </a>
+
+        <a class="download-btn" href="protection-donnees-files/PDF.B2.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <path d="M7 10l5 5 5-5M12 15V3"/>
+          </svg>
+          <span data-i18n="download">تحميل الوثيقة</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- الوثيقة الثالثة -->
+    <article class="card">
+      <div class="card-heading">
+        <div class="doc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <path d="M14 2v6h6M8 13h8M8 17h8"/>
+          </svg>
+        </div>
+        <div>
+          <div class="doc-number" data-i18n="doc3Number">الوثيقة 03</div>
+          <h3 data-i18n="doc3">استمارة تعيين المسؤول عن المعالجة</h3>
+        </div>
+      </div>
+
+      <div class="preview">
+        <img src="protection-donnees-files/Screenshot_20261105-221244.jpg"
+             alt="استمارة تعيين المسؤول عن المعالجة">
+      </div>
+
+      <div class="actions">
+        <a class="view-btn" href="protection-donnees-files/PDF.B3.pdf" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+          <span data-i18n="view">عرض الوثيقة</span>
+        </a>
+
+        <a class="download-btn" href="protection-donnees-files/PDF.B3.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <path d="M7 10l5 5 5-5M12 15V3"/>
+          </svg>
+          <span data-i18n="download">تحميل الوثيقة</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- الوثيقة الرابعة -->
+    <article class="card">
+      <div class="card-heading">
+        <div class="doc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <path d="M14 2v6h6M8 13h8M8 17h8"/>
+          </svg>
+        </div>
+        <div>
+          <div class="doc-number" data-i18n="doc4Number">الوثيقة 04</div>
+          <h3 data-i18n="doc4">استمارة طلب نقل المعطيات نحو بلد أجنبي</h3>
+        </div>
+      </div>
+
+      <div class="preview">
+        <img src="protection-donnees-files/Screenshot_20261105-221321.jpg"
+             alt="استمارة نقل المعطيات نحو بلد أجنبي">
+      </div>
+
+      <div class="actions">
+        <a class="view-btn" href="protection-donnees-files/PDF.B4.pdf" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+          <span data-i18n="view">عرض الوثيقة</span>
+        </a>
+
+        <a class="download-btn" href="protection-donnees-files/PDF.B4.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <path d="M7 10l5 5 5-5M12 15V3"/>
+          </svg>
+          <span data-i18n="download">تحميل الوثيقة</span>
+        </a>
+      </div>
+    </article>
+
+  </div>
+</main>
+
+<footer>
+  <span data-i18n="footer">دليل المواطن المغربي - فضاء الوثائق والمعلومات المفيدة للمواطن.</span>
+</footer>
+
+<script>
+const translations = {
+  ar: {
+    siteName: "دليل المواطن المغربي",
+    home: "الصفحة الرئيسية",
+    back: "العودة إلى الوثائق والملفات",
+    mainTitle: "حماية المعطيات الشخصية",
+    description: "فضاء مخصص للاستمارات والوثائق المتعلقة بحماية المعطيات الشخصية بالمغرب. يمكنك الاطلاع على الوثائق أو تحميلها بسهولة.",
+    sectionTitle: "الوثائق والاستمارات المتاحة",
+    doc1Number: "الوثيقة 01",
+    doc1: "استمارة طلب إذن مسبق وفق القرار",
+    doc2Number: "الوثيقة 02",
+    doc2: "استمارة التصريح العادي وفق القرار",
+    doc3Number: "الوثيقة 03",
+    doc3: "استمارة تعيين المسؤول عن المعالجة",
+    doc4Number: "الوثيقة 04",
+    doc4: "استمارة طلب نقل المعطيات نحو بلد أجنبي",
+    view: "عرض الوثيقة",
+    download: "تحميل الوثيقة",
+    footer: "دليل المواطن المغربي - فضاء الوثائق والمعلومات المفيدة للمواطن."
+  },
+
+  fr: {
+    siteName: "Guide du citoyen marocain",
+    home: "Page d'accueil",
+    back: "Retour aux documents et fichiers",
+    mainTitle: "Protection des données personnelles",
+    description: "Espace dédié aux formulaires et documents relatifs à la protection des données personnelles au Maroc. Consultez ou téléchargez facilement les documents.",
+    sectionTitle: "Documents et formulaires disponibles",
+    doc1Number: "Document 01",
+    doc1: "Formulaire de demande d'autorisation préalable selon la décision",
+    doc2Number: "Document 02",
+    doc2: "Formulaire de déclaration normale selon la décision",
+    doc3Number: "Document 03",
+    doc3: "Formulaire de désignation du responsable du traitement",
+    doc4Number: "Document 04",
+    doc4: "Formulaire de demande de transfert des données vers un pays étranger",
+    view: "Consulter le document",
+    download: "Télécharger",
+    footer: "Guide du citoyen marocain - Espace de documents et d'informations utiles."
+  },
+
+  en: {
+    siteName: "Moroccan Citizen Guide",
+    home: "Home page",
+    back: "Back to documents and files",
+    mainTitle: "Personal Data Protection",
+    description: "A dedicated space for forms and documents related to personal data protection in Morocco. You can easily view or download the documents.",
+    sectionTitle: "Available Documents and Forms",
+    doc1Number: "Document 01",
+    doc1: "Prior Authorization Request Form under the Decision",
+    doc2Number: "Document 02",
+    doc2: "Ordinary Declaration Form under the Decision",
+    doc3Number: "Document 03",
+    doc3: "Form for Appointing the Data Controller",
+    doc4Number: "Document 04",
+    doc4: "Request Form for Transferring Data to a Foreign Country",
+    view: "View Document",
+    download: "Download Document",
+    footer: "Moroccan Citizen Guide - Documents and useful information for citizens."
+  }
+};
+
+const languageSelect = document.getElementById("languageSelect");
+
+function applyLanguage(lang) {
+  if (!translations[lang]) lang = "ar";
+
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+
+  document.querySelectorAll("[data-i18n]").forEach(element => {
+    const key = element.dataset.i18n;
+    if (translations[lang][key]) {
+      element.textContent = translations[lang][key];
+    }
+  });
+
+  languageSelect.value = lang;
+  document.title = translations[lang].mainTitle + " | " + translations[lang].siteName;
+}
+
+const savedLanguage = localStorage.getItem("citizenGuideLanguage") || "ar";
+applyLanguage(savedLanguage);
+
+languageSelect.addEventListener("change", function() {
+  const lang = this.value;
+  localStorage.setItem("citizenGuideLanguage", lang);
+  applyLanguage(lang);
+});
+
+window.addEventListener("storage", function(event) {
+  if (event.key === "citizenGuideLanguage" && event.newValue) {
+    applyLanguage(event.newValue);
+  }
+});
+</script>
+
+</body>
+  </html>
