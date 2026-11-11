@@ -235,6 +235,75 @@ header {
   flex-shrink: 0;
 }
 
+.bottom-area {
+  margin-top: 55px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 35px;
+}
+
+.independent-note {
+  width: 100%;
+  background: #fff4e4;
+  border-right: 6px solid var(--gold);
+  border-radius: 18px;
+  padding: 25px 30px;
+  color: #66564a;
+  font-size: 17px;
+  line-height: 2;
+  box-shadow: 0 5px 18px rgba(80, 30, 20, .05);
+}
+
+html[dir="ltr"] .independent-note {
+  border-right: none;
+  border-left: 6px solid var(--gold);
+}
+
+.bottom-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.bottom-buttons a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 190px;
+  padding: 17px 25px;
+  border-radius: 18px;
+  background: var(--dark);
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: bold;
+  transition: .2s;
+}
+
+.bottom-buttons a:hover {
+  background: var(--red);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+  .independent-note {
+    padding: 20px;
+    font-size: 15px;
+  }
+
+  .bottom-buttons {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .bottom-buttons a {
+    width: 100%;
+    font-size: 15px;
+  }
+  }
+  
 footer {
   background: var(--deep);
   border-top: 4px solid var(--gold);
@@ -508,6 +577,25 @@ footer {
     </article>
 
   </div>
+  
+  <div class="bottom-area">
+
+    <div class="independent-note" data-i18n="independentNote">
+      تنبيه: هذا الموقع دليل مستقل وليس الموقع الرسمي للجنة الوطنية لمراقبة حماية المعطيات ذات الطابع الشخصي. يرجى التأكد من صحة الوثائق وشروط استعمالها لدى الجهة المختصة.
+    </div>
+
+    <div class="bottom-buttons">
+      <a href="index.html" data-i18n="home">
+        الصفحة الرئيسية
+      </a>
+
+      <a href="documents.html" data-i18n="back">
+        العودة إلى الوثائق والملفات
+      </a>
+    </div>
+
+  </div>
+  
 </main>
 
 <footer>
