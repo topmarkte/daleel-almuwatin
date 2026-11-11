@@ -1,0 +1,643 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#a90f24">
+<meta name="description" content="مجموعة من القوانين والنصوص التشريعية المغربية للاطلاع والتحميل.">
+<title>القوانين المغربية | دليل المواطن المغربي</title>
+
+<style>
+:root {
+  --red: #a90f24;
+  --dark: #760817;
+  --deep: #45050f;
+  --gold: #d8b66b;
+  --cream: #fffaf3;
+  --text: #5e1721;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, Tahoma, sans-serif;
+  background: var(--cream);
+  color: var(--text);
+}
+
+header {
+  background: linear-gradient(120deg, var(--deep), var(--red));
+  border-bottom: 5px solid var(--gold);
+  color: white;
+  padding: 25px 20px 22px;
+}
+
+.header-inner {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.site-name {
+  font-size: 21px;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+.nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.nav a, .nav select {
+  text-decoration: none;
+  color: white;
+  border: 1px solid rgba(255,255,255,.45);
+  border-radius: 13px;
+  padding: 13px 17px;
+  background: transparent;
+  font-family: inherit;
+  font-size: 15px;
+}
+
+.nav select {
+  background: white;
+  color: var(--dark);
+  min-width: 145px;
+  cursor: pointer;
+}
+
+.nav a:hover {
+  background: rgba(255,255,255,.12);
+}
+
+.hero {
+  text-align: center;
+  padding: 65px 20px 55px;
+  background: linear-gradient(120deg, #fffaf3, #f5e9da);
+  border-bottom: 1px solid #eadcc9;
+}
+
+.hero h1 {
+  color: var(--dark);
+  font-size: 34px;
+  line-height: 1.6;
+  margin: 0 auto 20px;
+  max-width: 850px;
+}
+
+.hero p {
+  color: #81736c;
+  font-size: 19px;
+  line-height: 2;
+  max-width: 850px;
+  margin: auto;
+}
+
+.documents {
+  max-width: 1100px;
+  margin: auto;
+  padding: 55px 20px 70px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 32px;
+  color: var(--dark);
+  margin: 0 0 45px;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 110px;
+  height: 5px;
+  background: var(--gold);
+  border-radius: 10px;
+  margin: 22px auto 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 25px;
+}
+
+.card {
+  background: white;
+  border: 1px solid #e2cda5;
+  border-radius: 24px;
+  padding: 25px;
+  box-shadow: 0 8px 25px rgba(80, 30, 20, .07);
+}
+
+.card-heading {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  margin-bottom: 22px;
+}
+
+.doc-icon {
+  width: 65px;
+  height: 65px;
+  border-radius: 18px;
+  background: #fff0ef;
+  color: var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.doc-icon svg {
+  width: 36px;
+  height: 36px;
+}
+
+.doc-number {
+  color: var(--red);
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.card h3 {
+  margin: 0;
+  color: var(--dark);
+  font-size: 19px;
+  line-height: 1.7;
+}
+
+.preview {
+  width: 100%;
+  height: 260px;
+  border: 1px solid #eadfd1;
+  border-radius: 17px;
+  overflow: hidden;
+  background: #fffaf3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+}
+
+.preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+.actions a {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  border-radius: 14px;
+  padding: 17px 8px;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  transition: .2s;
+}
+
+.actions a:hover {
+  transform: translateY(-2px);
+  opacity: .92;
+}
+
+.view-btn { background: var(--red); }
+.download-btn { background: var(--deep); }
+
+.actions svg {
+  width: 21px;
+  height: 21px;
+  flex-shrink: 0;
+}
+
+.bottom-area {
+  margin-top: 55px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 35px;
+}
+
+.independent-note {
+  width: 100%;
+  background: #fff4e4;
+  border-right: 6px solid var(--gold);
+  border-radius: 18px;
+  padding: 25px 30px;
+  color: #66564a;
+  font-size: 17px;
+  line-height: 2;
+  box-shadow: 0 5px 18px rgba(80, 30, 20, .05);
+}
+
+html[dir="ltr"] .independent-note {
+  border-right: none;
+  border-left: 6px solid var(--gold);
+}
+
+.bottom-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.bottom-buttons a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 190px;
+  padding: 17px 25px;
+  border-radius: 18px;
+  background: var(--dark);
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: bold;
+  transition: .2s;
+}
+
+.bottom-buttons a:hover {
+  background: var(--red);
+  transform: translateY(-2px);
+}
+
+footer {
+  background: var(--deep);
+  border-top: 4px solid var(--gold);
+  color: white;
+  text-align: center;
+  padding: 25px 15px;
+  line-height: 1.9;
+}
+
+@media (max-width: 700px) {
+  header { padding: 22px 16px; }
+
+  .site-name {
+    font-size: 19px;
+    margin-bottom: 22px;
+  }
+
+  .nav {
+    justify-content: flex-start;
+    gap: 9px;
+  }
+
+  .nav a, .nav select {
+    font-size: 13px;
+    padding: 12px 10px;
+  }
+
+  .hero { padding: 48px 20px 42px; }
+  .hero h1 { font-size: 28px; }
+  .hero p { font-size: 17px; }
+
+  .documents { padding: 45px 18px 55px; }
+  .section-title { font-size: 27px; }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .card {
+    padding: 20px;
+    border-radius: 22px;
+  }
+
+  .preview { height: 230px; }
+  .card h3 { font-size: 18px; }
+
+  .actions a {
+    font-size: 14px;
+    padding: 15px 5px;
+  }
+
+  .independent-note {
+    padding: 20px;
+    font-size: 15px;
+  }
+
+  .bottom-buttons {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .bottom-buttons a {
+    width: 100%;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 360px) {
+  .actions { flex-direction: column; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="site-name" data-i18n="siteName">دليل المواطن المغربي</div>
+
+    <nav class="nav">
+      <a href="./index.html" data-i18n="home">الصفحة الرئيسية</a>
+      <a href="./documents.html" data-i18n="back">العودة إلى الوثائق والملفات</a>
+
+      <select id="languageSelect" aria-label="Language">
+        <option value="ar">العربية</option>
+        <option value="fr">Français</option>
+        <option value="en">English</option>
+      </select>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <h1 data-i18n="mainTitle">القوانين المغربية</h1>
+  <p data-i18n="description">
+    فضاء مخصص لمجموعة من القوانين والنصوص التشريعية المغربية.
+    يمكنك الاطلاع على الوثائق أو تحميلها بسهولة.
+  </p>
+</section>
+
+<main class="documents">
+  <h2 class="section-title" data-i18n="sectionTitle">
+    القوانين والوثائق المتاحة
+  </h2>
+
+  <div class="grid" id="documentsGrid"></div>
+
+  <div class="bottom-area">
+    <div class="independent-note" data-i18n="independentNote">
+      تنبيه: هذا الموقع دليل مستقل وليس موقعاً رسمياً تابعاً لأي جهة حكومية.
+      يرجى التحقق من آخر التعديلات القانونية وصحة النصوص لدى الجهات المختصة.
+    </div>
+
+    <div class="bottom-buttons">
+      <a href="./index.html" data-i18n="home">الصفحة الرئيسية</a>
+      <a href="./documents.html" data-i18n="back">العودة إلى الوثائق والملفات</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <span data-i18n="footer">
+    دليل المواطن المغربي - فضاء الوثائق والمعلومات المفيدة للمواطن.
+  </span>
+</footer>
+
+<script>
+const documentsList = [
+  {
+    pdf: "PDF.C1.pdf",
+    image: "Screenshot_20261111-211709.jpg",
+    ar: "التحفيظ العقاري",
+    fr: "L'immatriculation foncière",
+    en: "Land Registration"
+  },
+  {
+    pdf: "PDF.C2.pdf",
+    image: "Screenshot_20261111-211726.jpg",
+    ar: "الحالة المدنية",
+    fr: "L'état civil",
+    en: "Civil Status"
+  },
+  {
+    pdf: "PDF.C3.pdf",
+    image: "Screenshot_20261111-211737.jpg",
+    ar: "الكراء – استيفاء الوجيبة",
+    fr: "Location – Recouvrement du loyer",
+    en: "Rent – Collection of Rent"
+  },
+  {
+    pdf: "PDF.C4.pdf",
+    image: "Screenshot_20261111-211751.jpg",
+    ar: "مدونة الشغل المغربية",
+    fr: "Code du travail marocain",
+    en: "Moroccan Labour Code"
+  },
+  {
+    pdf: "PDF.C5.pdf",
+    image: "Screenshot_20261111-211804.jpg",
+    ar: "مدونة الحقوق العينية العقارية",
+    fr: "Code des droits réels immobiliers",
+    en: "Real Property Rights Code"
+  },
+  {
+    pdf: "PDF.C6.pdf",
+    image: "Screenshot_20261111-211816.jpg",
+    ar: "مدونة الأسرة المغربية كاملة ومحينة (القانون رقم 70.03)",
+    fr: "Code de la famille marocain (loi n° 70.03), version complète et mise à jour",
+    en: "Moroccan Family Code, complete and updated (Law No. 70.03)"
+  },
+  {
+    pdf: "PDF.C7.pdf",
+    image: "Screenshot_20261111-211829.jpg",
+    ar: "المحلات المعدة للسكنى أو للاستعمال المهني",
+    fr: "Locaux destinés à l'habitation ou à l'usage professionnel",
+    en: "Premises Intended for Residential or Professional Use"
+  },
+  {
+    pdf: "PDF.C8.pdf",
+    image: "Screenshot_20261111-211841.jpg",
+    ar: "كفالة الأطفال المهملين",
+    fr: "La kafala des enfants abandonnés",
+    en: "Kafala of Abandoned Children"
+  },
+  {
+    pdf: "PDF.C9.pdf",
+    image: "Screenshot_20261111-211859.jpg",
+    ar: "مراقبة وزجر المخالفات في مجال التعمير والبناء",
+    fr: "Contrôle et répression des infractions en matière d'urbanisme et de construction",
+    en: "Control and Penalties for Urban Planning and Construction Violations"
+  },
+  {
+    pdf: "PDF.C10.pdf",
+    image: "Screenshot_20261111-211917.jpg",
+    ar: "كراء العقارات والمحلات المخصصة للاستعمال التجاري أو الصناعي أو الحرفي",
+    fr: "Location des immeubles et locaux à usage commercial, industriel ou artisanal",
+    en: "Lease of Properties and Premises for Commercial, Industrial or Craft Use"
+  },
+  {
+    pdf: "PDF.C11.pdf",
+    image: "Screenshot_20261111-211958.jpg",
+    ar: "كيفية مراجعة أثمان كراء المحلات",
+    fr: "Modalités de révision des loyers des locaux",
+    en: "How to Revise Premises Rental Prices"
+  },
+  {
+    pdf: "PDF.C12.pdf",
+    image: "Screenshot_20261111-212019.jpg",
+    ar: "كيفيات الإشهاد على مطابقة نسخ الوثائق لأصولها",
+    fr: "Modalités de certification de la conformité des copies aux originaux",
+    en: "Procedures for Certifying Copies as True to Originals"
+  }
+];
+
+const translations = {
+  ar: {
+    siteName: "دليل المواطن المغربي",
+    home: "الصفحة الرئيسية",
+    back: "العودة إلى الوثائق والملفات",
+    mainTitle: "القوانين المغربية",
+    description: "فضاء مخصص لمجموعة من القوانين والنصوص التشريعية المغربية. يمكنك الاطلاع على الوثائق أو تحميلها بسهولة.",
+    sectionTitle: "القوانين والوثائق المتاحة",
+    document: "القانون أو الوثيقة",
+    view: "عرض الوثيقة",
+    download: "تحميل الوثيقة",
+    independentNote: "تنبيه: هذا الموقع دليل مستقل وليس موقعاً رسمياً تابعاً لأي جهة حكومية. يرجى التحقق من آخر التعديلات القانونية وصحة النصوص لدى الجهات المختصة.",
+    footer: "دليل المواطن المغربي - فضاء الوثائق والمعلومات المفيدة للمواطن."
+  },
+
+  fr: {
+    siteName: "Guide du citoyen marocain",
+    home: "Page d'accueil",
+    back: "Retour aux documents et fichiers",
+    mainTitle: "Lois marocaines",
+    description: "Espace consacré à une collection de lois et de textes législatifs marocains. Consultez ou téléchargez facilement les documents.",
+    sectionTitle: "Lois et documents disponibles",
+    document: "Loi ou document",
+    view: "Consulter le document",
+    download: "Télécharger le document",
+    independentNote: "Attention : ce site est un guide indépendant et n'est pas un site officiel d'un organisme gouvernemental. Veuillez vérifier les dernières modifications législatives et l'exactitude des textes auprès des autorités compétentes.",
+    footer: "Guide du citoyen marocain - Espace de documents et d'informations utiles."
+  },
+
+  en: {
+    siteName: "Moroccan Citizen Guide",
+    home: "Home page",
+    back: "Back to documents and files",
+    mainTitle: "Moroccan Laws",
+    description: "A dedicated space for a collection of Moroccan laws and legislative texts. You can easily view or download the documents.",
+    sectionTitle: "Available Laws and Documents",
+    document: "Law or Document",
+    view: "View Document",
+    download: "Download Document",
+    independentNote: "Notice: This website is an independent guide and is not an official government website. Please check the latest legal amendments and the accuracy of the texts with the competent authorities.",
+    footer: "Moroccan Citizen Guide - Documents and useful information for citizens."
+  }
+};
+
+const grid = document.getElementById("documentsGrid");
+
+function renderDocuments(lang) {
+  grid.innerHTML = documentsList.map((doc, index) => {
+    const number = String(index + 1).padStart(2, "0");
+    const title = doc[lang];
+
+    return `
+      <article class="card">
+        <div class="card-heading">
+          <div class="doc-icon">
+            <svg viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.7">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <path d="M14 2v6h6M8 13h8M8 17h8"/>
+            </svg>
+          </div>
+
+          <div>
+            <div class="doc-number">${translations[lang].document} ${number}</div>
+            <h3>${title}</h3>
+          </div>
+        </div>
+
+        <div class="preview">
+          <img
+            src="./laws-files/${doc.image}"
+            alt="${title}"
+            loading="lazy"
+          >
+        </div>
+
+        <div class="actions">
+          <a class="view-btn"
+             href="./laws-files/${doc.pdf}"
+             target="_blank"
+             rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2">
+              <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+            <span>${translations[lang].view}</span>
+          </a>
+
+          <a class="download-btn"
+             href="./laws-files/${doc.pdf}"
+             download>
+            <svg viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <path d="M7 10l5 5 5-5M12 15V3"/>
+            </svg>
+            <span>${translations[lang].download}</span>
+          </a>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
+const languageSelect = document.getElementById("languageSelect");
+
+function applyLanguage(lang) {
+  if (!translations[lang]) lang = "ar";
+
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+
+  document.querySelectorAll("[data-i18n]").forEach(element => {
+    const key = element.dataset.i18n;
+
+    if (translations[lang][key] !== undefined) {
+      element.textContent = translations[lang][key];
+    }
+  });
+
+  languageSelect.value = lang;
+  document.title = translations[lang].mainTitle + " | " + translations[lang].siteName;
+
+  renderDocuments(lang);
+}
+
+const savedLanguage = localStorage.getItem("citizenGuideLanguage") || "ar";
+applyLanguage(savedLanguage);
+
+languageSelect.addEventListener("change", function() {
+  const lang = this.value;
+  localStorage.setItem("citizenGuideLanguage", lang);
+  applyLanguage(lang);
+});
+
+window.addEventListener("storage", function(event) {
+  if (event.key === "citizenGuideLanguage" && event.newValue) {
+    applyLanguage(event.newValue);
+  }
+});
+</script>
+
+</body>
+  </html>
+  
