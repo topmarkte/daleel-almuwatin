@@ -323,6 +323,103 @@
       outline-color: var(--gold);
     }
 
+/* إحصائيات ومميزات دليل المواطن */
+.stats-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 13px;
+  margin: 0 0 30px;
+  padding: 0 2px;
+}
+
+.stat-button {
+  position: relative;
+  overflow: hidden;
+  min-height: 105px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 15px 7px;
+  text-align: center;
+  border: 1px solid #d8b66b;
+  border-radius: 17px;
+  background: linear-gradient(145deg, #ffffff, #fff5e9);
+  box-shadow: 0 5px 15px #65081710;
+  animation: statAppear .75s ease both;
+  transition: transform .3s ease, box-shadow .3s ease,
+              border-color .3s ease;
+}
+
+.stat-button:nth-child(2) {
+  animation-delay: .15s;
+}
+
+.stat-button:nth-child(3) {
+  animation-delay: .3s;
+}
+
+.stat-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #d8b66b, #a90f24, #d8b66b);
+  background-size: 200% 100%;
+  animation: goldFlow 4s linear infinite;
+}
+
+.stat-number {
+  color: #a90f24;
+  font-size: clamp(23px, 5vw, 31px);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: .3px;
+}
+
+.stat-label {
+  color: #650817;
+  font-size: clamp(11px, 2.8vw, 14px);
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+.stat-button:hover {
+  transform: translateY(-5px);
+  border-color: #a90f24;
+  box-shadow: 0 10px 23px #65081720;
+}
+
+@keyframes statAppear {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes goldFlow {
+  from { background-position: 100% 0; }
+  to { background-position: -100% 0; }
+}
+
+@media (max-width: 380px) {
+  .stats-buttons {
+    gap: 8px;
+  }
+
+  .stat-button {
+    min-height: 95px;
+    padding: 12px 4px;
+    border-radius: 14px;
+  }
+    }
     .section { margin-top: 24px; }
 
     .section-heading {
@@ -680,9 +777,30 @@
         <option value="fr">Français</option>
         <option value="en">English</option>
       </select>
+    
+    </div>
+
+    <div class="stats-buttons" aria-label="مميزات الموقع">
+      <div class="stat-button">
+        <span class="stat-number">100%</span>
+        <span class="stat-label" data-i18n="statFree">مجاني</span>
+      </div>
+
+      <div class="stat-button">
+        <span class="stat-number">8</span>
+        <span class="stat-label" data-i18n="statCategories">فئات متنوعة</span>
+      </div>
+
+      <div class="stat-button">
+        <span class="stat-number">70</span>
+        <span class="stat-label" data-i18n="statForms">نموذج إداري</span>
+      </div>
     </div>
 
     <section class="section" aria-labelledby="emergencyHeading">
+      
+
+    
       <h2 class="section-heading">
         <span class="heading-icon" aria-hidden="true" id="phoneHeadingIcon"></span>
         <span id="emergencyHeading">أرقام الخدمات المهمة</span>
@@ -888,6 +1006,9 @@
         title: "دليل المواطن المغربي",
         subtitle: "مرجعك الشامل للوصول إلى الخدمات والمعلومات والوثائق التي يحتاجها المواطن المغربي",
         emergencyHeading: "أرقام الخدمات المهمة",
+        statFree: "مجاني",
+statCategories: "فئات متنوعة",
+statForms: "نموذج إداري",
         subtitle2: "أرقام مفيدة قد تحتاج إليها في الحالات المختلفة.",
         numberNotice: "تنبيه: يُرجى التأكد من الأرقام وشروط الاتصال عبر الجهات الرسمية قبل الاعتماد عليها، فقد تختلف الخدمات حسب المنطقة.",
         portalsHeading: "مواقع رقمية مفيدة",
@@ -935,6 +1056,9 @@
         title: "Guide du citoyen marocain",
         subtitle: "Votre guide complet pour accéder aux services, aux informations et aux documents utiles au citoyen marocain",
         emergencyHeading: "Numéros de services utiles",
+        statFree: "Gratuit",
+statCategories: "Catégories variées",
+statForms: "Modèles administratifs",
         subtitle2: "Des numéros qui peuvent être utiles selon la situation.",
         numberNotice: "Attention : vérifiez les numéros et les conditions d'appel auprès des sources officielles avant de les utiliser. Les services peuvent varier selon la région.",
         portalsHeading: "Sites numériques utiles",
@@ -982,6 +1106,9 @@
         title: "Moroccan Citizen Guide",
         subtitle: "Your comprehensive guide to services, information and documents useful to Moroccan citizens",
         emergencyHeading: "Useful service numbers",
+        statFree: "Free",
+statCategories: "Various categories",
+statForms: "Administrative forms",
         subtitle2: "Numbers that may be useful in different situations.",
         numberNotice: "Notice: Verify numbers and calling conditions with official sources before relying on them. Services may vary by region.",
         portalsHeading: "Useful digital services",
